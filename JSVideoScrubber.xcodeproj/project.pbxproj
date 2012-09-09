@@ -15,6 +15,9 @@
 		EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0515FC565C003168B7 /* JSAppDelegate.m */; };
 		EC053D0915FC565C003168B7 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0815FC565C003168B7 /* JSViewController.m */; };
 		EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC053D0A15FC565C003168B7 /* JSViewController.xib */; };
+		EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */; };
+		EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2215FC57E6003168B7 /* AVFoundation.framework */; };
+		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,10 @@
 		EC053D0715FC565C003168B7 /* JSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
 		EC053D0815FC565C003168B7 /* JSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
 		EC053D0B15FC565C003168B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JSViewController.xib; sourceTree = "<group>"; };
+		EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
+		EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
+		EC053D2215FC57E6003168B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EC053D2415FC5AFA003168B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */,
+				EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */,
 				EC053CF615FC565C003168B7 /* UIKit.framework in Frameworks */,
 				EC053CF815FC565C003168B7 /* Foundation.framework in Frameworks */,
 				EC053CFA15FC565C003168B7 /* CoreGraphics.framework in Frameworks */,
@@ -50,6 +59,7 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
+				EC053D2415FC5AFA003168B7 /* CoreMedia.framework */,
 				EC053CFB15FC565C003168B7 /* JSVideoScrubber */,
 				EC053CF415FC565C003168B7 /* Frameworks */,
 				EC053CF215FC565C003168B7 /* Products */,
@@ -67,6 +77,7 @@
 		EC053CF415FC565C003168B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC053D2215FC57E6003168B7 /* AVFoundation.framework */,
 				EC053CF515FC565C003168B7 /* UIKit.framework */,
 				EC053CF715FC565C003168B7 /* Foundation.framework */,
 				EC053CF915FC565C003168B7 /* CoreGraphics.framework */,
@@ -77,6 +88,7 @@
 		EC053CFB15FC565C003168B7 /* JSVideoScrubber */ = {
 			isa = PBXGroup;
 			children = (
+				EC053D1615FC56A5003168B7 /* Control */,
 				EC053D0415FC565C003168B7 /* JSAppDelegate.h */,
 				EC053D0515FC565C003168B7 /* JSAppDelegate.m */,
 				EC053D0715FC565C003168B7 /* JSViewController.h */,
@@ -96,6 +108,15 @@
 				EC053D0315FC565C003168B7 /* JSVideoScrubber-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC053D1615FC56A5003168B7 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */,
+				EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */,
+			);
+			name = Control;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +186,7 @@
 				EC053D0215FC565C003168B7 /* main.m in Sources */,
 				EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */,
 				EC053D0915FC565C003168B7 /* JSViewController.m in Sources */,
+				EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +302,7 @@
 				EC053D1115FC565C003168B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
