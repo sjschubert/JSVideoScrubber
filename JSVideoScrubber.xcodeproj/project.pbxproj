@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC053CF615FC565C003168B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF515FC565C003168B7 /* UIKit.framework */; };
+		EC053CF815FC565C003168B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF715FC565C003168B7 /* Foundation.framework */; };
+		EC053CFA15FC565C003168B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF915FC565C003168B7 /* CoreGraphics.framework */; };
+		EC053D0015FC565C003168B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC053CFE15FC565C003168B7 /* InfoPlist.strings */; };
+		EC053D0215FC565C003168B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0115FC565C003168B7 /* main.m */; };
+		EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0515FC565C003168B7 /* JSAppDelegate.m */; };
+		EC053D0915FC565C003168B7 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0815FC565C003168B7 /* JSViewController.m */; };
+		EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC053D0A15FC565C003168B7 /* JSViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EC053CF115FC565C003168B7 /* JSVideoScrubber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSVideoScrubber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC053CF515FC565C003168B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EC053CF715FC565C003168B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EC053CF915FC565C003168B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EC053CFD15FC565C003168B7 /* JSVideoScrubber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSVideoScrubber-Info.plist"; sourceTree = "<group>"; };
+		EC053CFF15FC565C003168B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EC053D0115FC565C003168B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EC053D0315FC565C003168B7 /* JSVideoScrubber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSVideoScrubber-Prefix.pch"; sourceTree = "<group>"; };
+		EC053D0415FC565C003168B7 /* JSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
+		EC053D0515FC565C003168B7 /* JSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
+		EC053D0715FC565C003168B7 /* JSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
+		EC053D0815FC565C003168B7 /* JSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
+		EC053D0B15FC565C003168B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JSViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC053CEE15FC565C003168B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC053CF615FC565C003168B7 /* UIKit.framework in Frameworks */,
+				EC053CF815FC565C003168B7 /* Foundation.framework in Frameworks */,
+				EC053CFA15FC565C003168B7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC053CE615FC565C003168B7 = {
+			isa = PBXGroup;
+			children = (
+				EC053CFB15FC565C003168B7 /* JSVideoScrubber */,
+				EC053CF415FC565C003168B7 /* Frameworks */,
+				EC053CF215FC565C003168B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC053CF215FC565C003168B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC053CF115FC565C003168B7 /* JSVideoScrubber.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC053CF415FC565C003168B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC053CF515FC565C003168B7 /* UIKit.framework */,
+				EC053CF715FC565C003168B7 /* Foundation.framework */,
+				EC053CF915FC565C003168B7 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC053CFB15FC565C003168B7 /* JSVideoScrubber */ = {
+			isa = PBXGroup;
+			children = (
+				EC053D0415FC565C003168B7 /* JSAppDelegate.h */,
+				EC053D0515FC565C003168B7 /* JSAppDelegate.m */,
+				EC053D0715FC565C003168B7 /* JSViewController.h */,
+				EC053D0815FC565C003168B7 /* JSViewController.m */,
+				EC053D0A15FC565C003168B7 /* JSViewController.xib */,
+				EC053CFC15FC565C003168B7 /* Supporting Files */,
+			);
+			path = JSVideoScrubber;
+			sourceTree = "<group>";
+		};
+		EC053CFC15FC565C003168B7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC053CFD15FC565C003168B7 /* JSVideoScrubber-Info.plist */,
+				EC053CFE15FC565C003168B7 /* InfoPlist.strings */,
+				EC053D0115FC565C003168B7 /* main.m */,
+				EC053D0315FC565C003168B7 /* JSVideoScrubber-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC053CF015FC565C003168B7 /* JSVideoScrubber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC053D0F15FC565C003168B7 /* Build configuration list for PBXNativeTarget "JSVideoScrubber" */;
+			buildPhases = (
+				EC053CED15FC565C003168B7 /* Sources */,
+				EC053CEE15FC565C003168B7 /* Frameworks */,
+				EC053CEF15FC565C003168B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSVideoScrubber;
+			productName = JSVideoScrubber;
+			productReference = EC053CF115FC565C003168B7 /* JSVideoScrubber.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC053CE815FC565C003168B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JS;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = jaminschubert;
+			};
+			buildConfigurationList = EC053CEB15FC565C003168B7 /* Build configuration list for PBXProject "JSVideoScrubber" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EC053CE615FC565C003168B7;
+			productRefGroup = EC053CF215FC565C003168B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC053CF015FC565C003168B7 /* JSVideoScrubber */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC053CEF15FC565C003168B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC053D0015FC565C003168B7 /* InfoPlist.strings in Resources */,
+				EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC053CED15FC565C003168B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC053D0215FC565C003168B7 /* main.m in Sources */,
+				EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */,
+				EC053D0915FC565C003168B7 /* JSViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EC053CFE15FC565C003168B7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC053CFF15FC565C003168B7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EC053D0A15FC565C003168B7 /* JSViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC053D0B15FC565C003168B7 /* en */,
+			);
+			name = JSViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC053D0D15FC565C003168B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EC053D0E15FC565C003168B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC053D1015FC565C003168B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JSVideoScrubber/JSVideoScrubber-Prefix.pch";
+				INFOPLIST_FILE = "JSVideoScrubber/JSVideoScrubber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EC053D1115FC565C003168B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JSVideoScrubber/JSVideoScrubber-Prefix.pch";
+				INFOPLIST_FILE = "JSVideoScrubber/JSVideoScrubber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC053CEB15FC565C003168B7 /* Build configuration list for PBXProject "JSVideoScrubber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC053D0D15FC565C003168B7 /* Debug */,
+				EC053D0E15FC565C003168B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC053D0F15FC565C003168B7 /* Build configuration list for PBXNativeTarget "JSVideoScrubber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC053D1015FC565C003168B7 /* Debug */,
+				EC053D1115FC565C003168B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC053CE815FC565C003168B7 /* Project object */;
+}
