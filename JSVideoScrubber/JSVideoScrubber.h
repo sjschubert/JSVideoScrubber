@@ -12,6 +12,7 @@
 
 @property (assign) CMTime value;
 
+- (void) setupControlWithAVAsset:(AVAsset *) asset;
 - (void) setupControlWithAVAsset:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes;
 
 @end
