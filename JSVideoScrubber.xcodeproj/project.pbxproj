@@ -59,7 +59,6 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
-				EC053D2415FC5AFA003168B7 /* CoreMedia.framework */,
 				EC053CFB15FC565C003168B7 /* JSVideoScrubber */,
 				EC053CF415FC565C003168B7 /* Frameworks */,
 				EC053CF215FC565C003168B7 /* Products */,
@@ -77,6 +76,7 @@
 		EC053CF415FC565C003168B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC053D2415FC5AFA003168B7 /* CoreMedia.framework */,
 				EC053D2215FC57E6003168B7 /* AVFoundation.framework */,
 				EC053CF515FC565C003168B7 /* UIKit.framework */,
 				EC053CF715FC565C003168B7 /* Foundation.framework */,

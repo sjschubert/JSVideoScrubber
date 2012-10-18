@@ -6,19 +6,17 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "JSVideoScrubber.h"
 
 @interface JSVideoScrubber ()
 
 @property (strong) AVAssetImageGenerator *assetImageGenerator;
+@property (strong) NSMutableArray *actualOffsets;
 @property (strong) NSMutableDictionary *imageStrip;
 @property (assign) CMTime duration;
 @property (assign) size_t sourceWidth;
 @property (assign) size_t sourceHeight;
-
-- (AVAssetImageGenerator *) generatorForAsset:(AVAsset *) asset;
-- (NSArray *) generateOffsets:(AVAsset *) asset;
-- (void) updateImageStrip:(AVAssetImageGenerator *) generator atIndex:(CMTime) offset;
 
 @end
 
@@ -31,7 +29,20 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        self.actualOffsets = [NSMutableArray array];
+        self.imageStrip = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
 
+- (id) initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        self.actualOffsets = [NSMutableArray array];
+        self.imageStrip = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -39,21 +50,32 @@
 
 #pragma mark - UIView
 
-- (void)drawRect:(CGRect) rect
+- (void) drawRect:(CGRect) rect
 {
-
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
+        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
+        CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
+        
+        size_t height = CGImageGetHeight(image);
+        size_t width = CGImageGetWidth(image);
+        
+        CGRect forOffset = CGRectMake((rect.origin.x + (offset * width)), rect.origin.y, width, height);
+        CGContextDrawImage(context, forOffset, image);
+    }
 }
 
 #pragma mark - Interface
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset
 {
-    AVAssetImageGenerator *generator = [self generatorForAsset:asset];
+    self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
     
     CMTime actualTime;
     NSError *error = nil;
     
-    CGImageRef image = [generator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
+    CGImageRef image = [self.assetImageGenerator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
     
     if (error) {
         NSLog(@"Error copying reference image.");
@@ -62,36 +84,49 @@
     self.sourceWidth = CGImageGetWidth(image);
     self.sourceHeight = CGImageGetHeight(image);
     
-    [self setupControlWithAVAsset:asset indexedAt:[self generateOffsets:asset]];
+    [self createStrip:asset indexedAt:[self generateOffsets:asset]];
 }
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
-    AVAssetImageGenerator *generator = [self generatorForAsset:asset];
+    self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+    [self createStrip:asset indexedAt:requestedTimes];
+}
+
+#pragma mark - Internal
+
+- (void) createStrip:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
+{
+    self.duration = asset.duration;
     
     for (NSNumber *number in requestedTimes)
     {
         double offset = [number doubleValue];
         
-        if (offset < 0 || offset > CMTimeGetSeconds(asset.duration))
+        if (offset < 0 || offset > CMTimeGetSeconds(asset.duration)) {
             continue;
+        }
         
-        [self updateImageStrip:generator atIndex:CMTimeMakeWithSeconds(offset, 1)];
+        [self updateImageStrip:CMTimeMakeWithSeconds(offset, 1)];
     }
     
-    self.duration = asset.duration;
-}
-
-#pragma mark - Internal
-
-- (AVAssetImageGenerator *) generatorForAsset:(AVAsset *) asset
-{
-    //only create one generator, not quite a singlton, but we don't need more than one
-    if (self.assetImageGenerator == nil) {
-        self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
-    }
+    //ensure keys are sorted
+    [self.actualOffsets sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        double first = [obj1 doubleValue];
+        double second = [obj2 doubleValue];
+        
+        if (first > second) {
+            return NSOrderedDescending;
+        }
+        
+        if (first < second) {
+            return NSOrderedAscending;
+        }
+        
+        return NSOrderedSame;
+    }];
     
-    return self.assetImageGenerator;
+    [self setNeedsDisplay];
 }
 
 - (NSArray *) generateOffsets:(AVAsset *) asset
@@ -104,7 +139,6 @@
     double duration = CMTimeGetSeconds(asset.duration);
     double offset = duration / intervals;
     
-    NSLog(@"what is my standard offset: %f", offset);
     NSMutableArray *offsets = [NSMutableArray array];
 
     double time = 0.0f;
@@ -117,20 +151,46 @@
     return offsets;
 }
 
-- (void) updateImageStrip:(AVAssetImageGenerator *)generator atIndex:(CMTime)offset
+- (void) updateImageStrip:(CMTime) offset
 {
     CMTime actualTime;
     NSError *error = nil;
     
-    CGImageRef image = [generator copyCGImageAtTime:offset actualTime:&actualTime error:&error];
+    CGImageRef source = [self.assetImageGenerator copyCGImageAtTime:offset actualTime:&actualTime error:&error];
+    CGImageRef scaled = [self createScaleImage:source];
     
     if (error) {
         NSLog(@"Error copying image at index %f: %@", CMTimeGetSeconds(offset), [error localizedDescription]);
     }
     
-    CFRetain(image); //retain per the Get memory mgmt model in apple docs
+    NSNumber *key = [NSNumber numberWithDouble:CMTimeGetSeconds(actualTime)];
+
+    [self.imageStrip setObject:CFBridgingRelease(scaled) forKey:key];  //transfer img ownership to arc
+    [self.actualOffsets addObject:key];
+}
+
+- (CGImageRef) createScaleImage:(CGImageRef) source
+{
+    CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
     
-    [self.imageStrip setObject:CFBridgingRelease(image) forKey:[NSNumber numberWithDouble:CMTimeGetSeconds(actualTime)]];
+    size_t height = (size_t)self.frame.size.height;
+    size_t width = (size_t)(self.frame.size.height * aspect);
+
+    CGColorSpaceRef colorspace = CGImageGetColorSpace(source);
+    
+    CGContextRef context = CGBitmapContextCreate(NULL,
+                                                 width,
+                                                 height,
+                                                 CGImageGetBitsPerComponent(source),
+                                                 (CGImageGetBytesPerRow(source) / CGImageGetWidth(source) * width),
+                                                 colorspace,
+                                                 CGImageGetAlphaInfo(source));
+    if(context == NULL) {
+        return NULL;
+    }
+    
+    CGContextDrawImage(context, CGContextGetClipBoundingBox(context), source);
+    return CGBitmapContextCreateImage(context);
 }
 
 @end
