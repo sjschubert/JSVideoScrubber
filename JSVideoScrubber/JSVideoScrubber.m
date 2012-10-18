@@ -189,8 +189,16 @@
         return NULL;
     }
     
+    //flip image to correct for CG coordinate system
+    CGContextTranslateCTM(context, 0, height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
     CGContextDrawImage(context, CGContextGetClipBoundingBox(context), source);
-    return CGBitmapContextCreateImage(context);
+    
+    CGImageRef scaled = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    
+    return scaled;
 }
 
 @end
