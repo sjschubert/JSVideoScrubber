@@ -10,6 +10,8 @@
 
 @interface JSViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *duration;
+@property (weak, nonatomic) IBOutlet UILabel *offset;
 @property (strong) NSString *documentDirectory;
 
 @end
@@ -32,13 +34,18 @@
     [self setAssetDirectory:nil];
     [self setAssetName:nil];
     [self setJsVideoScrubber:nil];
+    [self setDuration:nil];
+    [self setOffset:nil];
     [super viewDidUnload];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     self.assetDirectory.text = [self.documentDirectory stringByReplacingOccurrencesOfString:@" " withString:@"\\ "];
+    self.duration.text = @"Duration: 00:00";
+    self.offset.text = @"Offset: 00:00";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,7 +73,18 @@
             
             NSArray *assetKeysToLoadAndTest = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
             [asset loadValuesAsynchronouslyForKeys:assetKeysToLoadAndTest completionHandler:^(void) {
-                [self setupJSVideoScrubber:asset];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self setupJSVideoScrubber:asset];
+                    
+                    double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
+                    
+                    int min = (int)total / 60;
+                    int seconds = (int)total % 60;
+                    self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
+
+                    [self updateOffsetLabel:self.jsVideoScrubber];
+                    [self.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
+                });
             }];
         });
     }
@@ -88,4 +106,10 @@
     [self.jsVideoScrubber setupControlWithAVAsset:asset];
 }
 
+- (void) updateOffsetLabel:(JSVideoScrubber *) scrubber
+{
+    int min = (int)self.jsVideoScrubber.markerOffset / 60;
+    int seconds = (int)self.jsVideoScrubber.markerOffset % 60;
+    self.offset.text = [NSString stringWithFormat:@"Offset: %02d:%02d", min, seconds];
+}
 @end

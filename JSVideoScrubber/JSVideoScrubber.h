@@ -10,7 +10,8 @@
 
 @interface JSVideoScrubber : UIControl
 
-@property (assign) CMTime value;
+@property (assign) CMTime duration;
+@property (assign) CGFloat markerOffset;
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset;
 - (void) setupControlWithAVAsset:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes;

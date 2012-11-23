@@ -14,9 +14,11 @@
 @property (strong) AVAssetImageGenerator *assetImageGenerator;
 @property (strong) NSMutableArray *actualOffsets;
 @property (strong) NSMutableDictionary *imageStrip;
-@property (assign) CMTime duration;
 @property (assign) size_t sourceWidth;
 @property (assign) size_t sourceHeight;
+
+@property (strong) UIImage *marker;
+@property (assign) CGFloat markerLocation;
 
 @end
 
@@ -29,8 +31,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.actualOffsets = [NSMutableArray array];
-        self.imageStrip = [NSMutableDictionary dictionary];
+        [self initScrubber];
     }
     
     return self;
@@ -41,11 +42,18 @@
     self = [super initWithCoder:aDecoder];
     
     if (self) {
-        self.actualOffsets = [NSMutableArray array];
-        self.imageStrip = [NSMutableDictionary dictionary];
+        [self initScrubber];
     }
     
     return self;
+}
+
+- (void) initScrubber
+{
+    self.actualOffsets = [NSMutableArray array];
+    self.imageStrip = [NSMutableDictionary dictionary];
+    
+    self.marker = [UIImage imageNamed:@"marker"];
 }
 
 #pragma mark - UIView
@@ -64,7 +72,48 @@
         CGRect forOffset = CGRectMake((rect.origin.x + (offset * width)), rect.origin.y, width, height);
         CGContextDrawImage(context, forOffset, image);
     }
+    
+    CGFloat shift = self.marker.size.width / 2.0;
+    CGRect markerOffset = CGRectMake(self.markerLocation - shift, rect.origin.y, self.marker.size.width, self.marker.size.height);
+    CGContextDrawImage(context, markerOffset, [self.marker CGImage]);
 }
+
+#pragma mark - UIControl
+
+- (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CGPoint touchPoint = [touch locationInView:self];
+    CGFloat shift = self.marker.size.width / 2.0;
+    
+    if (touchPoint.x >= (self.markerLocation - shift) && touchPoint.x <= (self.markerLocation + shift)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CGPoint touchPoint = [touch locationInView:self];
+    
+    if (self.markerLocation >= self.frame.size.width) {
+        self.markerLocation -= 1.0f;
+        return NO;
+    }
+    
+    self.markerLocation = touchPoint.x;
+    self.markerOffset = [self offsetForMarker];
+    
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self setNeedsDisplay];
+    
+    return YES;
+}
+
+//- (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    
+//}
 
 #pragma mark - Interface
 
@@ -98,6 +147,7 @@
 - (void) createStrip:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
     self.duration = asset.duration;
+    self.markerLocation = 0.0f;
     
     for (NSNumber *number in requestedTimes)
     {
@@ -157,7 +207,7 @@
     NSError *error = nil;
     
     CGImageRef source = [self.assetImageGenerator copyCGImageAtTime:offset actualTime:&actualTime error:&error];
-    CGImageRef scaled = [self createScaleImage:source];
+    CGImageRef scaled = [self createScaledImage:source];
     
     if (error) {
         NSLog(@"Error copying image at index %f: %@", CMTimeGetSeconds(offset), [error localizedDescription]);
@@ -167,9 +217,11 @@
 
     [self.imageStrip setObject:CFBridgingRelease(scaled) forKey:key];  //transfer img ownership to arc
     [self.actualOffsets addObject:key];
+    
+    CFRelease(source);
 }
 
-- (CGImageRef) createScaleImage:(CGImageRef) source
+- (CGImageRef) createScaledImage:(CGImageRef) source
 {
     CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
     
@@ -199,6 +251,12 @@
     CGContextRelease(context);
     
     return scaled;
+}
+
+- (CGFloat) offsetForMarker
+{
+    CGFloat ratio = (self.markerLocation / self.frame.size.width);
+    return (ratio * CMTimeGetSeconds(self.duration));
 }
 
 @end

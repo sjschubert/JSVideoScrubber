@@ -18,6 +18,7 @@
 		EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */; };
 		EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2215FC57E6003168B7 /* AVFoundation.framework */; };
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
+		ECF9E3A416366034009F2004 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF9E3A316366034009F2004 /* marker@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC053D2215FC57E6003168B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EC053D2415FC5AFA003168B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		ECF9E3A316366034009F2004 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +115,19 @@
 		EC053D1615FC56A5003168B7 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				ECF9E3A116366028009F2004 /* Assets */,
 				EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */,
 				EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */,
 			);
 			name = Control;
+			sourceTree = "<group>";
+		};
+		ECF9E3A116366028009F2004 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				ECF9E3A316366034009F2004 /* marker@2x.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +184,7 @@
 			files = (
 				EC053D0015FC565C003168B7 /* InfoPlist.strings in Resources */,
 				EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */,
+				ECF9E3A416366034009F2004 /* marker@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
