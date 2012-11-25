@@ -7,7 +7,10 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "UIImage+JSScrubber.h"
 #import "JSVideoScrubber.h"
+
+#define kJSFrameInset 44.0f
 
 @interface JSVideoScrubber ()
 
@@ -17,6 +20,9 @@
 @property (assign) size_t sourceWidth;
 @property (assign) size_t sourceHeight;
 
+@property (strong) UIImage *scrubberFrame;
+@property (strong) UIImage *scrubberBackground;
+@property (strong) UIImage *markerMask;
 @property (strong) UIImage *marker;
 @property (assign) CGFloat markerLocation;
 
@@ -52,30 +58,40 @@
 {
     self.actualOffsets = [NSMutableArray array];
     self.imageStrip = [NSMutableDictionary dictionary];
-    
-    self.marker = [UIImage imageNamed:@"marker"];
+
+    self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
+    self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
+    self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
+    self.marker = [UIImage imageNamed:@"slider"];
 }
 
 #pragma mark - UIView
 
 - (void) drawRect:(CGRect) rect
 {
+    [self.scrubberBackground drawInRect:rect];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGPoint offset = CGPointMake(rect.origin.x + 20, rect.origin.y + 15);
+    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
     
-    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
-        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
-        CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
-        
-        size_t height = CGImageGetHeight(image);
-        size_t width = CGImageGetWidth(image);
-        
-        CGRect forOffset = CGRectMake((rect.origin.x + (offset * width)), rect.origin.y, width, height);
-        CGContextDrawImage(context, forOffset, image);
-    }
+    CGContextDrawImage(context, rect, offsetMarker.CGImage);
     
-    CGFloat shift = self.marker.size.width / 2.0;
-    CGRect markerOffset = CGRectMake(self.markerLocation - shift, rect.origin.y, self.marker.size.width, self.marker.size.height);
-    CGContextDrawImage(context, markerOffset, [self.marker CGImage]);
+    [self.scrubberFrame drawInRect:rect];
+
+//    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
+//        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
+//        CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
+//        
+//        size_t height = CGImageGetHeight(image);
+//        size_t width = CGImageGetWidth(image);
+//        
+//        CGRect forOffset = CGRectMake((rect.origin.x + (offset * width)), rect.origin.y, width, height);
+//        CGContextDrawImage(context, forOffset, image);
+//    }
+    
+    //CGFloat shift = self.marker.size.width / 2.0;
+
 }
 
 #pragma mark - UIControl

@@ -10,33 +10,32 @@
 		EC053CF615FC565C003168B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF515FC565C003168B7 /* UIKit.framework */; };
 		EC053CF815FC565C003168B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF715FC565C003168B7 /* Foundation.framework */; };
 		EC053CFA15FC565C003168B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF915FC565C003168B7 /* CoreGraphics.framework */; };
-		EC053D0015FC565C003168B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC053CFE15FC565C003168B7 /* InfoPlist.strings */; };
-		EC053D0215FC565C003168B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0115FC565C003168B7 /* main.m */; };
-		EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0515FC565C003168B7 /* JSAppDelegate.m */; };
-		EC053D0915FC565C003168B7 /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D0815FC565C003168B7 /* JSViewController.m */; };
-		EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC053D0A15FC565C003168B7 /* JSViewController.xib */; };
 		EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */; };
 		EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2215FC57E6003168B7 /* AVFoundation.framework */; };
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
-		ECCA5EE61661929D00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EE41661929D00229B4D /* Exo-Medium.ttf */; };
-		ECCA5EE71661929D00229B4D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EE51661929D00229B4D /* OFL.txt */; };
-		ECCA5EFB166192C900229B4D /* lower_left.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EEB166192C900229B4D /* lower_left.png */; };
-		ECCA5EFC166192C900229B4D /* lower_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EEC166192C900229B4D /* lower_left@2x.png */; };
-		ECCA5EFD166192C900229B4D /* lower_right.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EED166192C900229B4D /* lower_right.png */; };
-		ECCA5EFE166192C900229B4D /* lower_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EEE166192C900229B4D /* lower_right@2x.png */; };
-		ECCA5EFF166192C900229B4D /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EEF166192C900229B4D /* pause.png */; };
-		ECCA5F00166192C900229B4D /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF0166192C900229B4D /* pause@2x.png */; };
-		ECCA5F01166192C900229B4D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF1166192C900229B4D /* play.png */; };
-		ECCA5F02166192C900229B4D /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF2166192C900229B4D /* play@2x.png */; };
-		ECCA5F03166192C900229B4D /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF3166192C900229B4D /* slider.png */; };
-		ECCA5F04166192C900229B4D /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF4166192C900229B4D /* slider@2x.png */; };
-		ECCA5F05166192C900229B4D /* upper_left.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF5166192C900229B4D /* upper_left.png */; };
-		ECCA5F06166192C900229B4D /* upper_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF6166192C900229B4D /* upper_left@2x.png */; };
-		ECCA5F07166192C900229B4D /* upper_right.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF7166192C900229B4D /* upper_right.png */; };
-		ECCA5F08166192C900229B4D /* upper_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF8166192C900229B4D /* upper_right@2x.png */; };
-		ECCA5F09166192C900229B4D /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EF9166192C900229B4D /* wheel.png */; };
-		ECCA5F0A166192C900229B4D /* wheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5EFA166192C900229B4D /* wheel@2x.png */; };
-		ECF9E3A416366034009F2004 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF9E3A316366034009F2004 /* marker@2x.png */; };
+		ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */; };
+		ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */; };
+		ECCA5F271661B02E00229B4D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1A1661B02E00229B4D /* OFL.txt */; };
+		ECCA5F281661B02E00229B4D /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1C1661B02E00229B4D /* pause.png */; };
+		ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1D1661B02E00229B4D /* pause@2x.png */; };
+		ECCA5F2A1661B02E00229B4D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1E1661B02E00229B4D /* play.png */; };
+		ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1F1661B02E00229B4D /* play@2x.png */; };
+		ECCA5F2C1661B02E00229B4D /* scrubber.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F201661B02E00229B4D /* scrubber.png */; };
+		ECCA5F2D1661B02E00229B4D /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F211661B02E00229B4D /* scrubber@2x.png */; };
+		ECCA5F2E1661B02E00229B4D /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F221661B02E00229B4D /* slider.png */; };
+		ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F231661B02E00229B4D /* slider@2x.png */; };
+		ECCA5F301661B02E00229B4D /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F241661B02E00229B4D /* wheel.png */; };
+		ECCA5F311661B02E00229B4D /* wheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F251661B02E00229B4D /* wheel@2x.png */; };
+		ECCA5F391661B04300229B4D /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F331661B04300229B4D /* JSAppDelegate.m */; };
+		ECCA5F3A1661B04300229B4D /* JSVideoScrubber-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F341661B04300229B4D /* JSVideoScrubber-Info.plist */; };
+		ECCA5F3B1661B04300229B4D /* JSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F371661B04300229B4D /* JSViewController.m */; };
+		ECCA5F3C1661B04300229B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F381661B04300229B4D /* main.m */; };
+		ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */; };
+		ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */; };
+		ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F411661BDA800229B4D /* scrubber_mask.png */; };
+		ECCA5F441661CA3300229B4D /* JSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F431661CA3300229B4D /* JSViewController.xib */; };
+		ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F451661CA4300229B4D /* InfoPlist.strings */; };
+		ECCA5F491661DF3100229B4D /* scrubber_mask_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,38 +43,37 @@
 		EC053CF515FC565C003168B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC053CF715FC565C003168B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EC053CF915FC565C003168B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EC053CFD15FC565C003168B7 /* JSVideoScrubber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSVideoScrubber-Info.plist"; sourceTree = "<group>"; };
-		EC053CFF15FC565C003168B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EC053D0115FC565C003168B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EC053D0315FC565C003168B7 /* JSVideoScrubber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSVideoScrubber-Prefix.pch"; sourceTree = "<group>"; };
-		EC053D0415FC565C003168B7 /* JSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
-		EC053D0515FC565C003168B7 /* JSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
-		EC053D0715FC565C003168B7 /* JSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSViewController.h; sourceTree = "<group>"; };
-		EC053D0815FC565C003168B7 /* JSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSViewController.m; sourceTree = "<group>"; };
-		EC053D0B15FC565C003168B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JSViewController.xib; sourceTree = "<group>"; };
 		EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
 		EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC053D2215FC57E6003168B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EC053D2415FC5AFA003168B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		ECCA5EE41661929D00229B4D /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Exo-Medium.ttf"; path = "Assets/Fonts/Exo-Medium.ttf"; sourceTree = SOURCE_ROOT; };
-		ECCA5EE51661929D00229B4D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = Assets/Fonts/OFL.txt; sourceTree = SOURCE_ROOT; };
-		ECCA5EEB166192C900229B4D /* lower_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lower_left.png; path = Assets/Images/lower_left.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EEC166192C900229B4D /* lower_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lower_left@2x.png"; path = "Assets/Images/lower_left@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EED166192C900229B4D /* lower_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lower_right.png; path = Assets/Images/lower_right.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EEE166192C900229B4D /* lower_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lower_right@2x.png"; path = "Assets/Images/lower_right@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EEF166192C900229B4D /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Assets/Images/pause.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EF0166192C900229B4D /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pause@2x.png"; path = "Assets/Images/pause@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EF1166192C900229B4D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = Assets/Images/play.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EF2166192C900229B4D /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "play@2x.png"; path = "Assets/Images/play@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EF3166192C900229B4D /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slider.png; path = Assets/Images/slider.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EF4166192C900229B4D /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "slider@2x.png"; path = "Assets/Images/slider@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EF5166192C900229B4D /* upper_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_left.png; path = Assets/Images/upper_left.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EF6166192C900229B4D /* upper_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upper_left@2x.png"; path = "Assets/Images/upper_left@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EF7166192C900229B4D /* upper_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upper_right.png; path = Assets/Images/upper_right.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EF8166192C900229B4D /* upper_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upper_right@2x.png"; path = "Assets/Images/upper_right@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECCA5EF9166192C900229B4D /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wheel.png; path = Assets/Images/wheel.png; sourceTree = SOURCE_ROOT; };
-		ECCA5EFA166192C900229B4D /* wheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wheel@2x.png"; path = "Assets/Images/wheel@2x.png"; sourceTree = SOURCE_ROOT; };
-		ECF9E3A316366034009F2004 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
+		ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
+		ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
+		ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
+		ECCA5F1A1661B02E00229B4D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		ECCA5F1C1661B02E00229B4D /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		ECCA5F1D1661B02E00229B4D /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
+		ECCA5F1E1661B02E00229B4D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		ECCA5F1F1661B02E00229B4D /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		ECCA5F201661B02E00229B4D /* scrubber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber.png; sourceTree = "<group>"; };
+		ECCA5F211661B02E00229B4D /* scrubber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber@2x.png"; sourceTree = "<group>"; };
+		ECCA5F221661B02E00229B4D /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
+		ECCA5F231661B02E00229B4D /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
+		ECCA5F241661B02E00229B4D /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
+		ECCA5F251661B02E00229B4D /* wheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel@2x.png"; sourceTree = "<group>"; };
+		ECCA5F321661B04300229B4D /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSAppDelegate.h; path = Support/JSAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		ECCA5F331661B04300229B4D /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSAppDelegate.m; path = Support/JSAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		ECCA5F341661B04300229B4D /* JSVideoScrubber-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JSVideoScrubber-Info.plist"; path = "Support/JSVideoScrubber-Info.plist"; sourceTree = SOURCE_ROOT; };
+		ECCA5F351661B04300229B4D /* JSVideoScrubber-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSVideoScrubber-Prefix.pch"; path = "Support/JSVideoScrubber-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		ECCA5F361661B04300229B4D /* JSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSViewController.h; path = Support/JSViewController.h; sourceTree = SOURCE_ROOT; };
+		ECCA5F371661B04300229B4D /* JSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSViewController.m; path = Support/JSViewController.m; sourceTree = SOURCE_ROOT; };
+		ECCA5F381661B04300229B4D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Support/main.m; sourceTree = SOURCE_ROOT; };
+		ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_inner.png; sourceTree = "<group>"; };
+		ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_outer.png; sourceTree = "<group>"; };
+		ECCA5F411661BDA800229B4D /* scrubber_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask.png; sourceTree = "<group>"; };
+		ECCA5F431661CA3300229B4D /* JSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JSViewController.xib; path = Support/JSViewController.xib; sourceTree = SOURCE_ROOT; };
+		ECCA5F461661CA4300229B4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Support/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask_inverted.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,11 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				EC053D1615FC56A5003168B7 /* Control */,
-				EC053D0415FC565C003168B7 /* JSAppDelegate.h */,
-				EC053D0515FC565C003168B7 /* JSAppDelegate.m */,
-				EC053D0715FC565C003168B7 /* JSViewController.h */,
-				EC053D0815FC565C003168B7 /* JSViewController.m */,
-				EC053D0A15FC565C003168B7 /* JSViewController.xib */,
 				EC053CFC15FC565C003168B7 /* Supporting Files */,
 			);
 			path = JSVideoScrubber;
@@ -140,10 +133,15 @@
 		EC053CFC15FC565C003168B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EC053CFD15FC565C003168B7 /* JSVideoScrubber-Info.plist */,
-				EC053CFE15FC565C003168B7 /* InfoPlist.strings */,
-				EC053D0115FC565C003168B7 /* main.m */,
-				EC053D0315FC565C003168B7 /* JSVideoScrubber-Prefix.pch */,
+				ECCA5F451661CA4300229B4D /* InfoPlist.strings */,
+				ECCA5F341661B04300229B4D /* JSVideoScrubber-Info.plist */,
+				ECCA5F351661B04300229B4D /* JSVideoScrubber-Prefix.pch */,
+				ECCA5F381661B04300229B4D /* main.m */,
+				ECCA5F321661B04300229B4D /* JSAppDelegate.h */,
+				ECCA5F331661B04300229B4D /* JSAppDelegate.m */,
+				ECCA5F361661B04300229B4D /* JSViewController.h */,
+				ECCA5F371661B04300229B4D /* JSViewController.m */,
+				ECCA5F431661CA3300229B4D /* JSViewController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,53 +149,52 @@
 		EC053D1615FC56A5003168B7 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				ECF9E3A116366028009F2004 /* Assets */,
+				ECCA5F171661B02E00229B4D /* Assets */,
 				EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */,
 				EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */,
+				ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */,
+				ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */,
 			);
 			name = Control;
 			sourceTree = "<group>";
 		};
-		ECCA5EE9166192A500229B4D /* Fonts */ = {
+		ECCA5F171661B02E00229B4D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5EE41661929D00229B4D /* Exo-Medium.ttf */,
-				ECCA5EE51661929D00229B4D /* OFL.txt */,
+				ECCA5F181661B02E00229B4D /* Fonts */,
+				ECCA5F1B1661B02E00229B4D /* Images */,
 			);
-			name = Fonts;
+			path = Assets;
 			sourceTree = "<group>";
 		};
-		ECCA5EEA166192B600229B4D /* Images */ = {
+		ECCA5F181661B02E00229B4D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5EEB166192C900229B4D /* lower_left.png */,
-				ECCA5EEC166192C900229B4D /* lower_left@2x.png */,
-				ECCA5EED166192C900229B4D /* lower_right.png */,
-				ECCA5EEE166192C900229B4D /* lower_right@2x.png */,
-				ECCA5EEF166192C900229B4D /* pause.png */,
-				ECCA5EF0166192C900229B4D /* pause@2x.png */,
-				ECCA5EF1166192C900229B4D /* play.png */,
-				ECCA5EF2166192C900229B4D /* play@2x.png */,
-				ECCA5EF3166192C900229B4D /* slider.png */,
-				ECCA5EF4166192C900229B4D /* slider@2x.png */,
-				ECCA5EF5166192C900229B4D /* upper_left.png */,
-				ECCA5EF6166192C900229B4D /* upper_left@2x.png */,
-				ECCA5EF7166192C900229B4D /* upper_right.png */,
-				ECCA5EF8166192C900229B4D /* upper_right@2x.png */,
-				ECCA5EF9166192C900229B4D /* wheel.png */,
-				ECCA5EFA166192C900229B4D /* wheel@2x.png */,
-				ECF9E3A316366034009F2004 /* marker@2x.png */,
+				ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */,
+				ECCA5F1A1661B02E00229B4D /* OFL.txt */,
 			);
-			name = Images;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
-		ECF9E3A116366028009F2004 /* Assets */ = {
+		ECCA5F1B1661B02E00229B4D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5EEA166192B600229B4D /* Images */,
-				ECCA5EE9166192A500229B4D /* Fonts */,
+				ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */,
+				ECCA5F411661BDA800229B4D /* scrubber_mask.png */,
+				ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */,
+				ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */,
+				ECCA5F1C1661B02E00229B4D /* pause.png */,
+				ECCA5F1D1661B02E00229B4D /* pause@2x.png */,
+				ECCA5F1E1661B02E00229B4D /* play.png */,
+				ECCA5F1F1661B02E00229B4D /* play@2x.png */,
+				ECCA5F201661B02E00229B4D /* scrubber.png */,
+				ECCA5F211661B02E00229B4D /* scrubber@2x.png */,
+				ECCA5F221661B02E00229B4D /* slider.png */,
+				ECCA5F231661B02E00229B4D /* slider@2x.png */,
+				ECCA5F241661B02E00229B4D /* wheel.png */,
+				ECCA5F251661B02E00229B4D /* wheel@2x.png */,
 			);
-			name = Assets;
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,27 +249,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC053D0015FC565C003168B7 /* InfoPlist.strings in Resources */,
-				EC053D0C15FC565C003168B7 /* JSViewController.xib in Resources */,
-				ECF9E3A416366034009F2004 /* marker@2x.png in Resources */,
-				ECCA5EE61661929D00229B4D /* Exo-Medium.ttf in Resources */,
-				ECCA5EE71661929D00229B4D /* OFL.txt in Resources */,
-				ECCA5EFB166192C900229B4D /* lower_left.png in Resources */,
-				ECCA5EFC166192C900229B4D /* lower_left@2x.png in Resources */,
-				ECCA5EFD166192C900229B4D /* lower_right.png in Resources */,
-				ECCA5EFE166192C900229B4D /* lower_right@2x.png in Resources */,
-				ECCA5EFF166192C900229B4D /* pause.png in Resources */,
-				ECCA5F00166192C900229B4D /* pause@2x.png in Resources */,
-				ECCA5F01166192C900229B4D /* play.png in Resources */,
-				ECCA5F02166192C900229B4D /* play@2x.png in Resources */,
-				ECCA5F03166192C900229B4D /* slider.png in Resources */,
-				ECCA5F04166192C900229B4D /* slider@2x.png in Resources */,
-				ECCA5F05166192C900229B4D /* upper_left.png in Resources */,
-				ECCA5F06166192C900229B4D /* upper_left@2x.png in Resources */,
-				ECCA5F07166192C900229B4D /* upper_right.png in Resources */,
-				ECCA5F08166192C900229B4D /* upper_right@2x.png in Resources */,
-				ECCA5F09166192C900229B4D /* wheel.png in Resources */,
-				ECCA5F0A166192C900229B4D /* wheel@2x.png in Resources */,
+				ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */,
+				ECCA5F271661B02E00229B4D /* OFL.txt in Resources */,
+				ECCA5F281661B02E00229B4D /* pause.png in Resources */,
+				ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */,
+				ECCA5F2A1661B02E00229B4D /* play.png in Resources */,
+				ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */,
+				ECCA5F2C1661B02E00229B4D /* scrubber.png in Resources */,
+				ECCA5F2D1661B02E00229B4D /* scrubber@2x.png in Resources */,
+				ECCA5F2E1661B02E00229B4D /* slider.png in Resources */,
+				ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */,
+				ECCA5F301661B02E00229B4D /* wheel.png in Resources */,
+				ECCA5F311661B02E00229B4D /* wheel@2x.png in Resources */,
+				ECCA5F3A1661B04300229B4D /* JSVideoScrubber-Info.plist in Resources */,
+				ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */,
+				ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */,
+				ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */,
+				ECCA5F441661CA3300229B4D /* JSViewController.xib in Resources */,
+				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
+				ECCA5F491661DF3100229B4D /* scrubber_mask_inverted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,30 +278,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC053D0215FC565C003168B7 /* main.m in Sources */,
-				EC053D0615FC565C003168B7 /* JSAppDelegate.m in Sources */,
-				EC053D0915FC565C003168B7 /* JSViewController.m in Sources */,
 				EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */,
+				ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */,
+				ECCA5F391661B04300229B4D /* JSAppDelegate.m in Sources */,
+				ECCA5F3B1661B04300229B4D /* JSViewController.m in Sources */,
+				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EC053CFE15FC565C003168B7 /* InfoPlist.strings */ = {
+		ECCA5F451661CA4300229B4D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EC053CFF15FC565C003168B7 /* en */,
+				ECCA5F461661CA4300229B4D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EC053D0A15FC565C003168B7 /* JSViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC053D0B15FC565C003168B7 /* en */,
-			);
-			name = JSViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -365,8 +353,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JSVideoScrubber/JSVideoScrubber-Prefix.pch";
-				INFOPLIST_FILE = "JSVideoScrubber/JSVideoScrubber-Info.plist";
+				GCC_PREFIX_HEADER = "Support/JSVideoScrubber-Prefix.pch";
+				INFOPLIST_FILE = "Support/JSVideoScrubber-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -376,8 +364,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JSVideoScrubber/JSVideoScrubber-Prefix.pch";
-				INFOPLIST_FILE = "JSVideoScrubber/JSVideoScrubber-Info.plist";
+				GCC_PREFIX_HEADER = "Support/JSVideoScrubber-Prefix.pch";
+				INFOPLIST_FILE = "Support/JSVideoScrubber-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
