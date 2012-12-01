@@ -11,7 +11,7 @@
 @interface UIImage (JSScrubber)
 
 + (UIImage *) drawResizableImage:(UIImage *) image toSize:(CGSize) size;
-+ (UIImage *)drawImageIntoRect:(CGSize)size offset:(CGPoint)offset image:(UIImage *)source;
++ (UIImage *) drawImageIntoRect:(CGSize)size offset:(CGPoint)offset image:(UIImage *)source;
 - (UIImage*) applyMask:(UIImage *) mask;
 - (UIImage *) flipImageVertically;
 

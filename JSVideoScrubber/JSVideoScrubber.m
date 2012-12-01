@@ -11,6 +11,8 @@
 #import "JSVideoScrubber.h"
 
 #define kJSFrameInset 44.0f
+#define kJSMarkerYOffset 15.0f
+#define kJSMarkerXStop 20.0f
 
 @interface JSVideoScrubber ()
 
@@ -59,11 +61,14 @@
     self.actualOffsets = [NSMutableArray array];
     self.imageStrip = [NSMutableDictionary dictionary];
 
-    self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
-    self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
-    self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
-    self.marker = [UIImage imageNamed:@"slider"];// resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
+    UIEdgeInsets uniformInsets = UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset);
+    
+    self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:uniformInsets];
+    self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:uniformInsets];
+    self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
+    self.marker = [UIImage imageNamed:@"slider"]; //resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
 
+    self.markerLocation = kJSMarkerXStop;
 }
 
 #pragma mark - UIView
@@ -71,9 +76,7 @@
 - (void) drawRect:(CGRect) rect
 {
     [self.scrubberBackground drawInRect:rect];
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
     
     [self.scrubberFrame drawInRect:rect];
 
@@ -88,12 +91,10 @@
 //        CGContextDrawImage(context, forOffset, image);
 //    }
     
-    CGPoint offset = CGPointMake(rect.origin.x + 20, rect.origin.y + 15);
+    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
     UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
     
     CGContextDrawImage(context, rect, offsetMarker.CGImage);
-    //CGFloat shift = self.marker.size.width / 2.0;
-
 }
 
 #pragma mark - UIControl
@@ -101,13 +102,12 @@
 - (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [touch locationInView:self];
-    CGFloat shift = self.marker.size.width / 2.0;
     
-    if (touchPoint.x >= (self.markerLocation - shift) && touchPoint.x <= (self.markerLocation + shift)) {
-        return YES;
+    if (![self markerHitTest:touchPoint]) {
+        return NO;
     }
     
-    return NO;
+    return YES;
 }
 
 - (BOOL) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
@@ -275,6 +275,21 @@
 {
     CGFloat ratio = (self.markerLocation / self.frame.size.width);
     return (ratio * CMTimeGetSeconds(self.duration));
+}
+
+- (BOOL) markerHitTest:(CGPoint) point
+{    
+    //x test
+    if (point.x < self.markerLocation || point.x > (self.markerLocation + self.marker.size.width)) {
+        return NO;
+    }
+
+    //y test
+    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.marker.size.height)) {
+        return NO;
+    }
+
+    return YES;
 }
 
 @end
