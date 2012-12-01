@@ -18,7 +18,9 @@
 
 #define kJSImageBorder 4.0f
 #define kJSImageDivider 2.0f
-#define kJSMarkerCenter (self.marker.size.width / 2)
+
+#define js_marker_center (self.marker.size.width / 2)
+#define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)))
 
 
 @interface JSVideoScrubber ()
@@ -76,7 +78,7 @@
     self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
     self.marker = [UIImage imageNamed:@"slider"]; //resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
 
-    self.markerLocation = kJSMarkerXStop - kJSMarkerCenter;
+    self.markerLocation = kJSMarkerXStop - js_marker_center;
 }
 
 #pragma mark - UIView
@@ -130,10 +132,10 @@
 {
     CGPoint touchPoint = [touch locationInView:self];
     
-    if ((touchPoint.x - self.touchOffset) < (kJSMarkerXStop - kJSMarkerCenter)) {
+    if ((touchPoint.x - self.touchOffset) < (kJSMarkerXStop - js_marker_center)) {
         self.markerLocation = kJSMarkerXStop - (self.marker.size.width / 2);
-    } else if ((touchPoint.x - self.touchOffset) > (self.frame.size.width - (kJSMarkerXStop + kJSMarkerCenter))) {
-        self.markerLocation = self.frame.size.width - (kJSMarkerXStop + kJSMarkerCenter);
+    } else if ((touchPoint.x - self.touchOffset) > (self.frame.size.width - (kJSMarkerXStop + js_marker_center))) {
+        self.markerLocation = self.frame.size.width - (kJSMarkerXStop + js_marker_center);
     } else {
         self.markerLocation = touchPoint.x - self.touchOffset;
     }
@@ -183,7 +185,7 @@
 - (void) createStrip:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
     self.duration = asset.duration;
-    self.markerLocation = kJSMarkerXStop - kJSMarkerCenter;
+    self.markerLocation = kJSMarkerXStop - js_marker_center;
     
     for (NSNumber *number in requestedTimes)
     {
@@ -219,8 +221,8 @@
 {
     CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
     
-    CGFloat idealInterval = self.frame.size.height * aspect;
-    CGFloat intervals = self.frame.size.width / idealInterval;
+    CGFloat idealInterval = js_scaled_img_height * aspect;
+    CGFloat intervals = (self.frame.size.width) / idealInterval;
     
     double duration = CMTimeGetSeconds(asset.duration);
     double offset = duration / intervals;
@@ -261,7 +263,7 @@
 {
     CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
     
-    size_t height = (size_t)(self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)));
+    size_t height = (size_t)js_scaled_img_height;
     size_t width = (size_t)(height * aspect);
 
     CGColorSpaceRef colorspace = CGImageGetColorSpace(source);
@@ -291,7 +293,7 @@
 
 - (CGFloat) offsetForMarker
 {
-    CGFloat ratio = (((self.markerLocation + kJSMarkerCenter) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
+    CGFloat ratio = (((self.markerLocation + js_marker_center) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
     return (ratio * CMTimeGetSeconds(self.duration));
 }
 
