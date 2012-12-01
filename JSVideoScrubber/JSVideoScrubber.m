@@ -62,7 +62,8 @@
     self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
     self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
     self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset)];
-    self.marker = [UIImage imageNamed:@"slider"];
+    self.marker = [UIImage imageNamed:@"slider"];// resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
+
 }
 
 #pragma mark - UIView
@@ -72,10 +73,7 @@
     [self.scrubberBackground drawInRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGPoint offset = CGPointMake(rect.origin.x + 20, rect.origin.y + 15);
-    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
     
-    CGContextDrawImage(context, rect, offsetMarker.CGImage);
     
     [self.scrubberFrame drawInRect:rect];
 
@@ -90,6 +88,10 @@
 //        CGContextDrawImage(context, forOffset, image);
 //    }
     
+    CGPoint offset = CGPointMake(rect.origin.x + 20, rect.origin.y + 15);
+    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
+    
+    CGContextDrawImage(context, rect, offsetMarker.CGImage);
     //CGFloat shift = self.marker.size.width / 2.0;
 
 }
