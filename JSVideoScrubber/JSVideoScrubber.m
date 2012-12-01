@@ -11,9 +11,15 @@
 #import "JSVideoScrubber.h"
 
 #define kJSFrameInset 44.0f
-#define kJSMarkerYOffset 15.0f
 #define kJSMarkerXStop 29.0f
+#define kJSMarkerYOffset 15.0f
+#define kJSLeftFrame 8.0f
+#define kJSBottomFrame 21.0f
+
+#define kJSImageBorder 4.0f
+#define kJSImageDivider 2.0f
 #define kJSMarkerCenter (self.marker.size.width / 2)
+
 
 @interface JSVideoScrubber ()
 
@@ -82,16 +88,23 @@
     
     [self.scrubberFrame drawInRect:rect];
 
-//    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
-//        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
-//        CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
-//        
-//        size_t height = CGImageGetHeight(image);
-//        size_t width = CGImageGetWidth(image);
-//        
-//        CGRect forOffset = CGRectMake((rect.origin.x + (offset * width)), rect.origin.y, width, height);
-//        CGContextDrawImage(context, forOffset, image);
-//    }
+    CGFloat padding = 0.0f;
+    
+    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
+        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
+        CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
+        
+        size_t height = CGImageGetHeight(image);
+        size_t width = CGImageGetWidth(image);
+        
+        CGFloat x = rect.origin.x + kJSLeftFrame + kJSImageBorder + (offset * width) + padding;
+        CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder;
+        CGRect forOffset = CGRectMake(x, y, width, height);
+        
+        CGContextDrawImage(context, forOffset, image);
+        
+        padding += kJSImageDivider;
+    }
     
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
     UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
@@ -248,8 +261,8 @@
 {
     CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
     
-    size_t height = (size_t)self.frame.size.height;
-    size_t width = (size_t)(self.frame.size.height * aspect);
+    size_t height = (size_t)(self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)));
+    size_t width = (size_t)(height * aspect);
 
     CGColorSpaceRef colorspace = CGImageGetColorSpace(source);
     
