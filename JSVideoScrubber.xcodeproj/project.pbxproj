@@ -20,8 +20,6 @@
 		ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1D1661B02E00229B4D /* pause@2x.png */; };
 		ECCA5F2A1661B02E00229B4D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1E1661B02E00229B4D /* play.png */; };
 		ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1F1661B02E00229B4D /* play@2x.png */; };
-		ECCA5F2C1661B02E00229B4D /* scrubber.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F201661B02E00229B4D /* scrubber.png */; };
-		ECCA5F2D1661B02E00229B4D /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F211661B02E00229B4D /* scrubber@2x.png */; };
 		ECCA5F2E1661B02E00229B4D /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F221661B02E00229B4D /* slider.png */; };
 		ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F231661B02E00229B4D /* slider@2x.png */; };
 		ECCA5F301661B02E00229B4D /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F241661B02E00229B4D /* wheel.png */; };
@@ -35,7 +33,6 @@
 		ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F411661BDA800229B4D /* scrubber_mask.png */; };
 		ECCA5F441661CA3300229B4D /* JSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F431661CA3300229B4D /* JSViewController.xib */; };
 		ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F451661CA4300229B4D /* InfoPlist.strings */; };
-		ECCA5F491661DF3100229B4D /* scrubber_mask_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +52,6 @@
 		ECCA5F1D1661B02E00229B4D /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		ECCA5F1E1661B02E00229B4D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		ECCA5F1F1661B02E00229B4D /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
-		ECCA5F201661B02E00229B4D /* scrubber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber.png; sourceTree = "<group>"; };
-		ECCA5F211661B02E00229B4D /* scrubber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber@2x.png"; sourceTree = "<group>"; };
 		ECCA5F221661B02E00229B4D /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
 		ECCA5F231661B02E00229B4D /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		ECCA5F241661B02E00229B4D /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
@@ -73,7 +68,6 @@
 		ECCA5F411661BDA800229B4D /* scrubber_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask.png; sourceTree = "<group>"; };
 		ECCA5F431661CA3300229B4D /* JSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JSViewController.xib; path = Support/JSViewController.xib; sourceTree = SOURCE_ROOT; };
 		ECCA5F461661CA4300229B4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Support/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask_inverted.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +173,6 @@
 		ECCA5F1B1661B02E00229B4D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5F481661DF3100229B4D /* scrubber_mask_inverted.png */,
 				ECCA5F411661BDA800229B4D /* scrubber_mask.png */,
 				ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */,
 				ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */,
@@ -187,8 +180,6 @@
 				ECCA5F1D1661B02E00229B4D /* pause@2x.png */,
 				ECCA5F1E1661B02E00229B4D /* play.png */,
 				ECCA5F1F1661B02E00229B4D /* play@2x.png */,
-				ECCA5F201661B02E00229B4D /* scrubber.png */,
-				ECCA5F211661B02E00229B4D /* scrubber@2x.png */,
 				ECCA5F221661B02E00229B4D /* slider.png */,
 				ECCA5F231661B02E00229B4D /* slider@2x.png */,
 				ECCA5F241661B02E00229B4D /* wheel.png */,
@@ -255,8 +246,6 @@
 				ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */,
 				ECCA5F2A1661B02E00229B4D /* play.png in Resources */,
 				ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */,
-				ECCA5F2C1661B02E00229B4D /* scrubber.png in Resources */,
-				ECCA5F2D1661B02E00229B4D /* scrubber@2x.png in Resources */,
 				ECCA5F2E1661B02E00229B4D /* slider.png in Resources */,
 				ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */,
 				ECCA5F301661B02E00229B4D /* wheel.png in Resources */,
@@ -267,7 +256,6 @@
 				ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */,
 				ECCA5F441661CA3300229B4D /* JSViewController.xib in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
-				ECCA5F491661DF3100229B4D /* scrubber_mask_inverted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

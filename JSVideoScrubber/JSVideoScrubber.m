@@ -105,8 +105,6 @@
 {
     CGPoint touchPoint = [touch locationInView:self];
     
-    NSLog(@"touched: %f", touchPoint.x);
-    
     if (![self markerHitTest:touchPoint]) {
         return NO;
     }
@@ -172,7 +170,7 @@
 - (void) createStrip:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
     self.duration = asset.duration;
-    self.markerLocation = 0.0f;
+    self.markerLocation = kJSMarkerXStop - kJSMarkerCenter;
     
     for (NSNumber *number in requestedTimes)
     {
@@ -280,7 +278,7 @@
 
 - (CGFloat) offsetForMarker
 {
-    CGFloat ratio = (self.markerLocation / self.frame.size.width);
+    CGFloat ratio = (((self.markerLocation + kJSMarkerCenter) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
     return (ratio * CMTimeGetSeconds(self.duration));
 }
 
