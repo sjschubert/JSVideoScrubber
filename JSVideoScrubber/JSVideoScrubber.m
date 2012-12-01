@@ -12,7 +12,8 @@
 
 #define kJSFrameInset 44.0f
 #define kJSMarkerYOffset 15.0f
-#define kJSMarkerXStop 20.0f
+#define kJSMarkerXStop 29.0f
+#define kJSMarkerCenter (self.marker.size.width / 2)
 
 @interface JSVideoScrubber ()
 
@@ -27,6 +28,7 @@
 @property (strong) UIImage *markerMask;
 @property (strong) UIImage *marker;
 @property (assign) CGFloat markerLocation;
+@property (assign) CGFloat touchOffset;
 
 @end
 
@@ -68,7 +70,7 @@
     self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
     self.marker = [UIImage imageNamed:@"slider"]; //resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
 
-    self.markerLocation = kJSMarkerXStop;
+    self.markerLocation = kJSMarkerXStop - kJSMarkerCenter;
 }
 
 #pragma mark - UIView
@@ -103,10 +105,13 @@
 {
     CGPoint touchPoint = [touch locationInView:self];
     
+    NSLog(@"touched: %f", touchPoint.x);
+    
     if (![self markerHitTest:touchPoint]) {
         return NO;
     }
     
+    self.touchOffset = touchPoint.x - self.markerLocation;
     return YES;
 }
 
@@ -114,12 +119,14 @@
 {
     CGPoint touchPoint = [touch locationInView:self];
     
-    if (self.markerLocation >= self.frame.size.width) {
-        self.markerLocation -= 1.0f;
-        return NO;
+    if ((touchPoint.x - self.touchOffset) < (kJSMarkerXStop - kJSMarkerCenter)) {
+        self.markerLocation = kJSMarkerXStop - (self.marker.size.width / 2);
+    } else if ((touchPoint.x - self.touchOffset) > (self.frame.size.width - (kJSMarkerXStop + kJSMarkerCenter))) {
+        self.markerLocation = self.frame.size.width - (kJSMarkerXStop + kJSMarkerCenter);
+    } else {
+        self.markerLocation = touchPoint.x - self.touchOffset;
     }
     
-    self.markerLocation = touchPoint.x;
     self.markerOffset = [self offsetForMarker];
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -128,10 +135,10 @@
     return YES;
 }
 
-//- (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    
-//}
+- (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    self.touchOffset = 0.0f;
+}
 
 #pragma mark - Interface
 

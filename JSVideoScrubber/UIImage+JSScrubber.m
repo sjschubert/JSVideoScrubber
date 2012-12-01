@@ -46,8 +46,7 @@
     CGImageRef imageReference = self.CGImage;
     CGImageRef maskReference = resizedMask.CGImage;
 
-    NSLog(@"image dims: %f x %f", resizedMask.size.width, resizedMask.size.height);
-    
+    //NSLog(@"image dims: %f x %f", resizedMask.size.width, resizedMask.size.height);
     
     CGImageRef imageMask = CGImageMaskCreate(CGImageGetWidth(maskReference),
                                              CGImageGetHeight(maskReference),
