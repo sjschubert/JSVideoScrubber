@@ -340,10 +340,12 @@
 		EC053D1015FC565C003168B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Seth Schubert (5LF23B4KXD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Support/JSVideoScrubber-Prefix.pch";
 				INFOPLIST_FILE = "Support/JSVideoScrubber-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "FF4A2A2D-DB76-4401-A404-33555A12446C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -351,10 +353,14 @@
 		EC053D1115FC565C003168B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Support/JSVideoScrubber-Prefix.pch";
 				INFOPLIST_FILE = "Support/JSVideoScrubber-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

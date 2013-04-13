@@ -10,6 +10,7 @@
 
 @interface UIImage (JSScrubber)
 
++ (UIImage *)cropImageToRect:(CGRect)rect image:(UIImage *)source;
 + (UIImage *) drawResizableImage:(UIImage *) image toSize:(CGSize) size;
 + (UIImage *) drawImageIntoRect:(CGSize)size offset:(CGPoint)offset image:(UIImage *)source;
 - (UIImage*) applyMask:(UIImage *) mask;

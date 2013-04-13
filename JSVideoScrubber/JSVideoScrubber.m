@@ -42,7 +42,7 @@
 
 @implementation JSVideoScrubber
 
-#pragma mark - Memory
+#pragma mark - Initialization
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -76,7 +76,7 @@
     self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:uniformInsets];
     self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:uniformInsets];
     self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
-    self.marker = [UIImage imageNamed:@"slider"]; //resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0, kJSFrameInset, 0)];
+    self.marker = [UIImage imageNamed:@"slider"];
 
     self.markerLocation = kJSMarkerXStop - js_marker_center;
 }
@@ -85,11 +85,17 @@
 
 - (void) drawRect:(CGRect) rect
 {
-    [self.scrubberBackground drawInRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     
+    [self.scrubberBackground drawInRect:rect];
+
     [self.scrubberFrame drawInRect:rect];
 
+    CGRect r = CGRectMake(kJSImageBorder, kJSImageBorder, rect.size.width - (2*kJSImageBorder), rect.size.height - (2*kJSImageBorder));
+    UIImage *resized = [UIImage drawResizableImage:self.markerMask toSize:r.size];
+    UIImage *imgMask = [UIImage drawImageIntoRect:rect.size offset:r.origin image:resized];
+    
+    
     CGFloat padding = 0.0f;
     
     for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
@@ -104,13 +110,15 @@
         CGRect forOffset = CGRectMake(x, y, width, height);
         
         CGContextDrawImage(context, forOffset, image);
-        
         padding += kJSImageDivider;
     }
     
+    
+    //[imgMask drawInRect:rect blendMode:kCGBlendModeNormal alpha:.50f];
+    
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
     UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
-    
+
     CGContextDrawImage(context, rect, offsetMarker.CGImage);
 }
 
@@ -298,14 +306,12 @@
 }
 
 - (BOOL) markerHitTest:(CGPoint) point
-{    
-    //x test
-    if (point.x < self.markerLocation || point.x > (self.markerLocation + self.marker.size.width)) {
+{
+    if (point.x < self.markerLocation || point.x > (self.markerLocation + self.marker.size.width)) { //x test
         return NO;
     }
 
-    //y test
-    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.marker.size.height)) {
+    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.marker.size.height)) { //y test
         return NO;
     }
 

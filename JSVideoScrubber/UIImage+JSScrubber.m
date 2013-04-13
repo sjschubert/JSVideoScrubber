@@ -10,13 +10,32 @@
 
 @implementation UIImage (JSScrubber)
 
++ (UIImage *)cropImageToRect:(CGRect)rect image:(UIImage *)source
+{
+    UIGraphicsBeginImageContext(rect.size);
+    
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, 0, rect.size.height *2);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGContextClipToRect(context, rect);
+    
+    [source drawAtPoint:CGPointZero];
+    
+	UIImage *output = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+    
+    return output;
+}
+
 + (UIImage *)drawImageIntoRect:(CGSize)size offset:(CGPoint)offset image:(UIImage *)source
 {
     UIGraphicsBeginImageContext(size);
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
     
-	CGContextTranslateCTM(context, 0, size.height);
+    CGContextTranslateCTM(context, 0, size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
     
 	[source drawAtPoint:offset];
