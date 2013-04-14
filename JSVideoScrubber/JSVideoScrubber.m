@@ -110,7 +110,7 @@
         size_t height = CGImageGetHeight(image);
         size_t width = CGImageGetWidth(image);
         
-        CGFloat x = rect.origin.x + kJSSideFrame + kJSImageBorder + (offset * width) + padding;
+        CGFloat x = (offset * width) + padding;
         CGRect forOffset = CGRectMake(x, 0, width, height);
         
         CGContextDrawImage(stripCtx, forOffset, image);
@@ -119,22 +119,23 @@
     
     CGImageRef strip = CGBitmapContextCreateImage(stripCtx);
     
-    //todo: apply mask
+    CGImageRef masked = [[UIImage imageWithCGImage:strip] maskWithCornerSize:CGSizeMake(20.0f, 20.0f)].CGImage;
 
     size_t masked_h = CGImageGetHeight(strip);
     size_t masked_w = CGImageGetWidth(strip);
     
+    CGFloat x = rect.origin.x + kJSSideFrame + kJSImageBorder;
     CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
-    CGContextDrawImage(context, CGRectMake(0.0f, y, masked_w, masked_h), strip);
+    CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
 
     CGContextRelease(stripCtx);
     CGColorSpaceRelease(colorSpace);
     CGImageRelease(strip);
 
-//    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
-//    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
-//
-//    CGContextDrawImage(context, rect, offsetMarker.CGImage);
+    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
+    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
+
+    CGContextDrawImage(context, rect, offsetMarker.CGImage);
 }
 
 #pragma mark - UIControl
@@ -342,7 +343,7 @@
     NSNumber *time = [self.actualOffsets objectAtIndex:0];
     CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
         
-    return CGRectMake(0.0f, 0.0f, self.frame.size.width - (2 *kJSSideFrame) + kJSImageDivider, CGImageGetHeight(image));
+    return CGRectMake(0.0f, 0.0f, self.frame.size.width - (2 * (kJSSideFrame + kJSImageBorder)) - kJSImageDivider, CGImageGetHeight(image));
 }
 
 @end
