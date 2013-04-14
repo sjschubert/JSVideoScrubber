@@ -130,7 +130,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     CGContextRestoreGState(context);
 }
 
-- (UIImage *)maskThumbnailInRect:(CGRect)rect offsetBy:(CGPoint) offset cornerSize:(CGSize)size
+- (UIImage *)maskThumbnailInRect:(CGRect)rect cornerSize:(CGSize)size
 {
     UIImage * newImage = nil;
     
@@ -143,14 +143,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
             CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
             CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
             
-            
             CGContextBeginPath(context);
             CGRect myRect = CGRectMake(0, 0, self.size.width, self.size.height);
             addRoundedRectToPath(context, myRect, size.width, size.height);
             CGContextClosePath(context);
             CGContextClip(context);
             
-            CGContextDrawImage(context, CGRectMake(offset.x, offset.y, w, h), self.CGImage);
+            CGContextDrawImage(context, CGRectMake(0, 0, w, h), self.CGImage);
             
             CGImageRef imageMasked = CGBitmapContextCreateImage(context);
             CGContextRelease(context);

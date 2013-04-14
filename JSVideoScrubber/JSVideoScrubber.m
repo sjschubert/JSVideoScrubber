@@ -13,7 +13,7 @@
 #define kJSFrameInset 44.0f
 #define kJSMarkerXStop 29.0f
 #define kJSMarkerYOffset 15.0f
-#define kJSLeftFrame 8.0f
+#define kJSSideFrame 8.0f
 #define kJSBottomFrame 22.0f
 
 #define kJSImageBorder 4.0f
@@ -88,10 +88,21 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     [self.scrubberBackground drawInRect:rect];
-
     [self.scrubberFrame drawInRect:rect];
+    
+    CGRect stripFrame = [self frameForStrip:self.imageStrip];
+
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef stripCtx = CGBitmapContextCreate(NULL, stripFrame.size.width,
+                                                        stripFrame.size.height,
+                                                        8,
+                                                        (4 * stripFrame.size.width),
+                                                        colorSpace,
+                                                        kCGImageAlphaPremultipliedFirst);
+
     CGFloat padding = 0.0f;
     
+    //render image strip to context
     for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
         NSNumber *time = [self.actualOffsets objectAtIndex:offset];
         CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
@@ -99,26 +110,31 @@
         size_t height = CGImageGetHeight(image);
         size_t width = CGImageGetWidth(image);
         
-        CGFloat x = rect.origin.x + kJSLeftFrame + kJSImageBorder + (offset * width) + padding;
-        CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder;
-        CGRect forOffset = CGRectMake(x, y + 0.5f, width, height);
+        CGFloat x = rect.origin.x + kJSSideFrame + kJSImageBorder + (offset * width) + padding;
+        CGRect forOffset = CGRectMake(x, 0, width, height);
         
-        CGRect maskRect = CGRectMake(0, 0, rect.size.width - (2*kJSLeftFrame), height);
-        
-        if (offset == 0 || offset == ([self.actualOffsets count] - 1)) {
-            UIImage *masked = [[UIImage imageWithCGImage:image] maskThumbnailInRect:maskRect offsetBy:CGPointMake(padding, 0) cornerSize:CGSizeMake(24, 24)];
-            CGContextDrawImage(context, forOffset, masked.CGImage);
-        } else {
-            CGContextDrawImage(context, forOffset, image);
-        }
-        
+        CGContextDrawImage(stripCtx, forOffset, image);
         padding += kJSImageDivider;
     }
     
-    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
-    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
+    CGImageRef strip = CGBitmapContextCreateImage(stripCtx);
+    
+    //todo: apply mask
 
-    CGContextDrawImage(context, rect, offsetMarker.CGImage);
+    size_t masked_h = CGImageGetHeight(strip);
+    size_t masked_w = CGImageGetWidth(strip);
+    
+    CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
+    CGContextDrawImage(context, CGRectMake(0.0f, y, masked_w, masked_h), strip);
+
+    CGContextRelease(stripCtx);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(strip);
+
+//    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
+//    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
+//
+//    CGContextDrawImage(context, rect, offsetMarker.CGImage);
 }
 
 #pragma mark - UIControl
@@ -315,6 +331,18 @@
     }
 
     return YES;
+}
+
+- (CGRect) frameForStrip:(NSDictionary *)images
+{
+    if ([images count] <= 0) {
+        return CGRectMake(0.0f, 0.0f, 0.0f, 0.0f);
+    }
+    
+    NSNumber *time = [self.actualOffsets objectAtIndex:0];
+    CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
+        
+    return CGRectMake(0.0f, 0.0f, self.frame.size.width - (2 *kJSSideFrame) + kJSImageDivider, CGImageGetHeight(image));
 }
 
 @end

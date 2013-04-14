@@ -15,6 +15,6 @@
 + (UIImage *)drawImageIntoRect:(CGSize)size offset:(CGPoint)offset image:(UIImage *)source;
 - (UIImage *)applyMask:(UIImage *) mask;
 - (UIImage *)flipImageVertically;
-- (UIImage *)maskThumbnailInRect:(CGRect)rect offsetBy:(CGPoint) offset cornerSize:(CGSize)size;
+- (UIImage *)maskThumbnailInRect:(CGRect)rect cornerSize:(CGSize)size;
 
 @end
