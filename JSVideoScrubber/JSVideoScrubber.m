@@ -14,7 +14,7 @@
 #define kJSMarkerXStop 29.0f
 #define kJSMarkerYOffset 15.0f
 #define kJSLeftFrame 8.0f
-#define kJSBottomFrame 21.0f
+#define kJSBottomFrame 22.0f
 
 #define kJSImageBorder 4.0f
 #define kJSImageDivider 2.0f
@@ -90,12 +90,6 @@
     [self.scrubberBackground drawInRect:rect];
 
     [self.scrubberFrame drawInRect:rect];
-
-    CGRect r = CGRectMake(kJSImageBorder, kJSImageBorder, rect.size.width - (2*kJSImageBorder), rect.size.height - (2*kJSImageBorder));
-    UIImage *resized = [UIImage drawResizableImage:self.markerMask toSize:r.size];
-    UIImage *imgMask = [UIImage drawImageIntoRect:rect.size offset:r.origin image:resized];
-    
-    
     CGFloat padding = 0.0f;
     
     for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
@@ -107,14 +101,19 @@
         
         CGFloat x = rect.origin.x + kJSLeftFrame + kJSImageBorder + (offset * width) + padding;
         CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder;
-        CGRect forOffset = CGRectMake(x, y, width, height);
+        CGRect forOffset = CGRectMake(x, y + 0.5f, width, height);
         
-        CGContextDrawImage(context, forOffset, image);
+        CGRect maskRect = CGRectMake(0, 0, rect.size.width - (2*kJSLeftFrame), height);
+        
+        if (offset == 0 || offset == ([self.actualOffsets count] - 1)) {
+            UIImage *masked = [[UIImage imageWithCGImage:image] maskThumbnailInRect:maskRect offsetBy:CGPointMake(padding, 0) cornerSize:CGSizeMake(24, 24)];
+            CGContextDrawImage(context, forOffset, masked.CGImage);
+        } else {
+            CGContextDrawImage(context, forOffset, image);
+        }
+        
         padding += kJSImageDivider;
     }
-    
-    
-    //[imgMask drawInRect:rect blendMode:kCGBlendModeNormal alpha:.50f];
     
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
     UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
