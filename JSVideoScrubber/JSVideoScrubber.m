@@ -25,18 +25,18 @@
 
 @interface JSVideoScrubber ()
 
-@property (strong) AVAssetImageGenerator *assetImageGenerator;
-@property (strong) NSMutableArray *actualOffsets;
-@property (strong) NSMutableDictionary *imageStrip;
-@property (assign) size_t sourceWidth;
-@property (assign) size_t sourceHeight;
+@property (strong, nonatomic) AVAssetImageGenerator *assetImageGenerator;
+@property (strong, nonatomic) NSMutableArray *actualOffsets;
+@property (strong, nonatomic) NSMutableDictionary *imageStrip;
+@property (assign, nonatomic) size_t sourceWidth;
+@property (assign, nonatomic) size_t sourceHeight;
 
-@property (strong) UIImage *scrubberFrame;
-@property (strong) UIImage *scrubberBackground;
-@property (strong) UIImage *markerMask;
-@property (strong) UIImage *marker;
-@property (assign) CGFloat markerLocation;
-@property (assign) CGFloat touchOffset;
+@property (strong, nonatomic) UIImage *scrubberFrame;
+@property (strong, nonatomic) UIImage *scrubberBackground;
+@property (strong, nonatomic) UIImage *markerMask;
+@property (strong, nonatomic) UIImage *marker;
+@property (assign, nonatomic) CGFloat markerLocation;
+@property (assign, nonatomic) CGFloat touchOffset;
 
 @end
 
@@ -182,6 +182,7 @@
 - (void) setupControlWithAVAsset:(AVAsset *) asset
 {
     self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
+    self.assetImageGenerator.appliesPreferredTrackTransform = YES;
     
     CMTime actualTime;
     NSError *error = nil;
@@ -192,6 +193,10 @@
         NSLog(@"Error extracting reference image from asset: %@", [error localizedDescription]);
         return;
     }
+    
+    //AVAssetTrack* videoTrack = [[self.assetImageGenerator.asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    //CGAffineTransform txf = [videoTrack preferredTransform];
+    //NSLog(@"txf.a = %f txf.b = %f txf.c = %f txf.d = %f txf.tx = %f txf.ty = %f", txf.a, txf.b, txf.c, txf.d, txf.tx, txf.ty);
     
     self.sourceWidth = CGImageGetWidth(image);
     self.sourceHeight = CGImageGetHeight(image);
@@ -207,6 +212,8 @@
 
 - (void) reset
 {
+    self.assetImageGenerator = nil;
+    
     [self.actualOffsets removeAllObjects];
     [self.imageStrip removeAllObjects];
     
