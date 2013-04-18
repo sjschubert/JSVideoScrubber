@@ -103,14 +103,14 @@
     CGFloat padding = 0.0f;
     
     //render image strip to context
-    for (int offset = 0; offset < [self.actualOffsets count]; offset++) {
-        NSNumber *time = [self.actualOffsets objectAtIndex:offset];
+    for (int idx = 0; idx < [self.actualOffsets count]; idx++) {
+        NSNumber *time = [self.actualOffsets objectAtIndex:idx];
         CGImageRef image = (__bridge CGImageRef)([self.imageStrip objectForKey:time]);
         
         size_t height = CGImageGetHeight(image);
         size_t width = CGImageGetWidth(image);
         
-        CGFloat x = (offset * width) + padding;
+        CGFloat x = (idx * width) + padding;
         CGRect forOffset = CGRectMake(x, 0, width, height);
         
         CGContextDrawImage(stripCtx, forOffset, image);
@@ -164,7 +164,7 @@
         self.markerLocation = touchPoint.x - self.touchOffset;
     }
     
-    self.markerOffset = [self offsetForMarker];
+    self.offset = [self offsetForMarker];
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     [self setNeedsDisplay];
@@ -189,7 +189,8 @@
     CGImageRef image = [self.assetImageGenerator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
     
     if (error) {
-        NSLog(@"Error copying reference image.");
+        NSLog(@"Error extracting reference image from asset: %@", [error localizedDescription]);
+        return;
     }
     
     self.sourceWidth = CGImageGetWidth(image);
@@ -202,6 +203,15 @@
 {
     self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
     [self createStrip:asset indexedAt:requestedTimes];
+}
+
+- (void) reset
+{
+    [self.actualOffsets removeAllObjects];
+    [self.imageStrip removeAllObjects];
+    
+    self.markerLocation = kJSMarkerXStop - js_marker_center;
+    [self setNeedsDisplay];
 }
 
 #pragma mark - Internal

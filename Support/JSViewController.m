@@ -97,6 +97,7 @@
 - (IBAction)clearAssetAction:(id)sender
 {
     self.assetName.text = @"";
+    [self.jsVideoScrubber reset];
 }
 
 #pragma mark - Internal
@@ -108,8 +109,8 @@
 
 - (void) updateOffsetLabel:(JSVideoScrubber *) scrubber
 {
-    int min = (int)self.jsVideoScrubber.markerOffset / 60;
-    int seconds = (int)self.jsVideoScrubber.markerOffset % 60;
+    int min = (int)self.jsVideoScrubber.offset / 60;
+    int seconds = (int)self.jsVideoScrubber.offset % 60;
     self.offset.text = [NSString stringWithFormat:@"Offset: %02d:%02d", min, seconds];
 }
 @end
