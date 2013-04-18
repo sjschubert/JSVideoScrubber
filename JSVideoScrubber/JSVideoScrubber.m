@@ -211,6 +211,8 @@
     self.sourceWidth = CGImageGetWidth(image);
     self.sourceHeight = CGImageGetHeight(image);
     
+    CGImageRelease(image);
+    
     [self extractFromAsset:asset atIndexes:[self generateOffsets:asset]];
 }
 
