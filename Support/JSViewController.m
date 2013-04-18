@@ -97,6 +97,9 @@
 - (IBAction)clearAssetAction:(id)sender
 {
     self.assetName.text = @"";
+    self.duration.text = @"";
+    self.offset.text = @"";
+    
     [self.jsVideoScrubber reset];
 }
 

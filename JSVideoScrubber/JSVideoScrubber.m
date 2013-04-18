@@ -149,6 +149,17 @@
     return strip;
 }
 
+- (void) layoutSubviews
+{
+    //reset extracted images
+    [self.actualOffsets removeAllObjects];
+    [self.images removeAllObjects];
+    
+    //regenerate thumbnails
+    [self setupControlWithAVAsset:self.asset];
+    [self setNeedsDisplay];
+}
+
 #pragma mark - UIControl
 
 - (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
@@ -229,6 +240,9 @@
     
     [self.actualOffsets removeAllObjects];
     [self.images removeAllObjects];
+    
+    self.duration = CMTimeMakeWithSeconds(0.0, 1);
+    self.offset = 0.0f;
     
     self.markerLocation = kJSMarkerXStop - js_marker_center;
     [self setNeedsDisplay];
