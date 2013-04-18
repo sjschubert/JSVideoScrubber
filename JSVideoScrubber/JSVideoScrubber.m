@@ -25,6 +25,7 @@
 
 @interface JSVideoScrubber ()
 
+@property (strong, nonatomic) AVAsset *asset;
 @property (strong, nonatomic) AVAssetImageGenerator *assetImageGenerator;
 @property (strong, nonatomic) NSMutableArray *actualOffsets;
 @property (strong, nonatomic) NSMutableDictionary *imageStrip;
@@ -181,6 +182,9 @@
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset
 {
+    NSAssert(self.frame.size.height >= 90.0f, @"Minimum height supported by the control is 90 px");
+    
+    self.asset = asset;
     self.assetImageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:asset];
     self.assetImageGenerator.appliesPreferredTrackTransform = YES;
     
@@ -193,11 +197,7 @@
         NSLog(@"Error extracting reference image from asset: %@", [error localizedDescription]);
         return;
     }
-    
-    //AVAssetTrack* videoTrack = [[self.assetImageGenerator.asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
-    //CGAffineTransform txf = [videoTrack preferredTransform];
-    //NSLog(@"txf.a = %f txf.b = %f txf.c = %f txf.d = %f txf.tx = %f txf.ty = %f", txf.a, txf.b, txf.c, txf.d, txf.tx, txf.ty);
-    
+        
     self.sourceWidth = CGImageGetWidth(image);
     self.sourceHeight = CGImageGetHeight(image);
     
@@ -212,6 +212,7 @@
 
 - (void) reset
 {
+    self.asset = nil;
     self.assetImageGenerator = nil;
     
     [self.actualOffsets removeAllObjects];
