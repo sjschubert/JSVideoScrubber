@@ -25,8 +25,6 @@
 
 @interface JSVideoScrubber ()
 
-@property(assign, nonatomic) CGSize currentSize;
-
 @property (strong, nonatomic) AVAsset *asset;
 @property (strong, nonatomic) AVAssetImageGenerator *assetImageGenerator;
 @property (strong, nonatomic) NSMutableArray *actualOffsets;
@@ -82,7 +80,6 @@
     self.marker = [UIImage imageNamed:@"slider"];
 
     self.markerLocation = kJSMarkerXStop - js_marker_center;
-    self.currentSize = self.frame.size;
 }
 
 #pragma mark - UIView
@@ -388,11 +385,6 @@
     CGImageRef image = (__bridge CGImageRef)([self.images objectForKey:time]);
         
     return CGRectMake(0.0f, 0.0f, self.frame.size.width - (2 * (kJSSideFrame + kJSImageBorder)) - kJSImageDivider, CGImageGetHeight(image));
-}
-
-- (BOOL) hasChangedSize:(CGSize)size
-{
-    return (self.currentSize.width != size.width) || (self.currentSize.height != size.height);
 }
 
 @end
