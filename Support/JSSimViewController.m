@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
-#import "JSViewController.h"
+#import "JSSimViewController.h"
 
-@interface JSViewController ()
+@interface JSSimViewController () <UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *offset;
@@ -16,7 +16,8 @@
 
 @end
 
-@implementation JSViewController
+@implementation JSSimViewController
+
 @synthesize assetName;
 @synthesize assetDirectory;
 @synthesize jsVideoScrubber;
@@ -51,6 +52,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 #pragma mark - UITextField
@@ -97,8 +104,8 @@
 - (IBAction)clearAssetAction:(id)sender
 {
     self.assetName.text = @"";
-    self.duration.text = @"";
-    self.offset.text = @"";
+    self.duration.text = @"Duration: N/A";
+    self.offset.text = @"Offset: N/A";
     
     [self.jsVideoScrubber reset];
 }

@@ -1,5 +1,5 @@
 //
-//  JSViewController.h
+//  JSSimViewController.h
 //  JSVideoScrubber
 //
 //  Created by jaminschubert on 9/8/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JSVideoScrubber.h"
-@interface JSViewController : UIViewController<UITextFieldDelegate>
+@interface JSSimViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *assetName;
 @property (weak, nonatomic) IBOutlet UITextView *assetDirectory;

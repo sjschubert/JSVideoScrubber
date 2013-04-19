@@ -148,6 +148,10 @@
 
 - (void) layoutSubviews
 {
+    if (!self.asset) {
+        return;
+    }
+    
     //reset extracted images
     [self.actualOffsets removeAllObjects];
     [self.images removeAllObjects];

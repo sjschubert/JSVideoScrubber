@@ -6,17 +6,21 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
+#import "JSSimViewController.h"
+#import "JSPickerViewController.h"
 #import "JSAppDelegate.h"
-
-#import "JSViewController.h"
 
 @implementation JSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[JSViewController alloc] initWithNibName:@"JSViewController" bundle:nil];
+
+#if TARGET_IPHONE_SIMULATOR
+    self.viewController = [[JSSimViewController alloc] initWithNibName:@"JSSimViewController" bundle:nil];
+#else
+    self.viewController = [[JSPickerViewController alloc] initWithNibName:@"JSPickerViewController" bundle:nil];
+#endif
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

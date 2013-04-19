@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class JSViewController;
 
 @interface JSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) JSViewController *viewController;
+@property (strong, nonatomic) UIViewController *viewController;
 
 @end
