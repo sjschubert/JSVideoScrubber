@@ -22,6 +22,8 @@
 #define kCornerRadius 20.0f
 
 #define js_marker_center (self.marker.size.width / 2)
+#define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
+#define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
 #define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)))
 
 
@@ -171,39 +173,50 @@
 
 - (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CGPoint touchPoint = [touch locationInView:self];
-    
-    if (![self markerHitTest:touchPoint]) {
-        return NO;
-    }
-    
-    self.touchOffset = touchPoint.x - self.markerLocation;
+    [self updateMarkerToPoint:[touch locationInView:self]];    
     return YES;
 }
 
 - (BOOL) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CGPoint touchPoint = [touch locationInView:self];
-    
-    if ((touchPoint.x - self.touchOffset) < (kJSMarkerXStop - js_marker_center)) {
-        self.markerLocation = kJSMarkerXStop - (self.marker.size.width / 2);
-    } else if ((touchPoint.x - self.touchOffset) > (self.frame.size.width - (kJSMarkerXStop + js_marker_center))) {
-        self.markerLocation = self.frame.size.width - (kJSMarkerXStop + js_marker_center);
-    } else {
-        self.markerLocation = touchPoint.x - self.touchOffset;
-    }
-    
-    self.offset = [self offsetForMarker];
-    
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
-    [self setNeedsDisplay];
-    
+//    CGPoint touchPoint = [touch locationInView:self];
+//    
+//    if ((touchPoint.x - self.touchOffset) < (kJSMarkerXStop - js_marker_center)) {
+//        self.markerLocation = kJSMarkerXStop - (self.marker.size.width / 2);
+//    } else if ((touchPoint.x - self.touchOffset) > (self.frame.size.width - (kJSMarkerXStop + js_marker_center))) {
+//        self.markerLocation = self.frame.size.width - (kJSMarkerXStop + js_marker_center);
+//    } else {
+//        self.markerLocation = touchPoint.x - self.touchOffset;
+//    }
+//    
+//    self.offset = [self offsetForMarker];
+//    
+//    [self sendActionsForControlEvents:UIControlEventValueChanged];
+//    [self setNeedsDisplay];
+
+    [self updateMarkerToPoint:[touch locationInView:self]];
     return YES;
 }
 
 - (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     self.touchOffset = 0.0f;
+}
+
+- (void) updateMarkerToPoint:(CGPoint) touchPoint
+{
+    if (touchPoint.x < js_marker_start) {
+        self.markerLocation = js_marker_start;
+    } else if (touchPoint.x > js_marker_stop) {
+        self.markerLocation = js_marker_stop;
+    } else {
+        self.markerLocation = touchPoint.x;
+    }
+
+    self.offset = [self offsetForMarker];
+    
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [self setNeedsDisplay];
 }
 
 #pragma mark - Interface
