@@ -19,6 +19,8 @@
 #define kJSImageBorder 4.0f
 #define kJSImageDivider 2.0f
 
+#define kCornerRadius 20.0f
+
 #define js_marker_center (self.marker.size.width / 2)
 #define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)))
 
@@ -120,6 +122,10 @@
                                                   (4 * stripFrame.size.width),
                                                   colorSpace,
                                                   kCGImageAlphaPremultipliedFirst);
+    
+    CGContextTranslateCTM(stripCtx, 0, stripFrame.size.height);
+    CGContextScaleCTM(stripCtx, 1.0, -1.0);
+    
     CGFloat padding = 0.0f;
     
     for (int idx = 0; idx < [self.actualOffsets count]; idx++) {
@@ -137,7 +143,7 @@
     }
     
     CGImageRef raw = CGBitmapContextCreateImage(stripCtx);
-    UIImage *strip = [[UIImage imageWithCGImage:raw] maskWithCornerSize:CGSizeMake(20.0f, 20.0f)];
+    UIImage *strip = [[UIImage imageWithCGImage:raw] maskWithCornerSize:CGSizeMake(kCornerRadius, kCornerRadius)];
     
     CGContextRelease(stripCtx);
     CGColorSpaceRelease(colorSpace);
@@ -222,6 +228,12 @@
         
     self.sourceWidth = CGImageGetWidth(image);
     self.sourceHeight = CGImageGetHeight(image);
+    
+    CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
+    
+    size_t height = (size_t)js_scaled_img_height;
+    size_t width = (size_t)(height * aspect);
+    self.assetImageGenerator.maximumSize = CGSizeMake(width, height);
     
     CGImageRelease(image);
     
@@ -314,7 +326,6 @@
     NSError *error = nil;
     
     CGImageRef source = [self.assetImageGenerator copyCGImageAtTime:offset actualTime:&actualTime error:&error];
-    CGImageRef scaled = [self createScaledImage:source];
     
     if (error) {
         NSLog(@"Error copying image at index %f: %@", CMTimeGetSeconds(offset), [error localizedDescription]);
@@ -322,42 +333,8 @@
     
     NSNumber *key = [NSNumber numberWithDouble:CMTimeGetSeconds(actualTime)];
 
-    [self.images setObject:CFBridgingRelease(scaled) forKey:key];  //transfer img ownership to arc
+    [self.images setObject:CFBridgingRelease(source) forKey:key];  //transfer img ownership to arc
     [self.actualOffsets addObject:key];
-    
-    CFRelease(source);
-}
-
-- (CGImageRef) createScaledImage:(CGImageRef) source
-{
-    CGFloat aspect = (self.sourceWidth * 1.0f) / self.sourceHeight;
-    
-    size_t height = (size_t)js_scaled_img_height;
-    size_t width = (size_t)(height * aspect);
-
-    CGColorSpaceRef colorspace = CGImageGetColorSpace(source);
-    
-    CGContextRef context = CGBitmapContextCreate(NULL,
-                                                 width,
-                                                 height,
-                                                 CGImageGetBitsPerComponent(source),
-                                                 (CGImageGetBytesPerRow(source) / CGImageGetWidth(source) * width),
-                                                 colorspace,
-                                                 CGImageGetAlphaInfo(source));
-    if(context == NULL) {
-        return NULL;
-    }
-    
-    //flip image to correct for CG coordinate system
-    CGContextTranslateCTM(context, 0, height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    CGContextDrawImage(context, CGContextGetClipBoundingBox(context), source);
-    
-    CGImageRef scaled = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    
-    return scaled;
 }
 
 - (CGFloat) offsetForMarker
