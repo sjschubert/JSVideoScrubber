@@ -331,9 +331,7 @@
 }
 
 - (void) extractImageAt:(CMTime) offset
-{
-    [NSThread isMainThread] ? NSLog(@"maint thread") : NSLog(@"backgrnd thread");
-    
+{    
     CMTime actualTime;
     NSError *error = nil;
     
