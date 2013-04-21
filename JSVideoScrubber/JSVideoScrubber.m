@@ -26,7 +26,6 @@
 #define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
 #define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)))
 
-
 @interface JSVideoScrubber ()
 
 @property (strong, nonatomic) AVAsset *asset;
@@ -46,6 +45,8 @@
 
 @implementation JSVideoScrubber
 
+@synthesize offset = _offset;
+
 #pragma mark - Initialization
 
 - (id)initWithFrame:(CGRect)frame
@@ -55,7 +56,7 @@
     if (self) {
         [self initScrubber];
     }
-    
+
     return self;
 }
 
@@ -82,7 +83,7 @@
     self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
     self.marker = [UIImage imageNamed:@"slider"];
 
-    self.markerLocation = kJSMarkerXStop - js_marker_center;
+    self.markerLocation = js_marker_start;
 }
 
 #pragma mark - UIView
@@ -172,13 +173,15 @@
 
 - (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [self updateMarkerToPoint:[touch locationInView:self]];    
+    [self updateMarkerToPoint:[touch locationInView:self]];
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
 }
 
 - (BOOL) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [self updateMarkerToPoint:[touch locationInView:self]];
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
 }
 
@@ -192,13 +195,24 @@
         self.markerLocation = touchPoint.x;
     }
 
-    self.offset = [self offsetForMarker];
-    
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    _offset = [self offsetForMarker];
     [self setNeedsDisplay];
 }
 
 #pragma mark - Interface
+
+- (CGFloat) offset
+{
+    return _offset;
+}
+
+- (void) setOffset:(CGFloat)offset
+{
+    CGFloat x = (offset / CMTimeGetSeconds(self.duration)) * (self.frame.size.width - (2 * kJSMarkerXStop));
+    [self updateMarkerToPoint:CGPointMake(x + js_marker_start, 0.0f)];
+    
+    _offset = offset;
+}
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset
 {
@@ -249,7 +263,7 @@
     self.duration = CMTimeMakeWithSeconds(0.0, 1);
     self.offset = 0.0f;
     
-    self.markerLocation = kJSMarkerXStop - js_marker_center;
+    self.markerLocation = js_marker_start;
     [self setNeedsDisplay];
 }
 
@@ -258,36 +272,40 @@
 - (void) extractFromAsset:(AVAsset *) asset atIndexes:(NSArray *) requestedTimes
 {
     self.duration = asset.duration;
-    self.markerLocation = kJSMarkerXStop - js_marker_center;
-    
-    for (NSNumber *number in requestedTimes)
-    {
-        double offset = [number doubleValue];
-        
-        if (offset < 0 || offset > CMTimeGetSeconds(asset.duration)) {
-            continue;
+    self.markerLocation = js_marker_start;
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{        
+        for (NSNumber *number in requestedTimes)
+        {
+            double offset = [number doubleValue];
+            
+            if (offset < 0 || offset > CMTimeGetSeconds(asset.duration)) {
+                continue;
+            }
+            
+            [self extractImageAt:CMTimeMakeWithSeconds(offset, 1)];
         }
         
-        [self extractImageAt:CMTimeMakeWithSeconds(offset, 1)];
-    }
-    
-    //ensure keys are sorted
-    [self.actualOffsets sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        double first = [obj1 doubleValue];
-        double second = [obj2 doubleValue];
+        //ensure keys are sorted
+        [self.actualOffsets sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            double first = [obj1 doubleValue];
+            double second = [obj2 doubleValue];
+            
+            if (first > second) {
+                return NSOrderedDescending;
+            }
+            
+            if (first < second) {
+                return NSOrderedAscending;
+            }
+            
+            return NSOrderedSame;
+        }];
         
-        if (first > second) {
-            return NSOrderedDescending;
-        }
-        
-        if (first < second) {
-            return NSOrderedAscending;
-        }
-        
-        return NSOrderedSame;
-    }];
-    
-    [self setNeedsDisplay];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setNeedsDisplay];
+        });
+    });
 }
 
 - (NSArray *) generateOffsets:(AVAsset *) asset
@@ -314,6 +332,8 @@
 
 - (void) extractImageAt:(CMTime) offset
 {
+    [NSThread isMainThread] ? NSLog(@"maint thread") : NSLog(@"backgrnd thread");
+    
     CMTime actualTime;
     NSError *error = nil;
     

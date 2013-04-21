@@ -96,7 +96,7 @@
                 int min = (int)total / 60;
                 int seconds = (int)total % 60;
                 self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
-
+                
                 [ref updateOffsetLabel:self.scrubber];
                 [ref.scrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
                 
