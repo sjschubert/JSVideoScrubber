@@ -41,6 +41,8 @@
 @property (strong, nonatomic) UIImage *marker;
 @property (assign, nonatomic) CGFloat markerLocation;
 
+@property (assign, nonatomic) BOOL blockOffsetUpdates;
+
 @end
 
 @implementation JSVideoScrubber
@@ -84,6 +86,7 @@
     self.marker = [UIImage imageNamed:@"slider"];
 
     self.markerLocation = js_marker_start;
+    self.blockOffsetUpdates = NO;
 }
 
 #pragma mark - UIView
@@ -173,6 +176,8 @@
 
 - (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    self.blockOffsetUpdates = YES;
+    
     [self updateMarkerToPoint:[touch locationInView:self]];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
@@ -183,6 +188,12 @@
     [self updateMarkerToPoint:[touch locationInView:self]];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
+}
+
+- (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    self.blockOffsetUpdates = NO;
+    [super endTrackingWithTouch:touch withEvent:event];
 }
 
 - (void) updateMarkerToPoint:(CGPoint) touchPoint
@@ -208,6 +219,10 @@
 
 - (void) setOffset:(CGFloat)offset
 {
+    if (self.blockOffsetUpdates) {
+        return;
+    }
+    
     CGFloat x = (offset / CMTimeGetSeconds(self.duration)) * (self.frame.size.width - (2 * kJSMarkerXStop));
     [self updateMarkerToPoint:CGPointMake(x + js_marker_start, 0.0f)];
     
