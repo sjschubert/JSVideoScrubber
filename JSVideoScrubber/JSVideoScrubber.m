@@ -190,6 +190,12 @@
     return YES;
 }
 
+- (void) cancelTrackingWithEvent:(UIEvent *)event
+{
+    self.blockOffsetUpdates = NO;
+    [super cancelTrackingWithEvent:event];
+}
+
 - (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     self.blockOffsetUpdates = NO;
