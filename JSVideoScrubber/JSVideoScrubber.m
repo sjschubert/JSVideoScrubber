@@ -42,6 +42,7 @@
 @property (assign, nonatomic) CGFloat markerLocation;
 
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
+@property (assign, nonatomic) BOOL isLoaded;
 
 @end
 
@@ -87,6 +88,7 @@
 
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
+    self.isLoaded = NO;
 }
 
 #pragma mark - UIView
@@ -98,7 +100,7 @@
 
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (self.asset) {
+    if (self.asset && self.isLoaded) {
         CGImageRef masked = [self drawStrip].CGImage;
 
         size_t masked_h = CGImageGetHeight(masked);
@@ -292,6 +294,7 @@
 
 - (void) extractFromAsset:(AVAsset *) asset atIndexes:(NSArray *) requestedTimes
 {
+    self.isLoaded = NO;
     self.duration = asset.duration;
     self.markerLocation = js_marker_start;
 
@@ -324,6 +327,7 @@
         }];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.isLoaded = YES;
             [self setNeedsDisplay];
         });
     });
