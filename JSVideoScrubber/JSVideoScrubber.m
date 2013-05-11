@@ -101,7 +101,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     if (self.asset && self.isLoaded) {
-        CGImageRef masked = [self drawStrip].CGImage;
+        UIImage *maskedUi = [self drawStrip];
+        CGImageRef masked = maskedUi.CGImage;
 
         size_t masked_h = CGImageGetHeight(masked);
         size_t masked_w = CGImageGetWidth(masked);
