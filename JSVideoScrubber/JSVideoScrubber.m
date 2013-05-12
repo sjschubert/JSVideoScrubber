@@ -86,6 +86,9 @@
     self.blockOffsetUpdates = NO;
     self.imageStrip = nil;
     
+    self.duration = CMTimeMakeWithSeconds(0.0, 1);
+    self.offset = 0.0f;
+    
     [self.renderQueue setSuspended:NO];
 }
 
@@ -221,7 +224,6 @@
 
 - (void) queueRenderOperationForAsset:(AVAsset *)asset indexedAt:(NSArray *)indexes
 {
-    NSLog(@"queing operation");
     JSRenderOperation *op = nil;
 
     if (indexes) {
@@ -233,8 +235,6 @@
     op.renderCompletionBlock = ^(UIImage *strip, NSError *error) {
         if (!error) {
             self.imageStrip = strip;
-            NSLog(@"call stack: %@", [NSThread callStackSymbols]);
-            NSLog(@"got image: %fx%f", self.imageStrip.size.width, self.imageStrip.size.height);
             [self setNeedsDisplay];
         }
         

@@ -111,7 +111,6 @@
     CGImageRef image = [self.generator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
     
     if (self.isCancelled) {
-        NSLog(@"Op cancelled");
         return;
     }
     
@@ -181,7 +180,6 @@
     for (NSNumber *number in indexes) {
         
         if (self.isCancelled) {
-            NSLog(@"Op cancelled");
             return nil;
         }
         
@@ -227,7 +225,6 @@
     
     for (int idx = 0; idx < [times count]; idx++) {
         if (self.isCancelled) {
-            NSLog(@"Op cancelled");
             CGContextRelease(stripCtx);
             CGColorSpaceRelease(colorSpace);
             return nil;
