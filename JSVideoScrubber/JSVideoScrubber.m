@@ -28,6 +28,8 @@
 
 @interface JSVideoScrubber ()
 
+@property (strong, nonatomic) NSOperationQueue *renderQueue;
+
 @property (strong, nonatomic) AVAsset *asset;
 @property (strong, nonatomic) AVAssetImageGenerator *assetImageGenerator;
 @property (strong, nonatomic) NSMutableArray *actualOffsets;
@@ -76,6 +78,9 @@
 
 - (void) initScrubber
 {
+    self.renderQueue = [[NSOperationQueue alloc] init];
+    self.renderQueue.maxConcurrentOperationCount = 1;
+    
     self.actualOffsets = [NSMutableArray array];
     self.images = [NSMutableDictionary dictionary];
 
@@ -165,6 +170,8 @@
     if (!self.asset) {
         return;
     }
+    
+    NSLog(@"TODO: cancel queue, reset control, add new operation");
     
     //reset extracted images
     [self.actualOffsets removeAllObjects];
@@ -295,6 +302,8 @@
 
 - (void) extractFromAsset:(AVAsset *) asset atIndexes:(NSArray *) requestedTimes
 {
+    NSLog(@"setting up images");
+    
     self.isLoaded = NO;
     self.duration = asset.duration;
     self.markerLocation = js_marker_start;

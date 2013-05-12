@@ -16,6 +16,7 @@
 		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
+		EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC80D192173EF4A4008B961F /* JSRenderOperation.m */; };
 		ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */; };
 		ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */; };
 		ECCA5F271661B02E00229B4D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1A1661B02E00229B4D /* OFL.txt */; };
@@ -51,6 +52,8 @@
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EC80D191173EF4A4008B961F /* JSRenderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
+		EC80D192173EF4A4008B961F /* JSRenderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
 		ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
 		ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
 		ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */,
 				ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */,
 				ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */,
+				EC80D191173EF4A4008B961F /* JSRenderOperation.h */,
+				EC80D192173EF4A4008B961F /* JSRenderOperation.m */,
 			);
 			name = Scrubber;
 			path = JSVideoScrubber;
@@ -287,6 +292,7 @@
 				ECCA5F3B1661B04300229B4D /* JSSimViewController.m in Sources */,
 				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
 				EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */,
+				EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
