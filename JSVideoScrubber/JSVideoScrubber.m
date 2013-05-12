@@ -85,6 +85,8 @@
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
     self.imageStrip = nil;
+    
+    [self.renderQueue setSuspended:NO];
 }
 
 #pragma mark - UIView
@@ -203,6 +205,8 @@
 
 - (void) reset
 {
+    [self.renderQueue cancelAllOperations];
+    
     self.asset = nil;
     self.imageStrip = nil;
     
@@ -217,6 +221,7 @@
 
 - (void) queueRenderOperationForAsset:(AVAsset *)asset indexedAt:(NSArray *)indexes
 {
+    NSLog(@"queing operation");
     JSRenderOperation *op = nil;
 
     if (indexes) {
@@ -225,9 +230,12 @@
         op = [[JSRenderOperation alloc] initWithAsset:asset targetFrame:self.frame];
     }
     
-    op.completionBlock = ^(UIImage *strip, NSError *error) {
+    op.renderCompletionBlock = ^(UIImage *strip, NSError *error) {
         if (!error) {
             self.imageStrip = strip;
+            NSLog(@"call stack: %@", [NSThread callStackSymbols]);
+            NSLog(@"got image: %fx%f", self.imageStrip.size.width, self.imageStrip.size.height);
+            [self setNeedsDisplay];
         }
         
         //todo: log error?

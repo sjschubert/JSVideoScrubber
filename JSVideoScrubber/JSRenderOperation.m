@@ -111,6 +111,7 @@
     CGImageRef image = [self.generator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
     
     if (self.isCancelled) {
+        NSLog(@"Op cancelled");
         return;
     }
     
@@ -139,12 +140,15 @@
         images = [self extractFromAssetAt:self.offsets error:&error];
     }
     
-    if (!images) {
-        self.completionBlock(nil, error);
-    } else {
-        UIImage *strip = [self drawStripWithImages:images targetFrame:self.frame imgWidth:width imgHeight:height];
-        self.completionBlock(strip, error);
+    UIImage *strip = nil;
+    
+    if (images) {
+        strip = [self drawStripWithImages:images targetFrame:self.frame imgWidth:width imgHeight:height];
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.renderCompletionBlock(strip, error);
+    });
 }
 
 #pragma mark - Support
@@ -177,6 +181,7 @@
     for (NSNumber *number in indexes) {
         
         if (self.isCancelled) {
+            NSLog(@"Op cancelled");
             return nil;
         }
         
@@ -221,8 +226,8 @@
     CGFloat padding = 0.0f;
     
     for (int idx = 0; idx < [times count]; idx++) {
-        
         if (self.isCancelled) {
+            NSLog(@"Op cancelled");
             CGContextRelease(stripCtx);
             CGColorSpaceRelease(colorSpace);
             return nil;
