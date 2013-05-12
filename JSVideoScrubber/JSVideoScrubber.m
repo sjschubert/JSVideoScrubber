@@ -85,10 +85,7 @@
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
     self.imageStrip = nil;
-    
-    self.duration = CMTimeMakeWithSeconds(0.0, 1);
-    self.offset = 0.0f;
-    
+        
     [self.renderQueue setSuspended:NO];
 }
 
