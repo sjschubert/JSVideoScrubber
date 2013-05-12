@@ -208,7 +208,7 @@
 
 - (UIImage *) drawStripWithImages:(NSDictionary *)images targetFrame:(CGRect) frame imgWidth:(size_t) width imgHeight:(size_t) height
 {
-    CGFloat border = (2 * (kJSSideFrame + kJSImageBorder)) - kJSImageDivider;
+    CGFloat border = (2 * (kJSSideFrame + kJSImageBorder)) + kJSImageDivider;
     CGRect stripFrame = CGRectMake(0.0f, 0.0f,(frame.size.width - border), height);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
