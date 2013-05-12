@@ -10,7 +10,7 @@
 
 @class JSRenderOperation;
 
-typedef void (^JSRenderOperationCompletionBlock)(JSRenderOperation *operation);
+typedef void (^JSRenderOperationCompletionBlock)(UIImage *strip, NSError *error);
 
 @interface JSRenderOperation : NSOperation
 

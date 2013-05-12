@@ -29,7 +29,6 @@
 		ECCA5F301661B02E00229B4D /* wheel.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F241661B02E00229B4D /* wheel.png */; };
 		ECCA5F311661B02E00229B4D /* wheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F251661B02E00229B4D /* wheel@2x.png */; };
 		ECCA5F391661B04300229B4D /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F331661B04300229B4D /* JSAppDelegate.m */; };
-		ECCA5F3A1661B04300229B4D /* JSVideoScrubber-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F341661B04300229B4D /* JSVideoScrubber-Info.plist */; };
 		ECCA5F3B1661B04300229B4D /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F371661B04300229B4D /* JSSimViewController.m */; };
 		ECCA5F3C1661B04300229B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F381661B04300229B4D /* main.m */; };
 		ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */; };
@@ -269,7 +268,6 @@
 				ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */,
 				ECCA5F301661B02E00229B4D /* wheel.png in Resources */,
 				ECCA5F311661B02E00229B4D /* wheel@2x.png in Resources */,
-				ECCA5F3A1661B04300229B4D /* JSVideoScrubber-Info.plist in Resources */,
 				ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */,
 				ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */,
 				ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */,
