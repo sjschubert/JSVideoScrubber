@@ -194,12 +194,18 @@
     NSAssert(self.frame.size.height >= 90.0f, @"Minimum height supported by the control is 90 px");
     
     self.asset = asset;
+    self.duration = asset.duration;
+    
     [self queueRenderOperationForAsset:self.asset indexedAt:nil];
 }
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
+    NSAssert(self.frame.size.height >= 90.0f, @"Minimum height supported by the control is 90 px");
+    
     self.asset = asset;
+    self.duration = asset.duration;
+    
     [self queueRenderOperationForAsset:self.asset indexedAt:requestedTimes];
 }
 
