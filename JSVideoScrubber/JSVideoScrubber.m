@@ -121,7 +121,9 @@
     if (!self.asset) {
         return;
     }
-        
+    
+    self.imageStrip = nil;
+    
     [self setupControlWithAVAsset:self.asset];
     [self setNeedsDisplay];
 }
