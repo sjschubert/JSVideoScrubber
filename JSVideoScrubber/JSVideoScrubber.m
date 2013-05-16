@@ -124,10 +124,15 @@
         return;
     }
     
-    self.imageStrip = nil;
-    
-    [self setupControlWithAVAsset:self.asset];
-    [self setNeedsDisplay];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.layer.opacity = 0.0f;
+    }
+    completion:^(BOOL finished) {
+        self.imageStrip = nil;
+        
+        [self setupControlWithAVAsset:self.asset];
+        [self setNeedsDisplay];
+    }];
 }
 
 #pragma mark - UIControl
@@ -216,8 +221,6 @@
 - (void) reset
 {
     [self.renderQueue cancelAllOperations];
-    
-    
     
     [UIView animateWithDuration:0.25f animations:^{
         self.layer.opacity = 0.0f;
