@@ -85,6 +85,8 @@
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
     self.imageStrip = nil;
+    
+    self.layer.opacity = 0.0f;
         
     [self.renderQueue setSuspended:NO];
 }
@@ -215,14 +217,21 @@
 {
     [self.renderQueue cancelAllOperations];
     
-    self.asset = nil;
-    self.imageStrip = nil;
     
-    self.duration = CMTimeMakeWithSeconds(0.0, 1);
-    self.offset = 0.0f;
     
-    self.markerLocation = js_marker_start;
-    [self setNeedsDisplay];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.layer.opacity = 0.0f;
+    }
+    
+    completion:^(BOOL finished) {
+        self.asset = nil;
+        self.imageStrip = nil;
+         
+        self.duration = CMTimeMakeWithSeconds(0.0, 1);
+        self.offset = 0.0f;
+         
+        self.markerLocation = js_marker_start;
+     }];
 }
 
 #pragma mark - Internal
@@ -238,12 +247,16 @@
     }
     
     op.renderCompletionBlock = ^(UIImage *strip, NSError *error) {
-        if (!error) {
-            self.imageStrip = strip;
-            [self setNeedsDisplay];
+        if (error) {
+            //todo: log error?
         }
         
-        //todo: log error?
+        self.imageStrip = strip;
+        [self setNeedsDisplay];
+        
+        [UIView animateWithDuration:0.25f animations:^{
+            self.layer.opacity = 1.0f;
+        }];
     };
     
     [self.renderQueue cancelAllOperations];
