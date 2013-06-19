@@ -16,6 +16,11 @@
 		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
+		EC70754D1771730100D74F0E /* audio_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EC7075481771730100D74F0E /* audio_indicator.png */; };
+		EC70754E1771730100D74F0E /* audio_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC7075491771730100D74F0E /* audio_indicator@2x.png */; };
+		EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754A1771730100D74F0E /* scrubber_inner@2x.png */; };
+		EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754B1771730100D74F0E /* scrubber_mask@2x.png */; };
+		EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754C1771730100D74F0E /* scrubber_outer@2x.png */; };
 		EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC80D192173EF4A4008B961F /* JSRenderOperation.m */; };
 		ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */; };
 		ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */; };
@@ -52,6 +57,11 @@
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EC7075481771730100D74F0E /* audio_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_indicator.png; sourceTree = "<group>"; };
+		EC7075491771730100D74F0E /* audio_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_indicator@2x.png"; sourceTree = "<group>"; };
+		EC70754A1771730100D74F0E /* scrubber_inner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_inner@2x.png"; sourceTree = "<group>"; };
+		EC70754B1771730100D74F0E /* scrubber_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_mask@2x.png"; sourceTree = "<group>"; };
+		EC70754C1771730100D74F0E /* scrubber_outer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_outer@2x.png"; sourceTree = "<group>"; };
 		EC80D191173EF4A4008B961F /* JSRenderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
 		EC80D192173EF4A4008B961F /* JSRenderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
 		ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
@@ -192,6 +202,11 @@
 		ECCA5F1B1661B02E00229B4D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC7075481771730100D74F0E /* audio_indicator.png */,
+				EC7075491771730100D74F0E /* audio_indicator@2x.png */,
+				EC70754A1771730100D74F0E /* scrubber_inner@2x.png */,
+				EC70754B1771730100D74F0E /* scrubber_mask@2x.png */,
+				EC70754C1771730100D74F0E /* scrubber_outer@2x.png */,
 				ECCA5F411661BDA800229B4D /* scrubber_mask.png */,
 				ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */,
 				ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */,
@@ -276,6 +291,11 @@
 				ECCA5F441661CA3300229B4D /* JSSimViewController.xib in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
+				EC70754D1771730100D74F0E /* audio_indicator.png in Resources */,
+				EC70754E1771730100D74F0E /* audio_indicator@2x.png in Resources */,
+				EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */,
+				EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */,
+				EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
