@@ -10,11 +10,11 @@
 
 @class JSRenderOperation;
 
-typedef void (^JSRenderOperationCompletionBlock)(JSRenderOperation *operation);
+typedef void (^JSRenderOperationCompletionBlock)(UIImage *strip, NSError *error);
 
 @interface JSRenderOperation : NSOperation
 
-@property (nonatomic, copy) JSRenderOperationCompletionBlock completionBlock;
+@property (nonatomic, copy) JSRenderOperationCompletionBlock renderCompletionBlock;
 
 - (id) initWithAsset:(AVAsset *)asset targetFrame:(CGRect) frame;
 - (id) initWithAsset:(AVAsset *)asset indexAt:(NSArray *)indexes targetFrame:(CGRect) frame;

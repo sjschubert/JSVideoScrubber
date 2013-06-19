@@ -110,6 +110,10 @@
     
     CGImageRef image = [self.generator copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 1) actualTime:&actualTime error:&error];
     
+    if (self.isCancelled) {
+        return;
+    }
+    
     if (error) {
         NSLog(@"Error extracting reference image from asset: %@", [error localizedDescription]);
         return;
@@ -130,13 +134,20 @@
     NSDictionary *images = nil;
     
     if ([self.offsets count] == 0) {
-       images = [self extractFromAssetAt:[self generateOffsets:self.asset targetFrame:self.frame width:width]];
+        images = [self extractFromAssetAt:[self generateOffsets:self.asset targetFrame:self.frame width:width] error:&error];
     } else {
-       images = [self extractFromAssetAt:self.offsets];
+        images = [self extractFromAssetAt:self.offsets error:&error];
     }
-
-    UIImage *strip = [self drawStripWithImages:images targetFrame:self.frame imgWidth:width imgHeight:height];
-    //call execution block
+    
+    UIImage *strip = nil;
+    
+    if (images) {
+        strip = [self drawStripWithImages:images targetFrame:self.frame imgWidth:width imgHeight:height];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.renderCompletionBlock(strip, error);
+    });
 }
 
 #pragma mark - Support
@@ -160,14 +171,18 @@
     return indexes;
 }
 
-- (NSDictionary *) extractFromAssetAt:(NSArray *)indexes
+- (NSDictionary *) extractFromAssetAt:(NSArray *)indexes error:(NSError **)error
 {
     NSMutableDictionary *images = [NSMutableDictionary dictionaryWithCapacity:[indexes count]];
     
     CMTime actualTime;
-    NSError *error = nil;
     
     for (NSNumber *number in indexes) {
+        
+        if (self.isCancelled) {
+            return nil;
+        }
+        
         double offset = [number doubleValue];
         
         if (offset < 0 || offset > CMTimeGetSeconds(self.asset.duration)) {
@@ -175,10 +190,11 @@
         }
         
         CMTime t = CMTimeMakeWithSeconds(offset, 1);
-        CGImageRef source = [self.generator copyCGImageAtTime:t actualTime:&actualTime error:&error];
+        CGImageRef source = [self.generator copyCGImageAtTime:t actualTime:&actualTime error:error];
         
         if (!source) {
-            NSLog(@"Error copying image at index %f: %@", CMTimeGetSeconds(actualTime), [error localizedDescription]);
+            NSLog(@"Error copying image at index %f: %@", CMTimeGetSeconds(actualTime), [*error localizedDescription]);
+            return nil;
         }
         
         NSNumber *key = [NSNumber numberWithDouble:CMTimeGetSeconds(actualTime)];
@@ -190,10 +206,8 @@
 
 - (UIImage *) drawStripWithImages:(NSDictionary *)images targetFrame:(CGRect) frame imgWidth:(size_t) width imgHeight:(size_t) height
 {
-    CGRect stripFrame = CGRectMake(0.0f,
-                                   0.0f,
-                                   frame.size.width - (2 * (kJSSideFrame + kJSImageBorder)) - kJSImageDivider,
-                                   height);
+    CGFloat border = (2 * (kJSSideFrame + kJSImageBorder)) + kJSImageDivider;
+    CGRect stripFrame = CGRectMake(0.0f, 0.0f,(frame.size.width - border), height);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef stripCtx = CGBitmapContextCreate(NULL, stripFrame.size.width,
@@ -210,6 +224,12 @@
     CGFloat padding = 0.0f;
     
     for (int idx = 0; idx < [times count]; idx++) {
+        if (self.isCancelled) {
+            CGContextRelease(stripCtx);
+            CGColorSpaceRelease(colorSpace);
+            return nil;
+        }
+        
         NSNumber *time = [times objectAtIndex:idx];
         CGImageRef image = (__bridge CGImageRef)([images objectForKey:time]);
         
