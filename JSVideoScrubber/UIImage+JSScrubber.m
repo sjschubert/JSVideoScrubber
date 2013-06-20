@@ -48,7 +48,7 @@
 
 + (UIImage *) drawResizableImage:(UIImage *) image toSize:(CGSize) size
 {
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
     
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
     
@@ -64,8 +64,6 @@
     
     CGImageRef imageReference = self.CGImage;
     CGImageRef maskReference = resizedMask.CGImage;
-
-    //NSLog(@"image dims: %f x %f", resizedMask.size.width, resizedMask.size.height);
     
     CGImageRef imageMask = CGImageMaskCreate(CGImageGetWidth(maskReference),
                                              CGImageGetHeight(maskReference),
@@ -87,10 +85,10 @@
 
 - (UIImage *) flipImageVertically
 {
-    CGFloat width = CGImageGetWidth(self.CGImage);
-    CGFloat height = CGImageGetHeight(self.CGImage);
+    CGFloat width = self.size.width;
+    CGFloat height = self.size.height;
     
-    UIGraphicsBeginImageContext(CGSizeMake(width, height));
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), NO, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
 	CGContextTranslateCTM(context, 0, height);
