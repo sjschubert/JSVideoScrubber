@@ -16,8 +16,6 @@
 		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
-		EC70754D1771730100D74F0E /* audio_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EC7075481771730100D74F0E /* audio_indicator.png */; };
-		EC70754E1771730100D74F0E /* audio_indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC7075491771730100D74F0E /* audio_indicator@2x.png */; };
 		EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754A1771730100D74F0E /* scrubber_inner@2x.png */; };
 		EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754B1771730100D74F0E /* scrubber_mask@2x.png */; };
 		EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754C1771730100D74F0E /* scrubber_outer@2x.png */; };
@@ -25,10 +23,6 @@
 		ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */; };
 		ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */; };
 		ECCA5F271661B02E00229B4D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1A1661B02E00229B4D /* OFL.txt */; };
-		ECCA5F281661B02E00229B4D /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1C1661B02E00229B4D /* pause.png */; };
-		ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1D1661B02E00229B4D /* pause@2x.png */; };
-		ECCA5F2A1661B02E00229B4D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1E1661B02E00229B4D /* play.png */; };
-		ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1F1661B02E00229B4D /* play@2x.png */; };
 		ECCA5F2E1661B02E00229B4D /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F221661B02E00229B4D /* slider.png */; };
 		ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F231661B02E00229B4D /* slider@2x.png */; };
 		ECCA5F391661B04300229B4D /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F331661B04300229B4D /* JSAppDelegate.m */; };
@@ -54,8 +48,6 @@
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		EC7075481771730100D74F0E /* audio_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audio_indicator.png; sourceTree = "<group>"; };
-		EC7075491771730100D74F0E /* audio_indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_indicator@2x.png"; sourceTree = "<group>"; };
 		EC70754A1771730100D74F0E /* scrubber_inner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_inner@2x.png"; sourceTree = "<group>"; };
 		EC70754B1771730100D74F0E /* scrubber_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_mask@2x.png"; sourceTree = "<group>"; };
 		EC70754C1771730100D74F0E /* scrubber_outer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_outer@2x.png"; sourceTree = "<group>"; };
@@ -65,10 +57,6 @@
 		ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
 		ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		ECCA5F1A1661B02E00229B4D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		ECCA5F1C1661B02E00229B4D /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
-		ECCA5F1D1661B02E00229B4D /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
-		ECCA5F1E1661B02E00229B4D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
-		ECCA5F1F1661B02E00229B4D /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		ECCA5F221661B02E00229B4D /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
 		ECCA5F231661B02E00229B4D /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		ECCA5F321661B04300229B4D /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSAppDelegate.h; path = Support/JSAppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -197,18 +185,12 @@
 		ECCA5F1B1661B02E00229B4D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC7075481771730100D74F0E /* audio_indicator.png */,
-				EC7075491771730100D74F0E /* audio_indicator@2x.png */,
 				EC70754A1771730100D74F0E /* scrubber_inner@2x.png */,
 				EC70754B1771730100D74F0E /* scrubber_mask@2x.png */,
 				EC70754C1771730100D74F0E /* scrubber_outer@2x.png */,
 				ECCA5F411661BDA800229B4D /* scrubber_mask.png */,
 				ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */,
 				ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */,
-				ECCA5F1C1661B02E00229B4D /* pause.png */,
-				ECCA5F1D1661B02E00229B4D /* pause@2x.png */,
-				ECCA5F1E1661B02E00229B4D /* play.png */,
-				ECCA5F1F1661B02E00229B4D /* play@2x.png */,
 				ECCA5F221661B02E00229B4D /* slider.png */,
 				ECCA5F231661B02E00229B4D /* slider@2x.png */,
 			);
@@ -269,21 +251,14 @@
 			files = (
 				ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */,
 				ECCA5F271661B02E00229B4D /* OFL.txt in Resources */,
-				ECCA5F281661B02E00229B4D /* pause.png in Resources */,
-				ECCA5F291661B02E00229B4D /* pause@2x.png in Resources */,
-				ECCA5F2A1661B02E00229B4D /* play.png in Resources */,
-				ECCA5F2B1661B02E00229B4D /* play@2x.png in Resources */,
 				ECCA5F2E1661B02E00229B4D /* slider.png in Resources */,
 				ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */,
-				ECCA5F3A1661B04300229B4D /* JSVideoScrubber-Info.plist in Resources */,
 				ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */,
 				ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */,
 				ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */,
 				ECCA5F441661CA3300229B4D /* JSSimViewController.xib in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
-				EC70754D1771730100D74F0E /* audio_indicator.png in Resources */,
-				EC70754E1771730100D74F0E /* audio_indicator@2x.png in Resources */,
 				EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */,
 				EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */,
 				EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */,
