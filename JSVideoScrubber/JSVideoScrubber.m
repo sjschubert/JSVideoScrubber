@@ -150,7 +150,7 @@
 {
     CGPoint p = [touch locationInView:self];
     
-    if (!CGRectContainsPoint(self.frame, p)) {
+    if (!CGRectContainsPoint(self.bounds, p)) {
         return NO;
     }
     
