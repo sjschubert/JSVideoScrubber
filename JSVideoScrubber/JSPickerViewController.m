@@ -62,7 +62,7 @@
          imagePicker.mediaTypes = @[(__bridge NSString *)kUTTypeMovie];
      }
      
-     [self presentModalViewController:imagePicker animated:YES];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (IBAction)clearAssetAction:(id)sender
@@ -77,7 +77,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *) picker
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerController:(UIImagePickerController *) picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -100,7 +100,7 @@
                 [ref updateOffsetLabel:self.scrubber];
                 [ref.scrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
                 
-                [ref dismissModalViewControllerAnimated:YES];
+                [ref dismissViewControllerAnimated:YES completion:NULL];
             });
         }];
     });
