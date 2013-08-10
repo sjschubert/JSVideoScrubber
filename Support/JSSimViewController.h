@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JSVideoScrubber.h"
-@interface JSSimViewController : UIViewController<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *assetName;
-@property (weak, nonatomic) IBOutlet UITextView *assetDirectory;
-@property (weak, nonatomic) IBOutlet JSVideoScrubber *jsVideoScrubber;
-
-- (IBAction)clearAssetAction:(id)sender;
+@interface JSSimViewController : UIViewController
 
 @end

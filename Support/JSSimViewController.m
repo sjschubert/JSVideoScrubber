@@ -6,20 +6,46 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
+#import "TTTAttributedLabel.h"
+#import "JSVideoScrubber.h"
 #import "JSSimViewController.h"
 
-@interface JSSimViewController () <UIImagePickerControllerDelegate>
+@interface UIRefreshControl(JSDelays)
+
+- (void) endRefreshingAfterDelay:(CGFloat) f;
+
+@end
+
+@implementation UIRefreshControl (JSDelays)
+
+- (void) endRefreshingAfterDelay:(CGFloat) f
+{
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self endRefreshing];
+    });
+}
+
+@end
+
+@interface JSSimViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate>
+
+@property (strong, nonatomic) UITableViewController *tableViewController;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
+@property (strong, nonatomic) IBOutlet TTTAttributedLabel *instructions;
+@property (weak, nonatomic) IBOutlet JSVideoScrubber *jsVideoScrubber;
+@property (strong, nonatomic) IBOutlet UITableView *videosTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *offset;
 @property (strong) NSString *documentDirectory;
+@property (strong) NSArray *assetPaths;
 
 @end
 
 @implementation JSSimViewController
 
-@synthesize assetName;
-@synthesize assetDirectory;
 @synthesize jsVideoScrubber;
 
 #pragma mark - UIView
@@ -27,16 +53,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableViewController = [[UITableViewController alloc] init];
+    self.tableViewController.tableView = self.videosTableView;
+    
+    [self addChildViewController:self.tableViewController];
+    [self.tableViewController didMoveToParentViewController:self];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.tableViewController.refreshControl = self.refreshControl;
+    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    
     self.documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 - (void)viewDidUnload
 {
-    [self setAssetDirectory:nil];
-    [self setAssetName:nil];
     [self setJsVideoScrubber:nil];
     [self setDuration:nil];
     [self setOffset:nil];
+    [self setInstructions:nil];
+    [self setVideosTableView:nil];
+    
     [super viewDidUnload];
 }
 
@@ -44,9 +82,14 @@
 {
     [super viewWillAppear:animated];
 
-    self.assetDirectory.text = [self.documentDirectory stringByReplacingOccurrencesOfString:@" " withString:@"\\ "];
     self.duration.text = @"Duration: 00:00";
     self.offset.text = @"Offset: 00:00";
+    
+    [self setupInstructions];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self updateTable];
+    });
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -60,57 +103,92 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-#pragma mark - UITextField
+#pragma mark - UITableViewDelegate / UITableViewDataSource
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [textField resignFirstResponder];
-    
-    if (textField.text.length == 0) {
-        UIAlertView *msg = [[UIAlertView alloc] initWithTitle:@"Invalid Asset"
-                                                      message:@"The asset name must be specified..."
-                                                     delegate:nil
-                                            cancelButtonTitle:@"Ok"
-                                            otherButtonTitles:nil];
-        [msg show];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:self.assetName.text]];
-            AVURLAsset* asset = [AVURLAsset URLAssetWithURL:url options:nil];
-            
-            NSArray *assetKeysToLoadAndTest = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
-            [asset loadValuesAsynchronouslyForKeys:assetKeysToLoadAndTest completionHandler:^(void) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self setupJSVideoScrubber:asset];
-                    
-                    double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
-                    
-                    int min = (int)total / 60;
-                    int seconds = (int)total % 60;
-                    self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
-
-                    [self updateOffsetLabel:self.jsVideoScrubber];
-                    [self.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
-                });
-            }];
-        });
-    }
-    
-    return YES;
+    return 1;
 }
 
-#pragma mark - IB Actions
-
-- (IBAction)clearAssetAction:(id)sender
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.assetName.text = @"";
+    return [self.assetPaths count];
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Assets - Pull me to refresh!";
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"JSAssetCellId";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = [self.assetPaths[indexPath.row] lastPathComponent];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     self.duration.text = @"Duration: N/A";
     self.offset.text = @"Offset: N/A";
     
     [self.jsVideoScrubber reset];
+    
+    NSString *asset = self.assetPaths[indexPath.row];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:asset]];
+        AVURLAsset* asset = [AVURLAsset URLAssetWithURL:url options:nil];
+        
+        NSArray *assetKeysToLoadAndTest = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
+        [asset loadValuesAsynchronouslyForKeys:assetKeysToLoadAndTest completionHandler:^(void) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setupJSVideoScrubber:asset];
+                
+                double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
+                
+                int min = (int)total / 60;
+                int seconds = (int)total % 60;
+                self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
+                
+                [self updateOffsetLabel:self.jsVideoScrubber];
+                [self.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
+            });
+        }];
+    });
 }
 
-#pragma mark - Internal
+#pragma mark - UIRefresh Cheat
+
+- (void) handleRefresh:(id) sender
+{
+    [self updateTable];
+}
+
+#pragma MARK - TTTAttributedLabel 
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+#pragma mark - Support
+
+- (void) setupInstructions
+{
+    //IB font settings didnt take...
+    self.instructions.font = [UIFont fontWithName:@"Helvetica" size:12.0f];
+    
+    self.instructions.text = @"1. Use the excellent utility SimPholders to locate the application documents directory for this app in the simulator, and drop in your .mov files.\n2. Tap on the file name in the table to load the video in the scrubber.";
+    NSRange r = [self.instructions.text rangeOfString:@"SimPholders"];
+    [self.instructions addLinkToURL:[NSURL URLWithString:@"http://simpholders.com/"] withRange:r];
+}
 
 - (void) setupJSVideoScrubber:(AVAsset *) asset
 {
@@ -122,5 +200,30 @@
     int min = (int)self.jsVideoScrubber.offset / 60;
     int seconds = (int)self.jsVideoScrubber.offset % 60;
     self.offset.text = [NSString stringWithFormat:@"Offset: %02d:%02d", min, seconds];
+}
+
+
+- (void) updateTable
+{
+    [self scanForAssets];
+    [self.videosTableView reloadData];
+    [self.refreshControl endRefreshingAfterDelay:0.1];
+}
+
+- (void) scanForAssets
+{        
+    NSError *error = nil;
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.documentDirectory error:&error];
+    
+    if (!contents) {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error occured scanning docs directory" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        NSLog(@"error scanning directory: %@", error);
+        return;
+    }
+    
+    NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self ENDSWITH '.mov'"];
+    NSArray *paths = [contents filteredArrayUsingPredicate:fltr];
+    
+    self.assetPaths = [NSArray arrayWithArray:paths];
 }
 @end

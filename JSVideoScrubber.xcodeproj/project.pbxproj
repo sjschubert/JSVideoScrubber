@@ -13,6 +13,8 @@
 		EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */; };
 		EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2215FC57E6003168B7 /* AVFoundation.framework */; };
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
+		EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */; };
+		EC09F75917B58C90008D379A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC09F75817B58C90008D379A /* CoreText.framework */; };
 		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
@@ -44,6 +46,9 @@
 		EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC053D2215FC57E6003168B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EC053D2415FC5AFA003168B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		EC09F75517B58AA1008D379A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		EC09F75817B58C90008D379A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EC2187F11720E6100082B97A /* JSPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPickerViewController.h; sourceTree = "<group>"; };
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC09F75917B58C90008D379A /* CoreText.framework in Frameworks */,
 				EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */,
 				EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */,
 				EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */,
@@ -93,6 +99,7 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
+				EC09F75317B58AA1008D379A /* Vendor */,
 				EC053D1615FC56A5003168B7 /* Scrubber */,
 				EC053CFB15FC565C003168B7 /* App */,
 				EC053CF415FC565C003168B7 /* Frameworks */,
@@ -111,6 +118,7 @@
 		EC053CF415FC565C003168B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC09F75817B58C90008D379A /* CoreText.framework */,
 				EC2187F71720F0780082B97A /* MobileCoreServices.framework */,
 				EC053D2415FC5AFA003168B7 /* CoreMedia.framework */,
 				EC053D2215FC57E6003168B7 /* AVFoundation.framework */,
@@ -124,6 +132,7 @@
 		EC053CFB15FC565C003168B7 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EC09F75A17B5C129008D379A /* Helpers */,
 				ECCA5F321661B04300229B4D /* JSAppDelegate.h */,
 				ECCA5F331661B04300229B4D /* JSAppDelegate.m */,
 				ECCA5F361661B04300229B4D /* JSSimViewController.h */,
@@ -162,6 +171,30 @@
 			);
 			name = Scrubber;
 			path = JSVideoScrubber;
+			sourceTree = "<group>";
+		};
+		EC09F75317B58AA1008D379A /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EC09F75417B58AA1008D379A /* TTTAttributedLabel */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		EC09F75417B58AA1008D379A /* TTTAttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				EC09F75517B58AA1008D379A /* TTTAttributedLabel.h */,
+				EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */,
+			);
+			path = TTTAttributedLabel;
+			sourceTree = "<group>";
+		};
+		EC09F75A17B5C129008D379A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		ECCA5F171661B02E00229B4D /* Assets */ = {
@@ -279,6 +312,7 @@
 				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
 				EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */,
 				EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */,
+				EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +352,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -338,7 +372,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

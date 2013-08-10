@@ -189,7 +189,7 @@
             continue;
         }
         
-        CMTime t = CMTimeMakeWithSeconds(offset, 1);
+        CMTime t = CMTimeMakeWithSeconds(offset, 100000);
         CGImageRef source = [self.generator copyCGImageAtTime:t actualTime:&actualTime error:error];
         
         if (!source) {
@@ -197,8 +197,7 @@
             return nil;
         }
         
-        NSNumber *key = [NSNumber numberWithDouble:CMTimeGetSeconds(actualTime)];
-        [images setObject:CFBridgingRelease(source) forKey:key];  //transfer img ownership to arc
+        [images setObject:CFBridgingRelease(source) forKey:number];  //transfer img ownership to arc
     }
     
     return images;
