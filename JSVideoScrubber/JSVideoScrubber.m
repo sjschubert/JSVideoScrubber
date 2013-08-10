@@ -150,7 +150,9 @@
 {
     CGPoint p = [touch locationInView:self];
     
-    NSLog(@"point in view: %f x %f", p.x, p.y);
+    if (!CGRectContainsPoint(self.frame, p)) {
+        return NO;
+    }
     
     [self updateMarkerToPoint:p];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
