@@ -148,7 +148,11 @@
 
 - (BOOL) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    [self updateMarkerToPoint:[touch locationInView:self]];
+    CGPoint p = [touch locationInView:self];
+    
+    NSLog(@"point in view: %f x %f", p.x, p.y);
+    
+    [self updateMarkerToPoint:p];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
 }
@@ -249,20 +253,23 @@
         op = [[JSRenderOperation alloc] initWithAsset:asset targetFrame:self.frame];
     }
     
+    [self.renderQueue cancelAllOperations];
+    
+    __weak JSVideoScrubber *ref = self;
+    
     op.renderCompletionBlock = ^(UIImage *strip, NSError *error) {
         if (error) {
-            //todo: log error?
+            NSLog(@"error rendering image strip: %@", error);
         }
         
-        self.imageStrip = strip;
-        [self setNeedsDisplay];
+        ref.imageStrip = strip;
+        [ref setNeedsDisplay];
         
         [UIView animateWithDuration:0.25f animations:^{
-            self.layer.opacity = 1.0f;
+            ref.layer.opacity = 1.0f;
         }];
     };
-    
-    [self.renderQueue cancelAllOperations];
+
     [self.renderQueue addOperation:op];
 }
 

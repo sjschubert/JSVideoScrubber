@@ -39,8 +39,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *offset;
-@property (strong) NSString *documentDirectory;
-@property (strong) NSArray *assetPaths;
+@property (strong, nonatomic) NSString *documentDirectory;
+@property (strong, nonatomic) NSArray *assetPaths;
+
+@property (strong, nonatomic) NSIndexPath *currentSelection;
 
 @end
 
@@ -103,6 +105,11 @@
     [super touchesBegan:touches withEvent:event];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -136,32 +143,33 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.duration.text = @"Duration: N/A";
-    self.offset.text = @"Offset: N/A";
+    if (self.currentSelection && (self.currentSelection.row == indexPath.row)) {
+        return;
+    }
     
-    [self.jsVideoScrubber reset];
+    NSString *path = self.assetPaths[indexPath.row];
+    NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:path]];
+    AVURLAsset* asset = [AVURLAsset URLAssetWithURL:url options:nil];
     
-    NSString *asset = self.assetPaths[indexPath.row];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:asset]];
-        AVURLAsset* asset = [AVURLAsset URLAssetWithURL:url options:nil];
+    __weak JSSimViewController *ref = self;
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
+    [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^(void) {
+        self.duration.text = @"Duration: N/A";
+        self.offset.text = @"Offset: N/A";
         
-        NSArray *assetKeysToLoadAndTest = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
-        [asset loadValuesAsynchronouslyForKeys:assetKeysToLoadAndTest completionHandler:^(void) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self setupJSVideoScrubber:asset];
-                
-                double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
-                
-                int min = (int)total / 60;
-                int seconds = (int)total % 60;
-                self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
-                
-                [self updateOffsetLabel:self.jsVideoScrubber];
-                [self.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
-            });
-        }];
-    });
+        [ref setupJSVideoScrubber:asset];
+        
+        double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
+        
+        int min = (int)total / 60;
+        int seconds = (int)total % 60;
+        self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
+        
+        [ref updateOffsetLabel:self.jsVideoScrubber];
+        [ref.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
+        ref.currentSelection = indexPath;
+    }];
 }
 
 #pragma mark - UIRefresh Cheat
