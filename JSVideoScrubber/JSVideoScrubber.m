@@ -37,7 +37,7 @@
 @property (strong, nonatomic) UIImage *markerMask;
 @property (strong, nonatomic) UIImage *marker;
 @property (assign, nonatomic) CGFloat markerLocation;
-
+@property (assign, nonatomic) CGFloat touchOffset;
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
 
 @end
@@ -141,7 +141,16 @@
 {
     self.blockOffsetUpdates = YES;
     
-    [self updateMarkerToPoint:[touch locationInView:self]];
+    CGPoint l = [touch locationInView:self];
+    if ([self markerHitTest:l]) {
+        self.touchOffset = l.x - self.markerLocation;
+    } else {
+        self.touchOffset = js_marker_center;
+    }
+    
+    NSLog(@"offset: %f", self.touchOffset);
+    
+    [self updateMarkerToPoint:l];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
 }
@@ -162,12 +171,14 @@
 - (void) cancelTrackingWithEvent:(UIEvent *)event
 {
     self.blockOffsetUpdates = NO;
+    self.touchOffset = 0.0f;
     [super cancelTrackingWithEvent:event];
 }
 
 - (void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     self.blockOffsetUpdates = NO;
+    self.touchOffset = 0.0f;
     [super endTrackingWithTouch:touch withEvent:event];
 }
 
@@ -178,7 +189,7 @@
     } else if (touchPoint.x > js_marker_stop) {
         self.markerLocation = js_marker_stop;
     } else {
-        self.markerLocation = touchPoint.x;
+        self.markerLocation = touchPoint.x - self.touchOffset;
     }
 
     _offset = [self offsetForMarker];
@@ -279,6 +290,11 @@
 {
     CGFloat ratio = (((self.markerLocation + js_marker_center) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
     return (ratio * CMTimeGetSeconds(self.duration));
+}
+
+- (CGFloat) touchOffsetInMarker
+{
+    
 }
 
 - (BOOL) markerHitTest:(CGPoint) point

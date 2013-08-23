@@ -229,7 +229,7 @@
         return;
     }
     
-    NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self ENDSWITH '.mov'"];
+    NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self ENDSWITH[c] '.mov'"];
     NSArray *paths = [contents filteredArrayUsingPredicate:fltr];
     
     self.assetPaths = [NSArray arrayWithArray:paths];
