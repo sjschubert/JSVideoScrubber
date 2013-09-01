@@ -30,7 +30,6 @@
 
 @property (strong, nonatomic) NSOperationQueue *renderQueue;
 @property (strong, nonatomic) AVAsset *asset;
-@property (strong, nonatomic) UIImage *imageStrip;
 
 @property (strong, nonatomic) UIImage *scrubberFrame;
 @property (strong, nonatomic) UIImage *scrubberBackground;
@@ -39,6 +38,8 @@
 @property (assign, nonatomic) CGFloat markerLocation;
 @property (assign, nonatomic) CGFloat touchOffset;
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
+
+@property (strong, nonatomic) UIImageView *imageStrip;
 
 @end
 
@@ -84,7 +85,10 @@
 
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
-    self.imageStrip = nil;
+    
+    self.imageStrip = [[UIImageView alloc] initWithFrame:self.frame];
+    [self addSubview:self.imageStrip];
+    [self sendSubviewToBack:self.imageStrip];
     
     self.layer.opacity = 0.0f;
         
@@ -95,25 +99,10 @@
 
 - (void) drawRect:(CGRect) rect
 {
-    [self.scrubberBackground drawInRect:rect];
-    [self.scrubberFrame drawInRect:rect];
-
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (self.asset && self.imageStrip) {
-        CGImageRef masked = self.imageStrip.CGImage;
-
-        size_t masked_h = CGImageGetHeight(masked);
-        size_t masked_w = CGImageGetWidth(masked);
-        
-        CGFloat x = rect.origin.x + kJSSideFrame + kJSImageBorder;
-        CGFloat y = rect.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
-        
-        CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
-    }
-
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
-    UIImage *offsetMarker = [[UIImage drawImageIntoRect:rect.size offset:offset image:self.marker] applyMask:self.markerMask];
+    UIImage *offsetMarker = [UIImage drawImageIntoRect:rect.size offset:offset image:self.marker];// applyMask:self.markerMask];
 
     CGContextDrawImage(context, rect, offsetMarker.CGImage);
 }
@@ -147,8 +136,6 @@
     } else {
         self.touchOffset = js_marker_center;
     }
-    
-    NSLog(@"offset: %f", self.touchOffset);
     
     [self updateMarkerToPoint:l];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -275,8 +262,28 @@
             NSLog(@"error rendering image strip: %@", error);
         }
         
-        ref.imageStrip = strip;
+        UIGraphicsBeginImageContext(self.frame.size);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        [ref.scrubberBackground drawInRect:self.frame];
+        [ref.scrubberFrame drawInRect:self.frame];
+        
+        CGImageRef masked = strip.CGImage;
+        
+        size_t masked_h = CGImageGetHeight(masked);
+        size_t masked_w = CGImageGetWidth(masked);
+        
+        CGFloat x = ref.frame.origin.x + kJSSideFrame + kJSImageBorder;
+        CGFloat y = ref.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
+        
+        CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
+        
+        ref.imageStrip.image = UIGraphicsGetImageFromCurrentImageContext();  // UIImage returned.
+        
+        UIGraphicsEndImageContext();
+        
         [ref setNeedsDisplay];
+        [ref.imageStrip setNeedsDisplay];
         
         [UIView animateWithDuration:0.25f animations:^{
             ref.layer.opacity = 1.0f;
@@ -290,11 +297,6 @@
 {
     CGFloat ratio = (((self.markerLocation + js_marker_center) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
     return (ratio * CMTimeGetSeconds(self.duration));
-}
-
-- (CGFloat) touchOffsetInMarker
-{
-    
 }
 
 - (BOOL) markerHitTest:(CGPoint) point
