@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+
 #import "UIImage+JSScrubber.h"
 #import "JSRenderOperation.h"
 #import "JSVideoScrubber.h"
@@ -39,7 +40,8 @@
 @property (assign, nonatomic) CGFloat touchOffset;
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
 
-@property (strong, nonatomic) UIImageView *imageStrip;
+@property (strong, nonatomic) CALayer *imageStripLayer;
+@property (strong, nonatomic) CALayer *markerLayer;
 
 @end
 
@@ -86,9 +88,13 @@
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
     
-    self.imageStrip = [[UIImageView alloc] initWithFrame:self.frame];
-    [self addSubview:self.imageStrip];
-    [self sendSubviewToBack:self.imageStrip];
+    self.imageStripLayer = [CALayer layer];
+    self.markerLayer = [CALayer layer];
+    self.imageStripLayer.frame = self.frame;
+    self.markerLayer.frame = self.frame;
+    
+    [self.layer addSublayer:self.markerLayer];
+    [self.layer insertSublayer:self.imageStripLayer below:self.markerLayer];
     
     self.layer.opacity = 0.0f;
         
@@ -99,12 +105,16 @@
 
 - (void) drawRect:(CGRect) rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + 15);
-    UIImage *offsetMarker = [UIImage drawImageIntoRect:rect.size offset:offset image:self.marker];// applyMask:self.markerMask];
+    UIGraphicsBeginImageContext(rect.size);
 
-    CGContextDrawImage(context, rect, offsetMarker.CGImage);
+    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + kJSMarkerYOffset);
+	[self.marker drawAtPoint:offset];
+    
+	UIImage *offsetMarker = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+    
+    self.markerLayer.contents = (__bridge id)offsetMarker.CGImage;
+    [self setNeedsDisplay];
 }
 
 - (void) layoutSubviews
@@ -113,11 +123,11 @@
         return;
     }
     
-    [UIView animateWithDuration:0.25f animations:^{
+    [UIView animateWithDuration:0.33f animations:^{
         self.layer.opacity = 0.0f;
     }
     completion:^(BOOL finished) {
-        self.imageStrip = nil;
+        self.imageStripLayer = nil;
         
         [self setupControlWithAVAsset:self.asset];
         [self setNeedsDisplay];
@@ -232,7 +242,7 @@
     
     completion:^(BOOL finished) {
         self.asset = nil;
-        self.imageStrip = nil;
+        self.imageStripLayer = nil;
          
         self.duration = CMTimeMakeWithSeconds(0.0, 1);
         self.offset = 0.0f;
@@ -278,12 +288,10 @@
         
         CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
         
-        ref.imageStrip.image = UIGraphicsGetImageFromCurrentImageContext();  // UIImage returned.
+        UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+        ref.imageStripLayer.contents = (__bridge id)img.CGImage;
         
         UIGraphicsEndImageContext();
-        
-        [ref setNeedsDisplay];
-        [ref.imageStrip setNeedsDisplay];
         
         [UIView animateWithDuration:0.25f animations:^{
             ref.layer.opacity = 1.0f;
