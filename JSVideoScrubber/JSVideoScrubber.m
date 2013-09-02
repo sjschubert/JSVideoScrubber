@@ -14,7 +14,7 @@
 
 #define kJSFrameInset 44.0f
 #define kJSMarkerXStop 29.0f
-#define kJSMarkerYOffset 15.0f
+#define kJSMarkerYOffset 14.50f
 #define kJSSideFrame 8.0f
 #define kJSBottomFrame 22.0f
 
@@ -92,8 +92,11 @@
     
     self.imageStripLayer = [CALayer layer];
     self.markerLayer = [CALayer layer];
-    self.imageStripLayer.frame = self.frame;
-    self.markerLayer.frame = self.frame;
+    self.imageStripLayer.bounds = self.bounds;
+    self.markerLayer.bounds = self.bounds;
+    
+    self.imageStripLayer.anchorPoint = CGPointZero;
+    self.markerLayer.anchorPoint = CGPointZero;
     
     [self.layer addSublayer:self.markerLayer];
     [self.layer insertSublayer:self.imageStripLayer below:self.markerLayer];
@@ -129,8 +132,6 @@
         self.layer.opacity = 0.0f;
     }
     completion:^(BOOL finished) {
-        self.imageStripLayer = nil;
-        
         [self setupControlWithAVAsset:self.asset];
         [self setNeedsDisplay];
     }];
@@ -248,7 +249,7 @@
     
     completion:^(BOOL finished) {
         self.asset = nil;
-        self.imageStripLayer = nil;
+        //self.imageStripLayer = nil;
          
         self.duration = CMTimeMakeWithSeconds(0.0, 1);
         self.offset = 0.0f;
@@ -278,19 +279,19 @@
             NSLog(@"error rendering image strip: %@", error);
         }
         
-        UIGraphicsBeginImageContext(self.frame.size);
+        UIGraphicsBeginImageContext(self.imageStripLayer.frame.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        [ref.scrubberBackground drawInRect:self.frame];
-        [ref.scrubberFrame drawInRect:self.frame];
+        [ref.scrubberBackground drawInRect:self.imageStripLayer.frame];
+        [ref.scrubberFrame drawInRect:self.imageStripLayer.frame];
         
         CGImageRef masked = strip.CGImage;
         
         size_t masked_h = CGImageGetHeight(masked);
         size_t masked_w = CGImageGetWidth(masked);
         
-        CGFloat x = ref.frame.origin.x + kJSSideFrame + kJSImageBorder;
-        CGFloat y = ref.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
+        CGFloat x = self.imageStripLayer.frame.origin.x + kJSSideFrame + kJSImageBorder;
+        CGFloat y = self.imageStripLayer.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
         
         CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
         
