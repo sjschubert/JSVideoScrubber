@@ -93,7 +93,7 @@
     self.imageStripLayer = [CALayer layer];
     self.markerLayer = [CALayer layer];
     self.imageStripLayer.bounds = self.bounds;
-    self.markerLayer.bounds = self.bounds;
+    self.markerLayer.bounds = CGRectMake(0, 0, self.marker.size.width, self.marker.size.height);
     
     self.imageStripLayer.anchorPoint = CGPointZero;
     self.markerLayer.anchorPoint = CGPointZero;
@@ -110,15 +110,17 @@
 
 - (void) drawRect:(CGRect) rect
 {
-    UIGraphicsBeginImageContext(rect.size);
+//    UIGraphicsBeginImageContext(rect.size);
 
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + kJSMarkerYOffset);
-	[self.marker drawAtPoint:offset];
+    self.markerLayer.position = offset;
     
-	UIImage *offsetMarker = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-    
-    self.markerLayer.contents = (__bridge id)offsetMarker.CGImage;
+//	[self.marker drawAtPoint:offset];
+//    
+//	UIImage *offsetMarker = UIGraphicsGetImageFromCurrentImageContext();
+//	UIGraphicsEndImageContext();
+//    
+//    self.markerLayer.contents = (__bridge id)offsetMarker.CGImage;
     [self setNeedsDisplay];
 }
 
@@ -249,8 +251,6 @@
     
     completion:^(BOOL finished) {
         self.asset = nil;
-        //self.imageStripLayer = nil;
-         
         self.duration = CMTimeMakeWithSeconds(0.0, 1);
         self.offset = 0.0f;
          
@@ -299,6 +299,8 @@
         ref.imageStripLayer.contents = (__bridge id)img.CGImage;
         
         UIGraphicsEndImageContext();
+        
+        self.markerLayer.contents = (__bridge id)self.marker.CGImage;
         
         [UIView animateWithDuration:0.25f animations:^{
             ref.layer.opacity = 1.0f;
