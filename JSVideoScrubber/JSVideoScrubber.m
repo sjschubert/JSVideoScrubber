@@ -98,6 +98,8 @@
     self.imageStripLayer.anchorPoint = CGPointZero;
     self.markerLayer.anchorPoint = CGPointZero;
     
+    self.markerLayer.actions = @{@"position":[NSNull null]};
+    
     [self.layer addSublayer:self.markerLayer];
     [self.layer insertSublayer:self.imageStripLayer below:self.markerLayer];
     
@@ -110,17 +112,8 @@
 
 - (void) drawRect:(CGRect) rect
 {
-//    UIGraphicsBeginImageContext(rect.size);
-
     CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + kJSMarkerYOffset);
     self.markerLayer.position = offset;
-    
-//	[self.marker drawAtPoint:offset];
-//    
-//	UIImage *offsetMarker = UIGraphicsGetImageFromCurrentImageContext();
-//	UIGraphicsEndImageContext();
-//    
-//    self.markerLayer.contents = (__bridge id)offsetMarker.CGImage;
     [self setNeedsDisplay];
 }
 
