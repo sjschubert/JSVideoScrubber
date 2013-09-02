@@ -23,6 +23,8 @@
 
 #define kCornerRadius 20.0f
 
+#define kJSAnimateIn 0.25f
+
 #define js_marker_center (self.marker.size.width / 2)
 #define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
 #define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
@@ -123,7 +125,7 @@
         return;
     }
     
-    [UIView animateWithDuration:0.33f animations:^{
+    [UIView animateWithDuration:kJSAnimateIn animations:^{
         self.layer.opacity = 0.0f;
     }
     completion:^(BOOL finished) {
@@ -149,6 +151,7 @@
     
     [self updateMarkerToPoint:l];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+    
     return YES;
 }
 
@@ -162,6 +165,7 @@
     
     [self updateMarkerToPoint:p];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+    
     return YES;
 }
 
@@ -169,6 +173,7 @@
 {
     self.blockOffsetUpdates = NO;
     self.touchOffset = 0.0f;
+    
     [super cancelTrackingWithEvent:event];
 }
 
@@ -176,12 +181,13 @@
 {
     self.blockOffsetUpdates = NO;
     self.touchOffset = 0.0f;
+    
     [super endTrackingWithTouch:touch withEvent:event];
 }
 
 - (void) updateMarkerToPoint:(CGPoint) touchPoint
 {
-    if (touchPoint.x < js_marker_start) {
+    if ((touchPoint.x - self.touchOffset) < js_marker_start) {
         self.markerLocation = js_marker_start;
     } else if (touchPoint.x > js_marker_stop) {
         self.markerLocation = js_marker_stop;
