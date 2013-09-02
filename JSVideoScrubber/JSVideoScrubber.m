@@ -189,7 +189,7 @@
 {
     if ((touchPoint.x - self.touchOffset) < js_marker_start) {
         self.markerLocation = js_marker_start;
-    } else if (touchPoint.x > js_marker_stop) {
+    } else if (touchPoint.x - self.touchOffset > js_marker_stop) {
         self.markerLocation = js_marker_stop;
     } else {
         self.markerLocation = touchPoint.x - self.touchOffset;
