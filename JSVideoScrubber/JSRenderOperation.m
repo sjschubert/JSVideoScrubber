@@ -130,13 +130,21 @@
     self.generator.maximumSize = CGSizeMake(width, height);
     
     CGImageRelease(image);
-    
+
+    if (self.isCancelled) {
+        return;
+    }
+
     NSDictionary *images = nil;
     
     if ([self.offsets count] == 0) {
         images = [self extractFromAssetAt:[self generateOffsets:self.asset targetFrame:self.frame width:width] error:&error];
     } else {
         images = [self extractFromAssetAt:self.offsets error:&error];
+    }
+    
+    if (self.isCancelled) {
+        return;
     }
     
     UIImage *strip = nil;

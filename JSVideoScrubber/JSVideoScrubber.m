@@ -92,19 +92,17 @@
     
     self.imageStripLayer = [CALayer layer];
     self.markerLayer = [CALayer layer];
-    self.imageStripLayer.bounds = self.bounds;
-    self.markerLayer.bounds = CGRectMake(0, 0, self.marker.size.width, self.marker.size.height);
     
-    self.imageStripLayer.anchorPoint = CGPointZero;
-    self.markerLayer.anchorPoint = CGPointZero;
+    [self setupControlLayers];
     
-    self.markerLayer.actions = @{@"position":[NSNull null]};
+    self.imageStripLayer.actions = @{@"position":[NSNull null], @"bounds":[NSNull null], @"anchorPoint": [NSNull null]};
+    self.markerLayer.actions = @{@"position":[NSNull null], @"bounds":[NSNull null], @"anchorPoint": [NSNull null]};
     
     [self.layer addSublayer:self.markerLayer];
     [self.layer insertSublayer:self.imageStripLayer below:self.markerLayer];
     
     self.layer.opacity = 0.0f;
-        
+    
     [self.renderQueue setSuspended:NO];
 }
 
@@ -119,17 +117,21 @@
 
 - (void) layoutSubviews
 {
+    [self setupControlLayers];
+    
     if (!self.asset) {
         return;
     }
     
-    [UIView animateWithDuration:kJSAnimateIn animations:^{
-        self.layer.opacity = 0.0f;
-    }
-    completion:^(BOOL finished) {
-        [self setupControlWithAVAsset:self.asset];
-        [self setNeedsDisplay];
-    }];
+    [UIView animateWithDuration:kJSAnimateIn
+        animations:^{
+            self.layer.opacity = 0.0f;
+        }
+        completion:^(BOOL finished) {
+            [self setupControlWithAVAsset:self.asset];
+            [self setNeedsDisplay];
+        }
+     ];
 }
 
 #pragma mark - UIControl
@@ -190,8 +192,8 @@
     } else {
         self.markerLocation = touchPoint.x - self.touchOffset;
     }
-
-    _offset = [self offsetForMarker];
+    
+    _offset = [self offsetForMarkerLocation];
     [self setNeedsDisplay];
 }
 
@@ -238,16 +240,16 @@
 {
     [self.renderQueue cancelAllOperations];
     
-    [UIView animateWithDuration:0.25f animations:^{
-        self.layer.opacity = 0.0f;
-    }
-    
-    completion:^(BOOL finished) {
-        self.asset = nil;
-        self.duration = CMTimeMakeWithSeconds(0.0, 1);
-        self.offset = 0.0f;
+    [UIView animateWithDuration:0.25f
+        animations:^{
+            self.layer.opacity = 0.0f;
+        }
+        completion:^(BOOL finished) {
+            self.asset = nil;
+            self.duration = CMTimeMakeWithSeconds(0.0, 1);
+            self.offset = 0.0f;
          
-        self.markerLocation = js_marker_start;
+            self.markerLocation = js_marker_start;
      }];
 }
 
@@ -255,6 +257,8 @@
 
 - (void) queueRenderOperationForAsset:(AVAsset *)asset indexedAt:(NSArray *)indexes
 {
+    [self.renderQueue cancelAllOperations];
+    
     JSRenderOperation *op = nil;
 
     if (indexes) {
@@ -262,9 +266,7 @@
     } else {
         op = [[JSRenderOperation alloc] initWithAsset:asset targetFrame:self.frame];
     }
-    
-    [self.renderQueue cancelAllOperations];
-    
+
     __weak JSVideoScrubber *ref = self;
     
     op.renderCompletionBlock = ^(UIImage *strip, NSError *error) {
@@ -272,19 +274,19 @@
             NSLog(@"error rendering image strip: %@", error);
         }
         
-        UIGraphicsBeginImageContext(self.imageStripLayer.frame.size);
+        UIGraphicsBeginImageContext(ref.imageStripLayer.frame.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        [ref.scrubberBackground drawInRect:self.imageStripLayer.frame];
-        [ref.scrubberFrame drawInRect:self.imageStripLayer.frame];
+        [ref.scrubberBackground drawInRect:ref.imageStripLayer.frame];
+        [ref.scrubberFrame drawInRect:ref.imageStripLayer.frame];
         
         CGImageRef masked = strip.CGImage;
         
         size_t masked_h = CGImageGetHeight(masked);
         size_t masked_w = CGImageGetWidth(masked);
         
-        CGFloat x = self.imageStripLayer.frame.origin.x + kJSSideFrame + kJSImageBorder;
-        CGFloat y = self.imageStripLayer.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
+        CGFloat x = ref.imageStripLayer.frame.origin.x + kJSSideFrame + kJSImageBorder;
+        CGFloat y = ref.imageStripLayer.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
         
         CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
         
@@ -293,9 +295,12 @@
         
         UIGraphicsEndImageContext();
         
-        self.markerLayer.contents = (__bridge id)self.marker.CGImage;
+        ref.markerLayer.contents = (__bridge id)ref.marker.CGImage;
+        ref.markerLocation = [ref markerLocationForCurrentOffset];
         
-        [UIView animateWithDuration:0.25f animations:^{
+        [ref setNeedsDisplay];
+        
+        [UIView animateWithDuration:kJSAnimateIn animations:^{
             ref.layer.opacity = 1.0f;
         }];
     };
@@ -303,10 +308,26 @@
     [self.renderQueue addOperation:op];
 }
 
-- (CGFloat) offsetForMarker
+- (CGFloat) offsetForMarkerLocation
 {
     CGFloat ratio = (((self.markerLocation + js_marker_center) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
     return (ratio * CMTimeGetSeconds(self.duration));
+}
+
+- (CGFloat) markerLocationForCurrentOffset
+{
+    CGFloat ratio = self.offset / CMTimeGetSeconds(self.duration);
+    CGFloat location = ratio * (js_marker_stop - js_marker_start);
+
+    if (location < js_marker_start) {
+        return js_marker_start;
+    }
+    
+    if (location > js_marker_stop) {
+        return js_marker_stop;
+    }
+    
+    return location;
 }
 
 - (BOOL) markerHitTest:(CGPoint) point
@@ -320,6 +341,16 @@
     }
 
     return YES;
+}
+
+- (void) setupControlLayers
+{
+    self.imageStripLayer.bounds = self.bounds;
+    self.markerLayer.bounds = CGRectMake(0, 0, self.marker.size.width, self.marker.size.height);
+    
+    self.imageStripLayer.anchorPoint = CGPointZero;
+    self.markerLayer.anchorPoint = CGPointZero;
+
 }
 
 @end

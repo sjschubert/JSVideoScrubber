@@ -155,16 +155,16 @@
     
     NSArray *keys = [NSArray arrayWithObjects:@"tracks", @"duration", nil];
     [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^(void) {
-        self.duration.text = @"Duration: N/A";
-        self.offset.text = @"Offset: N/A";
+        ref.duration.text = @"Duration: N/A";
+        ref.offset.text = @"Offset: N/A";
         
-        [ref setupJSVideoScrubber:asset];
-        
-        double total = CMTimeGetSeconds(self.jsVideoScrubber.duration);
+        [ref.jsVideoScrubber setupControlWithAVAsset:asset];
+
+        double total = CMTimeGetSeconds(ref.jsVideoScrubber.duration);
         
         int min = (int)total / 60;
         int seconds = (int)total % 60;
-        self.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
+        ref.duration.text = [NSString stringWithFormat:@"Duration: %02d:%02d", min, seconds];
         
         [ref updateOffsetLabel:self.jsVideoScrubber];
         [ref.jsVideoScrubber addTarget:self action:@selector(updateOffsetLabel:) forControlEvents:UIControlEventValueChanged];
