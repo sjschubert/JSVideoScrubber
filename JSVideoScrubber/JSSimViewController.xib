@@ -30,7 +30,7 @@
                     </connections>
                 </label>
                 <view contentMode="scaleToFill" id="25" customClass="JSVideoScrubber">
-                    <rect key="frame" x="0.0" y="135" width="320" height="90"/>
+                    <rect key="frame" x="0.0" y="135" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

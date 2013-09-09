@@ -18,6 +18,11 @@
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
 		EC240A6B17D45AFE004A6752 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC240A6A17D45AFE004A6752 /* QuartzCore.framework */; };
+		EC561C7017DD58620076FB67 /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6F17DD58620076FB67 /* scrubber@2x.png */; };
+		EC561C7117DD586C0076FB67 /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6617DD44B40076FB67 /* slider@2x.png */; };
+		EC561C7317DD592A0076FB67 /* JSRenderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC561C6A17DD44B40076FB67 /* JSRenderOperation.m */; };
+		EC561C7417DD592A0076FB67 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */; };
+		EC561C7517DD592A0076FB67 /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */; };
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
@@ -42,22 +47,16 @@
 		EC240A6A17D45AFE004A6752 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		EC561C5F17DD44B40076FB67 /* scrubber_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_inner.png; sourceTree = "<group>"; };
-		EC561C6017DD44B40076FB67 /* scrubber_inner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_inner@2x.png"; sourceTree = "<group>"; };
-		EC561C6117DD44B40076FB67 /* scrubber_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask.png; sourceTree = "<group>"; };
 		EC561C6217DD44B40076FB67 /* scrubber_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_mask@2x.png"; sourceTree = "<group>"; };
-		EC561C6317DD44B40076FB67 /* scrubber_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_outer.png; sourceTree = "<group>"; };
-		EC561C6417DD44B40076FB67 /* scrubber_outer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_outer@2x.png"; sourceTree = "<group>"; };
-		EC561C6517DD44B40076FB67 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
 		EC561C6617DD44B40076FB67 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
-		EC561C6717DD44B40076FB67 /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
-		EC561C6817DD44B40076FB67 /* wheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel@2x.png"; sourceTree = "<group>"; };
 		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
 		EC561C6A17DD44B40076FB67 /* JSRenderOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
 		EC561C6B17DD44B40076FB67 /* JSVideoScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
 		EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC561C6D17DD44B40076FB67 /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
 		EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
+		EC561C6F17DD58620076FB67 /* scrubber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber@2x.png"; sourceTree = "<group>"; };
+		EC561C7617DD5F430076FB67 /* JSAssetDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAssetDefines.h; sourceTree = "<group>"; };
 		EC5F858617B6BDF900304085 /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
 		EC5F858717B6BDF900304085 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
 		EC5F858817B6BDF900304085 /* JSSimViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimViewController.h; sourceTree = "<group>"; };
@@ -91,8 +90,8 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
-				EC561C5917DD44B40076FB67 /* Scrubber */,
 				EC09F75317B58AA1008D379A /* Vendor */,
+				EC561C5917DD44B40076FB67 /* Scrubber */,
 				EC053CFB15FC565C003168B7 /* App */,
 				EC053CF415FC565C003168B7 /* Frameworks */,
 				EC053CF215FC565C003168B7 /* Products */,
@@ -185,6 +184,7 @@
 				EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */,
 				EC561C6D17DD44B40076FB67 /* UIImage+JSScrubber.h */,
 				EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */,
+				EC561C7617DD5F430076FB67 /* JSAssetDefines.h */,
 			);
 			name = Scrubber;
 			path = JSVideoScrubber/Scrubber;
@@ -211,16 +211,9 @@
 		EC561C5E17DD44B40076FB67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC561C5F17DD44B40076FB67 /* scrubber_inner.png */,
-				EC561C6017DD44B40076FB67 /* scrubber_inner@2x.png */,
-				EC561C6117DD44B40076FB67 /* scrubber_mask.png */,
+				EC561C6F17DD58620076FB67 /* scrubber@2x.png */,
 				EC561C6217DD44B40076FB67 /* scrubber_mask@2x.png */,
-				EC561C6317DD44B40076FB67 /* scrubber_outer.png */,
-				EC561C6417DD44B40076FB67 /* scrubber_outer@2x.png */,
-				EC561C6517DD44B40076FB67 /* slider.png */,
 				EC561C6617DD44B40076FB67 /* slider@2x.png */,
-				EC561C6717DD44B40076FB67 /* wheel.png */,
-				EC561C6817DD44B40076FB67 /* wheel@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -277,7 +270,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC561C7017DD58620076FB67 /* scrubber@2x.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
+				EC561C7117DD586C0076FB67 /* slider@2x.png in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
 				EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */,
 			);
@@ -290,10 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC561C7517DD592A0076FB67 /* UIImage+JSScrubber.m in Sources */,
 				EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */,
 				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
+				EC561C7417DD592A0076FB67 /* JSVideoScrubber.m in Sources */,
 				EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */,
 				EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */,
+				EC561C7317DD592A0076FB67 /* JSRenderOperation.m in Sources */,
 				EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

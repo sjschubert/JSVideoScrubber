@@ -8,26 +8,18 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "JSAssetDefines.h"
 #import "UIImage+JSScrubber.h"
 #import "JSRenderOperation.h"
 #import "JSVideoScrubber.h"
 
-#define kJSFrameInset 44.0f
-#define kJSMarkerXStop 29.0f
-#define kJSMarkerYOffset 14.50f
-#define kJSSideFrame 8.0f
-#define kJSBottomFrame 22.0f
-
-#define kJSImageBorder 4.0f
-#define kJSImageDivider 2.0f
-
-#define kCornerRadius 20.0f
-
-#define kJSAnimateIn 0.25f
-
-#define js_marker_center (self.marker.size.width / 2)
+#define js_marker_center (self.slider.size.width / 2)
 #define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
 #define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
+
+#define kJSMarkerXStop (js_marker_center + 0.5f)
+
+#define kJSAnimateIn 0.25f
 
 @interface JSVideoScrubber ()
 
@@ -35,9 +27,8 @@
 @property (strong, nonatomic) AVAsset *asset;
 
 @property (strong, nonatomic) UIImage *scrubberFrame;
-@property (strong, nonatomic) UIImage *scrubberBackground;
-@property (strong, nonatomic) UIImage *markerMask;
-@property (strong, nonatomic) UIImage *marker;
+@property (strong, nonatomic) UIImage *mask;
+@property (strong, nonatomic) UIImage *slider;
 @property (assign, nonatomic) CGFloat markerLocation;
 @property (assign, nonatomic) CGFloat touchOffset;
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
@@ -80,12 +71,11 @@
     self.renderQueue = [[NSOperationQueue alloc] init];
     self.renderQueue.maxConcurrentOperationCount = 1;
     
-    UIEdgeInsets uniformInsets = UIEdgeInsetsMake(kJSFrameInset, kJSFrameInset, kJSFrameInset, kJSFrameInset);
+    UIEdgeInsets uniformInsets = UIEdgeInsetsMake(0.0f, kJSFrameInset, 0.0f, kJSFrameInset);
     
-    self.scrubberBackground = [[UIImage imageNamed:@"scrubber_inner"] resizableImageWithCapInsets:uniformInsets];
-    self.scrubberFrame = [[UIImage imageNamed:@"scrubber_outer"] resizableImageWithCapInsets:uniformInsets];
-    self.markerMask = [[[UIImage imageNamed:@"scrubber_mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
-    self.marker = [UIImage imageNamed:@"slider"];
+    self.scrubberFrame = [[UIImage imageNamed:@"scrubber"] resizableImageWithCapInsets:uniformInsets];
+    self.mask = [[[UIImage imageNamed:@"mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
+    self.slider = [UIImage imageNamed:@"slider"];
 
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
@@ -218,8 +208,6 @@
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset
 {
-    NSAssert(self.frame.size.height >= 90.0f, @"Minimum height supported by the control is 90 px");
-    
     self.asset = asset;
     self.duration = asset.duration;
     
@@ -228,8 +216,6 @@
 
 - (void) setupControlWithAVAsset:(AVAsset *) asset indexedAt:(NSArray *) requestedTimes
 {
-    NSAssert(self.frame.size.height >= 90.0f, @"Minimum height supported by the control is 90 px");
-    
     self.asset = asset;
     self.duration = asset.duration;
     
@@ -277,7 +263,6 @@
         UIGraphicsBeginImageContext(ref.imageStripLayer.frame.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        [ref.scrubberBackground drawInRect:ref.imageStripLayer.frame];
         [ref.scrubberFrame drawInRect:ref.imageStripLayer.frame];
         
         CGImageRef masked = strip.CGImage;
@@ -285,8 +270,8 @@
         size_t masked_h = CGImageGetHeight(masked);
         size_t masked_w = CGImageGetWidth(masked);
         
-        CGFloat x = ref.imageStripLayer.frame.origin.x + kJSSideFrame + kJSImageBorder;
-        CGFloat y = ref.imageStripLayer.frame.origin.y + kJSMarkerYOffset + kJSImageBorder + 0.5f;
+        CGFloat x = ref.imageStripLayer.frame.origin.x + kJSImageBorder + kJSImageDivider;
+        CGFloat y = ref.imageStripLayer.frame.origin.y + kJSImageBorder + 0.5f;
         
         CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
         
@@ -295,7 +280,7 @@
         
         UIGraphicsEndImageContext();
         
-        ref.markerLayer.contents = (__bridge id)ref.marker.CGImage;
+        ref.markerLayer.contents = (__bridge id)ref.slider.CGImage;
         ref.markerLocation = [ref markerLocationForCurrentOffset];
         
         [ref setNeedsDisplay];
@@ -332,11 +317,11 @@
 
 - (BOOL) markerHitTest:(CGPoint) point
 {
-    if (point.x < self.markerLocation || point.x > (self.markerLocation + self.marker.size.width)) { //x test
+    if (point.x < self.markerLocation || point.x > (self.markerLocation + self.slider.size.width)) { //x test
         return NO;
     }
 
-    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.marker.size.height)) { //y test
+    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.slider.size.height)) { //y test
         return NO;
     }
 
@@ -346,7 +331,7 @@
 - (void) setupControlLayers
 {
     self.imageStripLayer.bounds = self.bounds;
-    self.markerLayer.bounds = CGRectMake(0, 0, self.marker.size.width, self.marker.size.height);
+    self.markerLayer.bounds = CGRectMake(0, 0, self.slider.size.width, self.slider.size.height);
     
     self.imageStripLayer.anchorPoint = CGPointZero;
     self.markerLayer.anchorPoint = CGPointZero;

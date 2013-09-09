@@ -6,24 +6,15 @@
 //  Copyright (c) 2013 jaminschubert. All rights reserved.
 //
 
+#import "JSAssetDefines.h"
 #import "UIImage+JSScrubber.h"
 #import "JSRenderOperation.h"
 
-#define kJSFrameInset 44.0f
-#define kJSMarkerXStop 29.0f
-#define kJSMarkerYOffset 15.0f
-#define kJSSideFrame 8.0f
-#define kJSBottomFrame 22.0f
-
-#define kJSImageBorder 4.0f
-#define kJSImageDivider 2.0f
-
-#define kCornerRadius 20.0f
 
 #define js_marker_center (self.marker.size.width / 2)
 #define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
 #define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
-#define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + kJSBottomFrame + (2 * kJSImageBorder)))
+#define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + (2 * kJSImageBorder)))
 
 @interface NSDictionary (JSSorting)
 
@@ -213,7 +204,7 @@
 
 - (UIImage *) drawStripWithImages:(NSDictionary *)images targetFrame:(CGRect) frame imgWidth:(size_t) width imgHeight:(size_t) height
 {
-    CGFloat border = (2 * (kJSSideFrame + kJSImageBorder)) + kJSImageDivider;
+    CGFloat border = (2 * kJSImageBorder) + (2 * kJSImageDivider);
     CGRect stripFrame = CGRectMake(0.0f, 0.0f,(frame.size.width - border), height);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -251,7 +242,7 @@
     }
     
     CGImageRef raw = CGBitmapContextCreateImage(stripCtx);
-    UIImage *strip = [[UIImage imageWithCGImage:raw] maskWithCornerSize:CGSizeMake(kCornerRadius, kCornerRadius)];
+    UIImage *strip = [UIImage imageWithCGImage:raw];
     
     CGContextRelease(stripCtx);
     CGColorSpaceRelease(colorSpace);
