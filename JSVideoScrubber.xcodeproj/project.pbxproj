@@ -10,7 +10,6 @@
 		EC053CF615FC565C003168B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF515FC565C003168B7 /* UIKit.framework */; };
 		EC053CF815FC565C003168B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF715FC565C003168B7 /* Foundation.framework */; };
 		EC053CFA15FC565C003168B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053CF915FC565C003168B7 /* CoreGraphics.framework */; };
-		EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */; };
 		EC053D2315FC57E6003168B7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2215FC57E6003168B7 /* AVFoundation.framework */; };
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
 		EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */; };
@@ -22,19 +21,7 @@
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
-		EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754A1771730100D74F0E /* scrubber_inner@2x.png */; };
-		EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754B1771730100D74F0E /* scrubber_mask@2x.png */; };
-		EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC70754C1771730100D74F0E /* scrubber_outer@2x.png */; };
-		EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC80D192173EF4A4008B961F /* JSRenderOperation.m */; };
-		ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */; };
-		ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */; };
-		ECCA5F271661B02E00229B4D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F1A1661B02E00229B4D /* OFL.txt */; };
-		ECCA5F2E1661B02E00229B4D /* slider.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F221661B02E00229B4D /* slider.png */; };
-		ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F231661B02E00229B4D /* slider@2x.png */; };
 		ECCA5F3C1661B04300229B4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCA5F381661B04300229B4D /* main.m */; };
-		ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */; };
-		ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */; };
-		ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F411661BDA800229B4D /* scrubber_mask.png */; };
 		ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECCA5F451661CA4300229B4D /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +30,6 @@
 		EC053CF515FC565C003168B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC053CF715FC565C003168B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EC053CF915FC565C003168B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
-		EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC053D2215FC57E6003168B7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EC053D2415FC5AFA003168B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		EC09F75517B58AA1008D379A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
@@ -55,28 +40,32 @@
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EC240A6A17D45AFE004A6752 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
+		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		EC561C5F17DD44B40076FB67 /* scrubber_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_inner.png; sourceTree = "<group>"; };
+		EC561C6017DD44B40076FB67 /* scrubber_inner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_inner@2x.png"; sourceTree = "<group>"; };
+		EC561C6117DD44B40076FB67 /* scrubber_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask.png; sourceTree = "<group>"; };
+		EC561C6217DD44B40076FB67 /* scrubber_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_mask@2x.png"; sourceTree = "<group>"; };
+		EC561C6317DD44B40076FB67 /* scrubber_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_outer.png; sourceTree = "<group>"; };
+		EC561C6417DD44B40076FB67 /* scrubber_outer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_outer@2x.png"; sourceTree = "<group>"; };
+		EC561C6517DD44B40076FB67 /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
+		EC561C6617DD44B40076FB67 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
+		EC561C6717DD44B40076FB67 /* wheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wheel.png; sourceTree = "<group>"; };
+		EC561C6817DD44B40076FB67 /* wheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel@2x.png"; sourceTree = "<group>"; };
+		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
+		EC561C6A17DD44B40076FB67 /* JSRenderOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
+		EC561C6B17DD44B40076FB67 /* JSVideoScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
+		EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
+		EC561C6D17DD44B40076FB67 /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
+		EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
 		EC5F858617B6BDF900304085 /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
 		EC5F858717B6BDF900304085 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
 		EC5F858817B6BDF900304085 /* JSSimViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimViewController.h; sourceTree = "<group>"; };
 		EC5F858917B6BDF900304085 /* JSSimViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimViewController.m; sourceTree = "<group>"; };
 		EC5F858A17B6BDF900304085 /* JSSimViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimViewController.xib; sourceTree = "<group>"; };
-		EC70754A1771730100D74F0E /* scrubber_inner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_inner@2x.png"; sourceTree = "<group>"; };
-		EC70754B1771730100D74F0E /* scrubber_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_mask@2x.png"; sourceTree = "<group>"; };
-		EC70754C1771730100D74F0E /* scrubber_outer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber_outer@2x.png"; sourceTree = "<group>"; };
-		EC80D191173EF4A4008B961F /* JSRenderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
-		EC80D192173EF4A4008B961F /* JSRenderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
-		ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
-		ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
-		ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
-		ECCA5F1A1661B02E00229B4D /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		ECCA5F221661B02E00229B4D /* slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider.png; sourceTree = "<group>"; };
-		ECCA5F231661B02E00229B4D /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		ECCA5F341661B04300229B4D /* JSVideoScrubber-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JSVideoScrubber-Info.plist"; path = "Support/JSVideoScrubber-Info.plist"; sourceTree = SOURCE_ROOT; };
 		ECCA5F351661B04300229B4D /* JSVideoScrubber-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSVideoScrubber-Prefix.pch"; path = "Support/JSVideoScrubber-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		ECCA5F381661B04300229B4D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Support/main.m; sourceTree = SOURCE_ROOT; };
-		ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_inner.png; sourceTree = "<group>"; };
-		ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_outer.png; sourceTree = "<group>"; };
-		ECCA5F411661BDA800229B4D /* scrubber_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrubber_mask.png; sourceTree = "<group>"; };
 		ECCA5F461661CA4300229B4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Support/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -102,8 +91,8 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
+				EC561C5917DD44B40076FB67 /* Scrubber */,
 				EC09F75317B58AA1008D379A /* Vendor */,
-				EC053D1615FC56A5003168B7 /* Scrubber */,
 				EC053CFB15FC565C003168B7 /* App */,
 				EC053CF415FC565C003168B7 /* Frameworks */,
 				EC053CF215FC565C003168B7 /* Products */,
@@ -162,21 +151,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EC053D1615FC56A5003168B7 /* Scrubber */ = {
-			isa = PBXGroup;
-			children = (
-				ECCA5F171661B02E00229B4D /* Assets */,
-				EC053D1F15FC57A9003168B7 /* JSVideoScrubber.h */,
-				EC053D2015FC57A9003168B7 /* JSVideoScrubber.m */,
-				ECCA5F141661AF0900229B4D /* UIImage+JSScrubber.h */,
-				ECCA5F151661AF0900229B4D /* UIImage+JSScrubber.m */,
-				EC80D191173EF4A4008B961F /* JSRenderOperation.h */,
-				EC80D192173EF4A4008B961F /* JSRenderOperation.m */,
-			);
-			name = Scrubber;
-			path = JSVideoScrubber;
-			sourceTree = "<group>";
-		};
 		EC09F75317B58AA1008D379A /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,35 +175,52 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		ECCA5F171661B02E00229B4D /* Assets */ = {
+		EC561C5917DD44B40076FB67 /* Scrubber */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5F181661B02E00229B4D /* Fonts */,
-				ECCA5F1B1661B02E00229B4D /* Images */,
+				EC561C5A17DD44B40076FB67 /* Assets */,
+				EC561C6917DD44B40076FB67 /* JSRenderOperation.h */,
+				EC561C6A17DD44B40076FB67 /* JSRenderOperation.m */,
+				EC561C6B17DD44B40076FB67 /* JSVideoScrubber.h */,
+				EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */,
+				EC561C6D17DD44B40076FB67 /* UIImage+JSScrubber.h */,
+				EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */,
+			);
+			name = Scrubber;
+			path = JSVideoScrubber/Scrubber;
+			sourceTree = "<group>";
+		};
+		EC561C5A17DD44B40076FB67 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EC561C5B17DD44B40076FB67 /* Fonts */,
+				EC561C5E17DD44B40076FB67 /* Images */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		ECCA5F181661B02E00229B4D /* Fonts */ = {
+		EC561C5B17DD44B40076FB67 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA5F191661B02E00229B4D /* Exo-Medium.ttf */,
-				ECCA5F1A1661B02E00229B4D /* OFL.txt */,
+				EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */,
+				EC561C5D17DD44B40076FB67 /* OFL.txt */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		ECCA5F1B1661B02E00229B4D /* Images */ = {
+		EC561C5E17DD44B40076FB67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC70754A1771730100D74F0E /* scrubber_inner@2x.png */,
-				EC70754B1771730100D74F0E /* scrubber_mask@2x.png */,
-				EC70754C1771730100D74F0E /* scrubber_outer@2x.png */,
-				ECCA5F411661BDA800229B4D /* scrubber_mask.png */,
-				ECCA5F3D1661B0E200229B4D /* scrubber_inner.png */,
-				ECCA5F3E1661B0E200229B4D /* scrubber_outer.png */,
-				ECCA5F221661B02E00229B4D /* slider.png */,
-				ECCA5F231661B02E00229B4D /* slider@2x.png */,
+				EC561C5F17DD44B40076FB67 /* scrubber_inner.png */,
+				EC561C6017DD44B40076FB67 /* scrubber_inner@2x.png */,
+				EC561C6117DD44B40076FB67 /* scrubber_mask.png */,
+				EC561C6217DD44B40076FB67 /* scrubber_mask@2x.png */,
+				EC561C6317DD44B40076FB67 /* scrubber_outer.png */,
+				EC561C6417DD44B40076FB67 /* scrubber_outer@2x.png */,
+				EC561C6517DD44B40076FB67 /* slider.png */,
+				EC561C6617DD44B40076FB67 /* slider@2x.png */,
+				EC561C6717DD44B40076FB67 /* wheel.png */,
+				EC561C6817DD44B40076FB67 /* wheel@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -286,19 +277,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECCA5F261661B02E00229B4D /* Exo-Medium.ttf in Resources */,
-				ECCA5F271661B02E00229B4D /* OFL.txt in Resources */,
-				ECCA5F2E1661B02E00229B4D /* slider.png in Resources */,
-				ECCA5F2F1661B02E00229B4D /* slider@2x.png in Resources */,
-				ECCA5F3F1661B0E200229B4D /* scrubber_inner.png in Resources */,
-				ECCA5F401661B0E200229B4D /* scrubber_outer.png in Resources */,
-				ECCA5F421661BDA800229B4D /* scrubber_mask.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
 				EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */,
-				EC70754F1771730100D74F0E /* scrubber_inner@2x.png in Resources */,
-				EC7075501771730100D74F0E /* scrubber_mask@2x.png in Resources */,
-				EC7075511771730100D74F0E /* scrubber_outer@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,13 +290,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC053D2115FC57A9003168B7 /* JSVideoScrubber.m in Sources */,
 				EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */,
-				ECCA5F161661AF0900229B4D /* UIImage+JSScrubber.m in Sources */,
 				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
 				EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */,
 				EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */,
-				EC80D193173EF4A4008B961F /* JSRenderOperation.m in Sources */,
 				EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
