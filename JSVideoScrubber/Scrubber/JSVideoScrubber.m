@@ -21,6 +21,8 @@
 
 #define kJSAnimateIn 0.25f
 
+#define kJSTrackingYFudgeFactor 24.0f
+
 @interface JSVideoScrubber ()
 
 @property (strong, nonatomic) NSOperationQueue *renderQueue;
@@ -147,7 +149,10 @@
 {
     CGPoint p = [touch locationInView:self];
     
-    if (!CGRectContainsPoint(self.bounds, p)) {
+    CGRect trackingFrame = self.bounds;
+    trackingFrame.size.height = trackingFrame.size.height + kJSTrackingYFudgeFactor;
+    
+    if (!CGRectContainsPoint(trackingFrame, p)) {
         return NO;
     }
     
