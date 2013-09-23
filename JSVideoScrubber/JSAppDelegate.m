@@ -17,7 +17,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if TARGET_IPHONE_SIMULATOR
-    self.viewController = [[JSimInstructionsViewController alloc] initWithNibName:@"JSSimInstructionsViewController" bundle:nil];
+    JSimInstructionsViewController *svc = [[JSimInstructionsViewController alloc] initWithNibName:@"JSSimInstructionsViewController" bundle:nil];
+    svc.title = @"Instructions";
+    
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:svc];
 #else
     self.viewController = [[JSPickerViewController alloc] initWithNibName:@"JSPickerViewController" bundle:nil];
 #endif

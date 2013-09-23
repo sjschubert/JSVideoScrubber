@@ -49,7 +49,7 @@
 - (IBAction)demoAction:(id)sender
 {
     JSSimViewController *controller = [[JSSimViewController alloc] initWithNibName:@"JSSimViewController" bundle:nil];
-    [self presentViewController:controller animated:YES completion:nil];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma MARK - TTTAttributedLabel
@@ -65,7 +65,7 @@
 {
     self.helpText.font = [UIFont fontWithName:@"Helvetica" size:20.0f];
     
-    self.helpText.text = @"1. Use the excellent utility SimPholders to locate the application documents directory for this app in the simulator, and drop in your .mov files.\n\n\n2. Tap on the file name in the table to load the video in the scrubber.";
+    self.helpText.text = @"1. Use the excellent utility SimPholders to locate the application documents directory for this app in the simulator, and drop in your .mov files.\n\n2. Tap on the file name in the table to load the video in the scrubber.";
     
     NSRange r = [self.helpText.text rangeOfString:@"SimPholders"];
     [self.helpText addLinkToURL:[NSURL URLWithString:@"http://simpholders.com/"] withRange:r];

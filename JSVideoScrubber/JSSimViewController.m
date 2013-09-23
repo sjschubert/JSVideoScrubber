@@ -54,6 +54,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"Scrubber Demo";
+    
     self.tableViewController = [[UITableViewController alloc] init];
     self.tableViewController.tableView = self.videosTableView;
     
