@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
-#import "JSSimViewController.h"
+#import "JSSimInstructionsViewController.h"
 #import "JSPickerViewController.h"
 #import "JSAppDelegate.h"
 
@@ -17,7 +17,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if TARGET_IPHONE_SIMULATOR
-    self.viewController = [[JSSimViewController alloc] initWithNibName:@"JSSimViewController" bundle:nil];
+    JSimInstructionsViewController *svc = [[JSimInstructionsViewController alloc] initWithNibName:@"JSSimInstructionsViewController" bundle:nil];
+    svc.title = @"Setup";
+    
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:svc];
 #else
     self.viewController = [[JSPickerViewController alloc] initWithNibName:@"JSPickerViewController" bundle:nil];
 #endif
