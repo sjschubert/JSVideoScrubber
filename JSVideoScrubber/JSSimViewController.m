@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
-#import "TTTAttributedLabel.h"
 #import "JSVideoScrubber.h"
 #import "JSSimViewController.h"
 
@@ -33,7 +32,6 @@
 @property (strong, nonatomic) UITableViewController *tableViewController;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
-@property (strong, nonatomic) IBOutlet TTTAttributedLabel *instructions;
 @property (weak, nonatomic) IBOutlet JSVideoScrubber *jsVideoScrubber;
 @property (strong, nonatomic) IBOutlet UITableView *videosTableView;
 
@@ -74,7 +72,6 @@
     [self setJsVideoScrubber:nil];
     [self setDuration:nil];
     [self setOffset:nil];
-    [self setInstructions:nil];
     [self setVideosTableView:nil];
     
     [super viewDidUnload];
@@ -86,8 +83,6 @@
 
     self.duration.text = @"Duration: 00:00";
     self.offset.text = @"Offset: 00:00";
-    
-    [self setupInstructions];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self updateTable];
@@ -124,7 +119,7 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Assets - Pull me to refresh!";
+    return @"Detected Assets (Pull me to rescan)";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -179,24 +174,7 @@
     [self updateTable];
 }
 
-#pragma MARK - TTTAttributedLabel 
-
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
-{
-    [[UIApplication sharedApplication] openURL:url];
-}
-
 #pragma mark - Support
-
-- (void) setupInstructions
-{
-    //IB font settings didnt take...
-    self.instructions.font = [UIFont fontWithName:@"Helvetica" size:12.0f];
-    
-    self.instructions.text = @"1. Use the excellent utility SimPholders to locate the application documents directory for this app in the simulator, and drop in your .mov files.\n2. Tap on the file name in the table to load the video in the scrubber.";
-    NSRange r = [self.instructions.text rangeOfString:@"SimPholders"];
-    [self.instructions addLinkToURL:[NSURL URLWithString:@"http://simpholders.com/"] withRange:r];
-}
 
 - (void) setupJSVideoScrubber:(AVAsset *) asset
 {
