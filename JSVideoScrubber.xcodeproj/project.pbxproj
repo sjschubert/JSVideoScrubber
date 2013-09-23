@@ -28,10 +28,14 @@
 		EC36AC5317EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5517EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5617EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
-		EC36AC5817EFCFC100F061FD /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6617DD44B40076FB67 /* slider@2x.png */; };
 		EC36AC5917EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5A17EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
-		EC36AC5B17EFE85800F061FD /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6F17DD58620076FB67 /* scrubber@2x.png */; };
+		EC36AC6617EFEC0200F061FD /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC5C17EFEC0200F061FD /* border.png */; };
+		EC36AC6717EFEC0200F061FD /* border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC5D17EFEC0200F061FD /* border@2x.png */; };
+		EC36AC6C17EFEC0200F061FD /* slider_frame_iOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */; };
+		EC36AC6D17EFEC0200F061FD /* slider_frame_iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */; };
+		EC36AC6E17EFEC0200F061FD /* slider_iOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6417EFEC0200F061FD /* slider_iOS7.png */; };
+		EC36AC6F17EFEC0200F061FD /* slider_iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */; };
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
@@ -57,16 +61,20 @@
 		EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimInstructionsViewController.h; sourceTree = "<group>"; };
 		EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimInstructionsViewController.m; sourceTree = "<group>"; };
 		EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimInstructionsViewController.xib; sourceTree = "<group>"; };
+		EC36AC5C17EFEC0200F061FD /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
+		EC36AC5D17EFEC0200F061FD /* border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "border@2x.png"; sourceTree = "<group>"; };
+		EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_frame_iOS7.png; sourceTree = "<group>"; };
+		EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_frame_iOS7@2x.png"; sourceTree = "<group>"; };
+		EC36AC6417EFEC0200F061FD /* slider_iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_iOS7.png; sourceTree = "<group>"; };
+		EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_iOS7@2x.png"; sourceTree = "<group>"; };
 		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		EC561C6617DD44B40076FB67 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
 		EC561C6A17DD44B40076FB67 /* JSRenderOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRenderOperation.m; sourceTree = "<group>"; };
 		EC561C6B17DD44B40076FB67 /* JSVideoScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSVideoScrubber.h; sourceTree = "<group>"; };
 		EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSVideoScrubber.m; sourceTree = "<group>"; };
 		EC561C6D17DD44B40076FB67 /* UIImage+JSScrubber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSScrubber.h"; sourceTree = "<group>"; };
 		EC561C6E17DD44B40076FB67 /* UIImage+JSScrubber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSScrubber.m"; sourceTree = "<group>"; };
-		EC561C6F17DD58620076FB67 /* scrubber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber@2x.png"; sourceTree = "<group>"; };
 		EC561C7617DD5F430076FB67 /* JSAssetDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAssetDefines.h; sourceTree = "<group>"; };
 		EC5F858617B6BDF900304085 /* JSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppDelegate.h; sourceTree = "<group>"; };
 		EC5F858717B6BDF900304085 /* JSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppDelegate.m; sourceTree = "<group>"; };
@@ -217,8 +225,12 @@
 		EC561C5E17DD44B40076FB67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC561C6F17DD58620076FB67 /* scrubber@2x.png */,
-				EC561C6617DD44B40076FB67 /* slider@2x.png */,
+				EC36AC5C17EFEC0200F061FD /* border.png */,
+				EC36AC5D17EFEC0200F061FD /* border@2x.png */,
+				EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */,
+				EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */,
+				EC36AC6417EFEC0200F061FD /* slider_iOS7.png */,
+				EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -275,18 +287,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC36AC6C17EFEC0200F061FD /* slider_frame_iOS7.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
+				EC36AC6D17EFEC0200F061FD /* slider_frame_iOS7@2x.png in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
 				EC36AC5117EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5917EFCFC100F061FD /* (null) in Resources */,
-				EC36AC5B17EFE85800F061FD /* scrubber@2x.png in Resources */,
 				EC36AC4D17EFC83C00F061FD /* JSSimInstructionsViewController.xib in Resources */,
-				EC36AC5817EFCFC100F061FD /* slider@2x.png in Resources */,
 				EC36AC5617EFCFC100F061FD /* (null) in Resources */,
+				EC36AC6F17EFEC0200F061FD /* slider_iOS7@2x.png in Resources */,
+				EC36AC6717EFEC0200F061FD /* border@2x.png in Resources */,
 				EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */,
+				EC36AC6617EFEC0200F061FD /* border.png in Resources */,
 				EC36AC5217EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5517EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5A17EFCFC100F061FD /* (null) in Resources */,
+				EC36AC6E17EFEC0200F061FD /* slider_iOS7.png in Resources */,
 				EC36AC5317EFCFC100F061FD /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
