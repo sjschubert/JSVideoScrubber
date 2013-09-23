@@ -23,6 +23,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="30Z-ZT-g8z"/>
+                    </connections>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dW2-9e-qNX">
                     <rect key="frame" x="85" y="364" width="151" height="50"/>
