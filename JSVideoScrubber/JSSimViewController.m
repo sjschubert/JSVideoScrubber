@@ -55,6 +55,7 @@
     [super viewDidLoad];
     
     self.title = @"Scrubber Demo";
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
     self.tableViewController = [[UITableViewController alloc] init];
     self.tableViewController.tableView = self.videosTableView;
