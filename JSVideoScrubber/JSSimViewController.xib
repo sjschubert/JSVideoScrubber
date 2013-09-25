@@ -49,6 +49,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
