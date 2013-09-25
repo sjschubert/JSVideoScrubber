@@ -29,7 +29,6 @@
 @property (strong, nonatomic) AVAsset *asset;
 
 @property (strong, nonatomic) UIImage *scrubberFrame;
-@property (strong, nonatomic) UIImage *mask;
 @property (strong, nonatomic) UIImage *slider;
 @property (assign, nonatomic) CGFloat markerLocation;
 @property (assign, nonatomic) CGFloat touchOffset;
@@ -76,7 +75,6 @@
     UIEdgeInsets uniformInsets = UIEdgeInsetsMake(0.0f, kJSFrameInset, 0.0f, kJSFrameInset);
     
     self.scrubberFrame = [[UIImage imageNamed:@"scrubber"] resizableImageWithCapInsets:uniformInsets];
-    self.mask = [[[UIImage imageNamed:@"mask"] flipImageVertically] resizableImageWithCapInsets:uniformInsets];
     self.slider = [UIImage imageNamed:@"slider"];
 
     self.markerLocation = js_marker_start;
