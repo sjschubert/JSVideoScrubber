@@ -14,6 +14,10 @@
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
 		EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */; };
 		EC09F75917B58C90008D379A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC09F75817B58C90008D379A /* CoreText.framework */; };
+		EC1BD7ED1800ACAA00667738 /* border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7E91800ACAA00667738 /* border@2x.png */; };
+		EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EA1800ACAA00667738 /* pause@2x.png */; };
+		EC1BD7EF1800ACAA00667738 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EB1800ACAA00667738 /* play@2x.png */; };
+		EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EC1800ACAA00667738 /* slider@2x.png */; };
 		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
 		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
@@ -30,12 +34,6 @@
 		EC36AC5617EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5917EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5A17EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
-		EC36AC6617EFEC0200F061FD /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC5C17EFEC0200F061FD /* border.png */; };
-		EC36AC6717EFEC0200F061FD /* border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC5D17EFEC0200F061FD /* border@2x.png */; };
-		EC36AC6C17EFEC0200F061FD /* slider_frame_iOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */; };
-		EC36AC6D17EFEC0200F061FD /* slider_frame_iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */; };
-		EC36AC6E17EFEC0200F061FD /* slider_iOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6417EFEC0200F061FD /* slider_iOS7.png */; };
-		EC36AC6F17EFEC0200F061FD /* slider_iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */; };
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
@@ -53,6 +51,10 @@
 		EC09F75517B58AA1008D379A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		EC09F75817B58C90008D379A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EC1BD7E91800ACAA00667738 /* border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "border@2x.png"; sourceTree = "<group>"; };
+		EC1BD7EA1800ACAA00667738 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
+		EC1BD7EB1800ACAA00667738 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		EC1BD7EC1800ACAA00667738 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		EC2187F11720E6100082B97A /* JSPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPickerViewController.h; sourceTree = "<group>"; };
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
@@ -61,12 +63,6 @@
 		EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimInstructionsViewController.h; sourceTree = "<group>"; };
 		EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimInstructionsViewController.m; sourceTree = "<group>"; };
 		EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimInstructionsViewController.xib; sourceTree = "<group>"; };
-		EC36AC5C17EFEC0200F061FD /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
-		EC36AC5D17EFEC0200F061FD /* border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "border@2x.png"; sourceTree = "<group>"; };
-		EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_frame_iOS7.png; sourceTree = "<group>"; };
-		EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_frame_iOS7@2x.png"; sourceTree = "<group>"; };
-		EC36AC6417EFEC0200F061FD /* slider_iOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_iOS7.png; sourceTree = "<group>"; };
-		EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider_iOS7@2x.png"; sourceTree = "<group>"; };
 		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
@@ -225,12 +221,10 @@
 		EC561C5E17DD44B40076FB67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC36AC5C17EFEC0200F061FD /* border.png */,
-				EC36AC5D17EFEC0200F061FD /* border@2x.png */,
-				EC36AC6217EFEC0200F061FD /* slider_frame_iOS7.png */,
-				EC36AC6317EFEC0200F061FD /* slider_frame_iOS7@2x.png */,
-				EC36AC6417EFEC0200F061FD /* slider_iOS7.png */,
-				EC36AC6517EFEC0200F061FD /* slider_iOS7@2x.png */,
+				EC1BD7E91800ACAA00667738 /* border@2x.png */,
+				EC1BD7EA1800ACAA00667738 /* pause@2x.png */,
+				EC1BD7EB1800ACAA00667738 /* play@2x.png */,
+				EC1BD7EC1800ACAA00667738 /* slider@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -287,22 +281,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC36AC6C17EFEC0200F061FD /* slider_frame_iOS7.png in Resources */,
+				EC1BD7EF1800ACAA00667738 /* play@2x.png in Resources */,
+				EC1BD7ED1800ACAA00667738 /* border@2x.png in Resources */,
+				EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
-				EC36AC6D17EFEC0200F061FD /* slider_frame_iOS7@2x.png in Resources */,
 				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
 				EC36AC5117EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5917EFCFC100F061FD /* (null) in Resources */,
 				EC36AC4D17EFC83C00F061FD /* JSSimInstructionsViewController.xib in Resources */,
 				EC36AC5617EFCFC100F061FD /* (null) in Resources */,
-				EC36AC6F17EFEC0200F061FD /* slider_iOS7@2x.png in Resources */,
-				EC36AC6717EFEC0200F061FD /* border@2x.png in Resources */,
+				EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */,
 				EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */,
-				EC36AC6617EFEC0200F061FD /* border.png in Resources */,
 				EC36AC5217EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5517EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5A17EFCFC100F061FD /* (null) in Resources */,
-				EC36AC6E17EFEC0200F061FD /* slider_iOS7.png in Resources */,
 				EC36AC5317EFCFC100F061FD /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
