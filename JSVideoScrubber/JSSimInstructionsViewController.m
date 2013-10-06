@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 jaminschubert. All rights reserved.
 //
 
+#import "JSAppDefines.h"
 #import "TTTAttributedLabel.h"
 #import "JSSimViewController.h"
 #import "JSSimInstructionsViewController.h"
@@ -36,6 +37,10 @@
 {
     [super viewDidLoad];
     [self setupHelpText];
+    
+    [self.demoBtn setTitleColor:kJSInteractiveColor forState:UIControlStateNormal];
+    [self.demoBtn setTitleColor:kJSHighlightedColor forState:UIControlStateHighlighted];
+    [self.demoBtn setTitleColor:kJSHighlightedColor forState:UIControlStateSelected];
 }
 
 - (void)didReceiveMemoryWarning

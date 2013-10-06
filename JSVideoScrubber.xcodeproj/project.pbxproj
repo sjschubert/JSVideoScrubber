@@ -140,6 +140,7 @@
 		EC053CFB15FC565C003168B7 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EC1BD7F11800CBD200667738 /* JSAppDefines.h */,
 				EC5F858617B6BDF900304085 /* JSAppDelegate.h */,
 				EC5F858717B6BDF900304085 /* JSAppDelegate.m */,
 				EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */,
@@ -152,7 +153,6 @@
 				EC2187F21720E6100082B97A /* JSPickerViewController.m */,
 				EC2187F31720E6100082B97A /* JSPickerViewController.xib */,
 				EC053CFC15FC565C003168B7 /* Supporting Files */,
-				EC1BD7F11800CBD200667738 /* JSAppDefines.h */,
 			);
 			name = App;
 			path = JSVideoScrubber;

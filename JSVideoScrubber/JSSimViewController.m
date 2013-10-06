@@ -140,7 +140,7 @@
     cell.textLabel.text = [self.assetPaths[indexPath.row] lastPathComponent];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.highlightedTextColor = kJSActiveColor;
-    cell.backgroundColor = kJSBackgound;
+    cell.backgroundColor = kJSBackgoundColor;
     return cell;
 }
 
