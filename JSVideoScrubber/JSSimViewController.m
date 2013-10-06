@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
+#import "JSAppDefines.h"
 #import "JSVideoScrubber.h"
 #import "JSSimViewController.h"
 
@@ -138,7 +139,8 @@
     
     cell.textLabel.text = [self.assetPaths[indexPath.row] lastPathComponent];
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor colorWithRed:(85.0f/255.0f) green:(85.0f/255.0f) blue:(85.0f/255.0f) alpha:1.0f];
+    cell.textLabel.highlightedTextColor = kJSActiveColor;
+    cell.backgroundColor = kJSBackgound;
     return cell;
 }
 

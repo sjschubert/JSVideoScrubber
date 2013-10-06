@@ -55,6 +55,7 @@
 		EC1BD7EA1800ACAA00667738 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		EC1BD7EB1800ACAA00667738 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		EC1BD7EC1800ACAA00667738 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
+		EC1BD7F11800CBD200667738 /* JSAppDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppDefines.h; sourceTree = "<group>"; };
 		EC2187F11720E6100082B97A /* JSPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPickerViewController.h; sourceTree = "<group>"; };
 		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
 		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 				EC2187F21720E6100082B97A /* JSPickerViewController.m */,
 				EC2187F31720E6100082B97A /* JSPickerViewController.xib */,
 				EC053CFC15FC565C003168B7 /* Supporting Files */,
+				EC1BD7F11800CBD200667738 /* JSAppDefines.h */,
 			);
 			name = App;
 			path = JSVideoScrubber;

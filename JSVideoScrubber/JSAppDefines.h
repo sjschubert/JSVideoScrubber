@@ -8,6 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JSAppDefines <NSObject>
-
-@end
+#define kJSBackgound [UIColor colorWithRed:(85.0f/255.0f) green:(85.0f/255.0f) blue:(85.0f/255.0f) alpha:1.0f];
+#define kJSActiveColor [UIColor colorWithRed:0 green:0.478431 blue:1 alpha:1.0f];
