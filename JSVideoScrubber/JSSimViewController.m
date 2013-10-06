@@ -64,6 +64,7 @@
     [self.tableViewController didMoveToParentViewController:self];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
     self.tableViewController.refreshControl = self.refreshControl;
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     
@@ -136,6 +137,8 @@
     }
     
     cell.textLabel.text = [self.assetPaths[indexPath.row] lastPathComponent];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:(85.0f/255.0f) green:(85.0f/255.0f) blue:(85.0f/255.0f) alpha:1.0f];
     return cell;
 }
 

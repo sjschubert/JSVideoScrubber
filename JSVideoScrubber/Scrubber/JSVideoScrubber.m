@@ -14,13 +14,12 @@
 #import "JSVideoScrubber.h"
 
 #define js_marker_center (self.slider.size.width / 2)
-#define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
-#define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
-
-#define kJSMarkerXStop (js_marker_center + 0.5f)
+#define js_marker_w (self.slider.size.width)
+#define js_marker_start (self.frame.origin.x)
+#define js_marker_stop (self.frame.size.width - (js_marker_w))
+#define js_marker_y_offset (self.frame.size.height - (kJSFrameInset))
 
 #define kJSAnimateIn 0.25f
-
 #define kJSTrackingYFudgeFactor 24.0f
 
 @interface JSVideoScrubber ()
@@ -34,7 +33,7 @@
 @property (assign, nonatomic) CGFloat touchOffset;
 @property (assign, nonatomic) BOOL blockOffsetUpdates;
 
-@property (strong, nonatomic) CALayer *imageStripLayer;
+@property (strong, nonatomic) CALayer *stripLayer;
 @property (strong, nonatomic) CALayer *markerLayer;
 
 @end
@@ -71,36 +70,23 @@
 {
     self.renderQueue = [[NSOperationQueue alloc] init];
     self.renderQueue.maxConcurrentOperationCount = 1;
+    [self.renderQueue setSuspended:NO];
     
-    UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, kJSFrameInset, 0.0f, kJSFrameInset);
-    
-    self.scrubberFrame = [[UIImage imageNamed:@"border"] resizableImageWithCapInsets:insets];
-    self.slider = [UIImage imageNamed:@"slider"];
+    self.scrubberFrame = [[UIImage imageNamed:@"border"] resizableImageWithCapInsets:UIEdgeInsetsMake(kJSFrameInset, 0.0f, kJSFrameInset, 0.0f)];
+    self.slider = [[UIImage imageNamed:@"slider"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 26.0f, 2.0f, 26.0f)];
 
     self.markerLocation = js_marker_start;
     self.blockOffsetUpdates = NO;
     
-    self.imageStripLayer = [CALayer layer];
-    self.markerLayer = [CALayer layer];
-    
     [self setupControlLayers];
-    
-    self.imageStripLayer.actions = @{@"position":[NSNull null], @"bounds":[NSNull null], @"anchorPoint": [NSNull null]};
-    self.markerLayer.actions = @{@"position":[NSNull null], @"bounds":[NSNull null], @"anchorPoint": [NSNull null]};
-    
-    [self.layer addSublayer:self.markerLayer];
-    [self.layer insertSublayer:self.imageStripLayer below:self.markerLayer];
-    
     self.layer.opacity = 0.0f;
-    
-    [self.renderQueue setSuspended:NO];
 }
 
 #pragma mark - UIView
 
 - (void) drawRect:(CGRect) rect
 {
-    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + kJSMarkerYOffset);
+    CGPoint offset = CGPointMake((rect.origin.x + self.markerLocation), rect.origin.y + kJSMarkerInset);
     self.markerLayer.position = offset;
     [self setNeedsDisplay];
 }
@@ -203,7 +189,7 @@
         return;
     }
     
-    CGFloat x = (offset / CMTimeGetSeconds(self.duration)) * (self.frame.size.width - (2 * kJSMarkerXStop));
+    CGFloat x = (offset / CMTimeGetSeconds(self.duration)) * (self.frame.size.width - js_marker_w);
     [self updateMarkerToPoint:CGPointMake(x + js_marker_start, 0.0f)];
     
     _offset = offset;
@@ -263,23 +249,22 @@
             NSLog(@"error rendering image strip: %@", error);
         }
         
-        UIGraphicsBeginImageContext(ref.imageStripLayer.frame.size);
+        UIGraphicsBeginImageContext(ref.stripLayer.frame.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
         
-        [ref.scrubberFrame drawInRect:ref.imageStripLayer.frame];
+        CGImageRef cg_img = strip.CGImage;
         
-        CGImageRef masked = strip.CGImage;
+        size_t masked_h = CGImageGetHeight(cg_img);
+        size_t masked_w = CGImageGetWidth(cg_img);
         
-        size_t masked_h = CGImageGetHeight(masked);
-        size_t masked_w = CGImageGetWidth(masked);
+        CGFloat x = ref.stripLayer.frame.origin.x;
+        CGFloat y = ref.stripLayer.frame.origin.y + kJSFrameInset;
         
-        CGFloat x = ref.imageStripLayer.frame.origin.x + kJSImageBorder + kJSImageDivider;
-        CGFloat y = ref.imageStripLayer.frame.origin.y + kJSImageBorder + 0.5f;
-        
-        CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), masked);
+        CGContextDrawImage(context, CGRectMake(x, y, masked_w, masked_h), cg_img);
+        [ref.scrubberFrame drawInRect:ref.stripLayer.frame];
         
         UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-        ref.imageStripLayer.contents = (__bridge id)img.CGImage;
+        ref.stripLayer.contents = (__bridge id)img.CGImage;
         
         UIGraphicsEndImageContext();
         
@@ -298,7 +283,7 @@
 
 - (CGFloat) offsetForMarkerLocation
 {
-    CGFloat ratio = (((self.markerLocation + js_marker_center) - kJSMarkerXStop) / (self.frame.size.width - (2 * kJSMarkerXStop)));
+    CGFloat ratio = (self.markerLocation / (self.frame.size.width - js_marker_w));
     return (ratio * CMTimeGetSeconds(self.duration));
 }
 
@@ -324,7 +309,7 @@
         return NO;
     }
 
-    if (point.y < kJSMarkerYOffset || point.y > (kJSMarkerYOffset + self.slider.size.height)) { //y test
+    if (point.y < kJSMarkerInset || point.y > (kJSMarkerInset + self.slider.size.height)) { //y test
         return NO;
     }
 
@@ -333,12 +318,22 @@
 
 - (void) setupControlLayers
 {
-    self.imageStripLayer.bounds = self.bounds;
-    self.markerLayer.bounds = CGRectMake(0, 0, self.slider.size.width, self.slider.size.height);
-    
-    self.imageStripLayer.anchorPoint = CGPointZero;
-    self.markerLayer.anchorPoint = CGPointZero;
+    self.stripLayer = [CALayer layer];
+    self.markerLayer = [CALayer layer];
 
+    self.stripLayer.bounds = self.bounds;
+    self.markerLayer.bounds = CGRectMake(0, 0, self.slider.size.width, self.bounds.size.height - (2 * kJSMarkerInset));
+    
+    self.stripLayer.anchorPoint = CGPointZero;
+    self.markerLayer.anchorPoint = CGPointZero;
+    
+    //do not apply animations on these properties
+    NSDictionary *d =  @{@"position":[NSNull null], @"bounds":[NSNull null], @"anchorPoint": [NSNull null]};
+    self.stripLayer.actions = d;
+    self.markerLayer.actions = d;
+    
+    [self.layer addSublayer:self.markerLayer];
+    [self.layer insertSublayer:self.stripLayer below:self.markerLayer];
 }
 
 @end

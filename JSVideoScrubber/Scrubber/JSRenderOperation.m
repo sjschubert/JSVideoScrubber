@@ -10,11 +10,7 @@
 #import "UIImage+JSScrubber.h"
 #import "JSRenderOperation.h"
 
-
-#define js_marker_center (self.marker.size.width / 2)
-#define js_marker_start (self.frame.origin.x + kJSMarkerXStop - js_marker_center)
-#define js_marker_stop (self.frame.size.width - (kJSMarkerXStop + js_marker_center))
-#define js_scaled_img_height (self.frame.size.height - (kJSMarkerYOffset + (2 * kJSImageBorder)))
+#define js_scaled_img_height (self.frame.size.height - (2 * kJStripOffset))
 
 @interface NSDictionary (JSSorting)
 
@@ -204,8 +200,7 @@
 
 - (UIImage *) drawStripWithImages:(NSDictionary *)images targetFrame:(CGRect) frame imgWidth:(size_t) width imgHeight:(size_t) height
 {
-    CGFloat border = (2 * kJSImageBorder) + (2 * kJSImageDivider);
-    CGRect stripFrame = CGRectMake(0.0f, 0.0f,(frame.size.width - border), height);
+    CGRect stripFrame = CGRectMake(0.0f, 0.0f,frame.size.width, height);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef stripCtx = CGBitmapContextCreate(NULL, stripFrame.size.width,
