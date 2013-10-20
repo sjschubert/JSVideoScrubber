@@ -34,6 +34,8 @@
 		EC36AC5617EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5917EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5A17EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
+		EC36AC5B17EFE85800F061FD /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6F17DD58620076FB67 /* scrubber@2x.png */; };
+		EC3CBE2E1814844D005869D3 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3CBE2D1814844D005869D3 /* AssetsLibrary.framework */; };
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
@@ -64,6 +66,7 @@
 		EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimInstructionsViewController.h; sourceTree = "<group>"; };
 		EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimInstructionsViewController.m; sourceTree = "<group>"; };
 		EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimInstructionsViewController.xib; sourceTree = "<group>"; };
+		EC3CBE2D1814844D005869D3 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3CBE2E1814844D005869D3 /* AssetsLibrary.framework in Frameworks */,
 				EC240A6B17D45AFE004A6752 /* QuartzCore.framework in Frameworks */,
 				EC09F75917B58C90008D379A /* CoreText.framework in Frameworks */,
 				EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */,
@@ -125,6 +129,7 @@
 		EC053CF415FC565C003168B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC3CBE2D1814844D005869D3 /* AssetsLibrary.framework */,
 				EC240A6A17D45AFE004A6752 /* QuartzCore.framework */,
 				EC09F75817B58C90008D379A /* CoreText.framework */,
 				EC2187F71720F0780082B97A /* MobileCoreServices.framework */,

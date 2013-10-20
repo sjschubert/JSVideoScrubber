@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 jaminschubert. All rights reserved.
 //
 
+#import <AssetsLibrary/AssetsLibrary.h>
+
 #import "JSAppDefines.h"
 #import "JSVideoScrubber.h"
 #import "JSSimViewController.h"
@@ -36,10 +38,12 @@
 @property (weak, nonatomic) IBOutlet JSVideoScrubber *jsVideoScrubber;
 @property (strong, nonatomic) IBOutlet UITableView *videosTableView;
 
+@property (strong, nonatomic) ALAssetsLibrary *assetLib;
+
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *offset;
 @property (strong, nonatomic) NSString *documentDirectory;
-@property (strong, nonatomic) NSArray *assetPaths;
+@property (strong, nonatomic) NSMutableArray *assetPaths;
 
 @property (strong, nonatomic) NSIndexPath *currentSelection;
 
@@ -70,6 +74,9 @@
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     
     self.documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    self.assetLib = [[ALAssetsLibrary alloc] init];
+    self.assetPaths = [NSMutableArray array];
 }
 
 - (void)viewDidUnload
@@ -90,7 +97,7 @@
     self.offset.text = @"Offset: 00:00";
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self updateTable];
+        [self scanForAssets];
     });
 }
 
@@ -150,9 +157,16 @@
         return;
     }
     
-    NSString *path = self.assetPaths[indexPath.row];
-    NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:path]];
-    AVURLAsset* asset = [AVURLAsset URLAssetWithURL:url options:nil];
+    AVURLAsset* asset = nil;
+    
+    if (js_is_simulator) {
+        NSString *path = self.assetPaths[indexPath.row];
+        NSURL* url = [NSURL fileURLWithPath:[self.documentDirectory stringByAppendingPathComponent:path]];
+        asset = [AVURLAsset URLAssetWithURL:url options:nil];
+    } else {
+        asset = [AVURLAsset URLAssetWithURL:self.assetPaths[indexPath.row] options:nil];
+    }
+    
     
     __weak JSSimViewController *ref = self;
     
@@ -179,7 +193,7 @@
 
 - (void) handleRefresh:(id) sender
 {
-    [self updateTable];
+    [self scanForAssets];
 }
 
 #pragma mark - Support
@@ -197,27 +211,57 @@
 }
 
 
-- (void) updateTable
+- (void) scanForAssets
 {
-    [self scanForAssets];
-    [self.videosTableView reloadData];
-    [self.refreshControl endRefreshingAfterDelay:0.1];
+    [self.assetPaths removeAllObjects];
+    
+    if (js_is_simulator) {
+        [self scanSimulatorForAssets];
+    } else {
+        [self scanLibraryForAssets];
+    }
 }
 
-- (void) scanForAssets
-{        
+- (void) scanSimulatorForAssets
+{
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.documentDirectory error:&error];
     
     if (!contents) {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error occured scanning docs directory" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         NSLog(@"error scanning directory: %@", error);
-        return;
     }
     
     NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self ENDSWITH[c] '.mov'"];
-    NSArray *paths = [contents filteredArrayUsingPredicate:fltr];
+    [self.assetPaths addObjectsFromArray:[contents filteredArrayUsingPredicate:fltr]];
     
-    self.assetPaths = [NSArray arrayWithArray:paths];
+    [self.videosTableView reloadData];
+    [self.refreshControl endRefreshingAfterDelay:0.1];
 }
+
+- (void) scanLibraryForAssets
+{
+    [self.assetLib enumerateGroupsWithTypes:ALAssetsGroupAll
+        usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            if (!group) {
+                [self.videosTableView reloadData];
+                [self.refreshControl endRefreshingAfterDelay:0.1];
+            }
+            
+            [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                NSLog(@"found %@ with url %@", result, [result valueForProperty:ALAssetPropertyAssetURL]);
+                if (![[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+                    return;
+                }
+                NSLog(@"Adding asset");
+                [self.assetPaths addObject:[result valueForProperty:ALAssetPropertyAssetURL]];
+            }];
+        }
+        failureBlock:^(NSError *error) {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Error occured scanning camera roll for assets" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            NSLog(@"error scanning directory: %@", error);
+        }
+     ];
+}
+
 @end

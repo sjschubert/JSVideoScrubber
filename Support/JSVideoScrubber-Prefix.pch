@@ -12,3 +12,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+#define js_is_simulator (YES == [[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])

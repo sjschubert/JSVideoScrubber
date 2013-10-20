@@ -7,7 +7,7 @@
 //
 
 #import "JSSimInstructionsViewController.h"
-#import "JSPickerViewController.h"
+#import "JSSimViewController.h"
 #import "JSAppDelegate.h"
 
 @implementation JSAppDelegate
@@ -16,14 +16,16 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-#if TARGET_IPHONE_SIMULATOR
-    JSimInstructionsViewController *svc = [[JSimInstructionsViewController alloc] initWithNibName:@"JSSimInstructionsViewController" bundle:nil];
-    svc.title = @"Setup";
+    UIViewController *vc;
     
-    self.viewController = [[UINavigationController alloc] initWithRootViewController:svc];
-#else
-    self.viewController = [[JSPickerViewController alloc] initWithNibName:@"JSPickerViewController" bundle:nil];
-#endif
+    if (js_is_simulator) {
+        vc= [[JSimInstructionsViewController alloc] initWithNibName:@"JSSimInstructionsViewController" bundle:nil];
+        vc.title = @"Setup";
+    } else {
+        vc = [[JSSimViewController alloc] initWithNibName:@"JSSimViewController" bundle:nil];
+    }
+
+    self.viewController = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
