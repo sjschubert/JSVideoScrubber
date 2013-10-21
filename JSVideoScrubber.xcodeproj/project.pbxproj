@@ -18,8 +18,6 @@
 		EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EA1800ACAA00667738 /* pause@2x.png */; };
 		EC1BD7EF1800ACAA00667738 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EB1800ACAA00667738 /* play@2x.png */; };
 		EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EC1800ACAA00667738 /* slider@2x.png */; };
-		EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2187F21720E6100082B97A /* JSPickerViewController.m */; };
-		EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC2187F31720E6100082B97A /* JSPickerViewController.xib */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
 		EC240A6B17D45AFE004A6752 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC240A6A17D45AFE004A6752 /* QuartzCore.framework */; };
 		EC36AC4C17EFC83C00F061FD /* JSSimInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */; };
@@ -34,8 +32,8 @@
 		EC36AC5617EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5917EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
 		EC36AC5A17EFCFC100F061FD /* (null) in Resources */ = {isa = PBXBuildFile; };
-		EC36AC5B17EFE85800F061FD /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC561C6F17DD58620076FB67 /* scrubber@2x.png */; };
 		EC3CBE2E1814844D005869D3 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3CBE2D1814844D005869D3 /* AssetsLibrary.framework */; };
+		EC3CBE711814E046005869D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3CBE701814E046005869D3 /* Images.xcassets */; };
 		EC5F858B17B6BDF900304085 /* JSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858717B6BDF900304085 /* JSAppDelegate.m */; };
 		EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F858917B6BDF900304085 /* JSSimViewController.m */; };
 		EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC5F858A17B6BDF900304085 /* JSSimViewController.xib */; };
@@ -58,15 +56,13 @@
 		EC1BD7EB1800ACAA00667738 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		EC1BD7EC1800ACAA00667738 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		EC1BD7F11800CBD200667738 /* JSAppDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppDefines.h; sourceTree = "<group>"; };
-		EC2187F11720E6100082B97A /* JSPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPickerViewController.h; sourceTree = "<group>"; };
-		EC2187F21720E6100082B97A /* JSPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPickerViewController.m; sourceTree = "<group>"; };
-		EC2187F31720E6100082B97A /* JSPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSPickerViewController.xib; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EC240A6A17D45AFE004A6752 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimInstructionsViewController.h; sourceTree = "<group>"; };
 		EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimInstructionsViewController.m; sourceTree = "<group>"; };
 		EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimInstructionsViewController.xib; sourceTree = "<group>"; };
 		EC3CBE2D1814844D005869D3 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		EC3CBE701814E046005869D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JSVideoScrubber/Images.xcassets; sourceTree = "<group>"; };
 		EC561C5C17DD44B40076FB67 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		EC561C5D17DD44B40076FB67 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		EC561C6917DD44B40076FB67 /* JSRenderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRenderOperation.h; sourceTree = "<group>"; };
@@ -110,6 +106,7 @@
 		EC053CE615FC565C003168B7 = {
 			isa = PBXGroup;
 			children = (
+				EC3CBE701814E046005869D3 /* Images.xcassets */,
 				EC09F75317B58AA1008D379A /* Vendor */,
 				EC561C5917DD44B40076FB67 /* Scrubber */,
 				EC053CFB15FC565C003168B7 /* App */,
@@ -154,9 +151,6 @@
 				EC5F858817B6BDF900304085 /* JSSimViewController.h */,
 				EC5F858917B6BDF900304085 /* JSSimViewController.m */,
 				EC5F858A17B6BDF900304085 /* JSSimViewController.xib */,
-				EC2187F11720E6100082B97A /* JSPickerViewController.h */,
-				EC2187F21720E6100082B97A /* JSPickerViewController.m */,
-				EC2187F31720E6100082B97A /* JSPickerViewController.xib */,
 				EC053CFC15FC565C003168B7 /* Supporting Files */,
 			);
 			name = App;
@@ -292,9 +286,9 @@
 				EC1BD7ED1800ACAA00667738 /* border@2x.png in Resources */,
 				EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
-				EC2187F51720E6100082B97A /* JSPickerViewController.xib in Resources */,
 				EC36AC5117EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5917EFCFC100F061FD /* (null) in Resources */,
+				EC3CBE711814E046005869D3 /* Images.xcassets in Resources */,
 				EC36AC4D17EFC83C00F061FD /* JSSimInstructionsViewController.xib in Resources */,
 				EC36AC5617EFCFC100F061FD /* (null) in Resources */,
 				EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */,
@@ -318,7 +312,6 @@
 				ECCA5F3C1661B04300229B4D /* main.m in Sources */,
 				EC36AC4E17EFCF0F00F061FD /* JSVideoScrubber.m in Sources */,
 				EC36AC4C17EFC83C00F061FD /* JSSimInstructionsViewController.m in Sources */,
-				EC2187F41720E6100082B97A /* JSPickerViewController.m in Sources */,
 				EC5F858C17B6BDF900304085 /* JSSimViewController.m in Sources */,
 				EC36AC5017EFCF1600F061FD /* JSRenderOperation.m in Sources */,
 				EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */,
@@ -406,6 +399,8 @@
 		EC053D1015FC565C003168B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Seth Schubert (5LF23B4KXD)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Support/JSVideoScrubber-Prefix.pch";
@@ -420,6 +415,8 @@
 		EC053D1115FC565C003168B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Seth Schubert";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

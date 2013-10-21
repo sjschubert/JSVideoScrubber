@@ -37,6 +37,7 @@
 
 @property (weak, nonatomic) IBOutlet JSVideoScrubber *jsVideoScrubber;
 @property (strong, nonatomic) IBOutlet UITableView *videosTableView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
 
 @property (strong, nonatomic) ALAssetsLibrary *assetLib;
 
@@ -77,6 +78,9 @@
     
     self.assetLib = [[ALAssetsLibrary alloc] init];
     self.assetPaths = [NSMutableArray array];
+
+    self.loadingView.hidesWhenStopped = YES;
+    self.videosTableView.alpha = 0.0f;
 }
 
 - (void)viewDidUnload
@@ -235,8 +239,18 @@
     NSPredicate *fltr = [NSPredicate predicateWithFormat:@"self ENDSWITH[c] '.mov'"];
     [self.assetPaths addObjectsFromArray:[contents filteredArrayUsingPredicate:fltr]];
     
-    [self.videosTableView reloadData];
-    [self.refreshControl endRefreshingAfterDelay:0.1];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.25f
+             animations:^{
+                 self.videosTableView.alpha = 1.0f;
+             }
+             completion:^(BOOL finished) {
+                 [self.loadingView stopAnimating];
+                 [self.videosTableView reloadData];
+                 [self.refreshControl endRefreshingAfterDelay:0.1];
+             }
+         ];
+    });
 }
 
 - (void) scanLibraryForAssets
@@ -244,16 +258,25 @@
     [self.assetLib enumerateGroupsWithTypes:ALAssetsGroupAll
         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
             if (!group) {
-                [self.videosTableView reloadData];
-                [self.refreshControl endRefreshingAfterDelay:0.1];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.25f
+                         animations:^{
+                             self.videosTableView.alpha = 1.0f;
+                         }
+                         completion:^(BOOL finished) {
+                             [self.loadingView stopAnimating];
+                             [self.videosTableView reloadData];
+                             [self.refreshControl endRefreshingAfterDelay:0.1];
+                         }
+                     ];
+                });
             }
             
             [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                NSLog(@"found %@ with url %@", result, [result valueForProperty:ALAssetPropertyAssetURL]);
                 if (![[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
                     return;
                 }
-                NSLog(@"Adding asset");
+
                 [self.assetPaths addObject:[result valueForProperty:ALAssetPropertyAssetURL]];
             }];
         }
