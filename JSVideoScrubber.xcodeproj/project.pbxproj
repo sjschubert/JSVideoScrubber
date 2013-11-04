@@ -14,12 +14,10 @@
 		EC053D2515FC5AFA003168B7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC053D2415FC5AFA003168B7 /* CoreMedia.framework */; };
 		EC09F75717B58AA1008D379A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */; };
 		EC09F75917B58C90008D379A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC09F75817B58C90008D379A /* CoreText.framework */; };
-		EC1BD7ED1800ACAA00667738 /* border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7E91800ACAA00667738 /* border@2x.png */; };
-		EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EA1800ACAA00667738 /* pause@2x.png */; };
-		EC1BD7EF1800ACAA00667738 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EB1800ACAA00667738 /* play@2x.png */; };
-		EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1BD7EC1800ACAA00667738 /* slider@2x.png */; };
 		EC2187F81720F0780082B97A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2187F71720F0780082B97A /* MobileCoreServices.framework */; };
 		EC240A6B17D45AFE004A6752 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC240A6A17D45AFE004A6752 /* QuartzCore.framework */; };
+		EC33638318273CB2006371CB /* scrubber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC33638018273CB2006371CB /* scrubber@2x.png */; };
+		EC33638418273CB2006371CB /* slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC33638118273CB2006371CB /* slider@2x.png */; };
 		EC36AC4C17EFC83C00F061FD /* JSSimInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */; };
 		EC36AC4D17EFC83C00F061FD /* JSSimInstructionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */; };
 		EC36AC4E17EFCF0F00F061FD /* JSVideoScrubber.m in Sources */ = {isa = PBXBuildFile; fileRef = EC561C6C17DD44B40076FB67 /* JSVideoScrubber.m */; };
@@ -51,13 +49,11 @@
 		EC09F75517B58AA1008D379A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		EC09F75617B58AA1008D379A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		EC09F75817B58C90008D379A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		EC1BD7E91800ACAA00667738 /* border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "border@2x.png"; sourceTree = "<group>"; };
-		EC1BD7EA1800ACAA00667738 /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
-		EC1BD7EB1800ACAA00667738 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
-		EC1BD7EC1800ACAA00667738 /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		EC1BD7F11800CBD200667738 /* JSAppDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppDefines.h; sourceTree = "<group>"; };
 		EC2187F71720F0780082B97A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EC240A6A17D45AFE004A6752 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EC33638018273CB2006371CB /* scrubber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrubber@2x.png"; sourceTree = "<group>"; };
+		EC33638118273CB2006371CB /* slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider@2x.png"; sourceTree = "<group>"; };
 		EC36AC4917EFC83C00F061FD /* JSSimInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSSimInstructionsViewController.h; sourceTree = "<group>"; };
 		EC36AC4A17EFC83C00F061FD /* JSSimInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSSimInstructionsViewController.m; sourceTree = "<group>"; };
 		EC36AC4B17EFC83C00F061FD /* JSSimInstructionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSSimInstructionsViewController.xib; sourceTree = "<group>"; };
@@ -222,10 +218,8 @@
 		EC561C5E17DD44B40076FB67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EC1BD7E91800ACAA00667738 /* border@2x.png */,
-				EC1BD7EA1800ACAA00667738 /* pause@2x.png */,
-				EC1BD7EB1800ACAA00667738 /* play@2x.png */,
-				EC1BD7EC1800ACAA00667738 /* slider@2x.png */,
+				EC33638018273CB2006371CB /* scrubber@2x.png */,
+				EC33638118273CB2006371CB /* slider@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -282,19 +276,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC1BD7EF1800ACAA00667738 /* play@2x.png in Resources */,
-				EC1BD7ED1800ACAA00667738 /* border@2x.png in Resources */,
-				EC1BD7F01800ACAA00667738 /* slider@2x.png in Resources */,
 				ECCA5F471661CA4300229B4D /* InfoPlist.strings in Resources */,
 				EC36AC5117EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5917EFCFC100F061FD /* (null) in Resources */,
 				EC3CBE711814E046005869D3 /* Images.xcassets in Resources */,
 				EC36AC4D17EFC83C00F061FD /* JSSimInstructionsViewController.xib in Resources */,
 				EC36AC5617EFCFC100F061FD /* (null) in Resources */,
-				EC1BD7EE1800ACAA00667738 /* pause@2x.png in Resources */,
 				EC5F858D17B6BDF900304085 /* JSSimViewController.xib in Resources */,
 				EC36AC5217EFCFC100F061FD /* (null) in Resources */,
+				EC33638318273CB2006371CB /* scrubber@2x.png in Resources */,
 				EC36AC5517EFCFC100F061FD /* (null) in Resources */,
+				EC33638418273CB2006371CB /* slider@2x.png in Resources */,
 				EC36AC5A17EFCFC100F061FD /* (null) in Resources */,
 				EC36AC5317EFCFC100F061FD /* (null) in Resources */,
 			);
