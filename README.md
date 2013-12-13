@@ -1,7 +1,7 @@
 JSVideoScrubber
 ===============
 
-First of all, thanks to [grayscaletx](https://github.com/grayscaletx "grayscaletx") for grpahic design work an UX feedback, and thanks to [schlu](https://github.com/schlu "schlu") for helping to sovle some difficult issues involving AVFoundation API's used to by this control.
+First of all, thanks to [grayscaletx](https://github.com/grayscaletx "grayscaletx") for grpahic design work and UX feedback, and thanks to [schlu](https://github.com/schlu "schlu") for helping to sovle some difficult issues involving AVFoundation API's used to by this control.
 
 This is a simple, iOS 7 video scrubber control. There are 2 branches supporting different designs - the 'alt' branch is a more native iOS 7 look and feel, but both have the same behavior. 
 
